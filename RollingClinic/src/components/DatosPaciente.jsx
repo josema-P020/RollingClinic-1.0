@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./perfilPaciente.css";
-import ListaMedicos from "./ListaMedicos";
+import "./Paciente.css";
+import ListaMedicos from "./ListadoTurnos";
 
-function PerfilPaciente() {
+function DatosPaciente() {
   const [editar, setEditar] = useState(false);
   const [data, setData] = useState({
     nombre: "Juan Perez",
@@ -51,9 +51,8 @@ function PerfilPaciente() {
                   className="avatarPte"
                 />
                 <p className="pt-2">{data.nombre}</p>
-                <div className="d-flex justify-content-center align-items-center py-3">
-                  <button className="btn btn-success">Nuevo turno</button>
-                </div>
+                <div className="d-flex justify-content-center align-items-center py-3"></div>
+
                 <div className="container">
                   <ul className="list-group list-group-flush text-start">
                     <li className="list-group-item">
@@ -162,7 +161,7 @@ function PerfilPaciente() {
                   </button>
                 </div>
               </div>
-              <div className="col-lg-9 col-md-8 col-sm-12 pt-2 d-flex flex-column">
+              <div className="col-lg-9 col-md-8 col-sm-12 pt-2 d-flex flex-column justify-content-center">
                 <ListaMedicos />
               </div>
             </div>
@@ -173,4 +172,4 @@ function PerfilPaciente() {
   );
 }
 
-export default PerfilPaciente;
+export default DatosPaciente;
