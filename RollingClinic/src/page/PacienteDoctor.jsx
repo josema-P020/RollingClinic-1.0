@@ -7,44 +7,53 @@ function PacienteDoctor() {
     const [consultaDetalles, setConsultaDetalles] = useState('');
     const [resumenConsulta, setResumenConsulta] = useState('');
 
-    
+
     useEffect(() => {
         const storedPacientes = localStorage.getItem('pacientes');
         if (storedPacientes) {
-            setPacientes(JSON.parse(storedPacientes)); 
+            setPacientes(JSON.parse(storedPacientes));
         } else {
-            setPacientes(initialPacientes); 
+            setPacientes(initialPacientes);
         }
     }, []);
 
-   
+
     const handleSelectPaciente = (paciente) => {
         setSelectedPacienteId(paciente.id);
         setConsultaDetalles(paciente.detalles || '');
         setResumenConsulta(paciente.resumenConsulta || '');
     };
 
-  
+
     const handleEnviarDatos = () => {
         const updatedPacientes = pacientes.map((paciente) =>
             paciente.id === selectedPacienteId
                 ? {
-                      ...paciente,
-                      detalles: consultaDetalles,
-                      resumenConsulta: resumenConsulta,
-                      estado: paciente.estado === 'atendido' ? 'en espera' : 'atendido',
-                  }
+                    ...paciente,
+                    detalles: consultaDetalles,
+                    resumenConsulta: resumenConsulta,
+                    estado: paciente.estado === 'atendido' ? 'en espera' : 'atendido',
+                }
                 : paciente
         );
 
-        setPacientes(updatedPacientes); 
-        localStorage.setItem('pacientes', JSON.stringify(updatedPacientes)); 
+        setPacientes(updatedPacientes);
+        localStorage.setItem('pacientes', JSON.stringify(updatedPacientes));
         alert('Datos guardados correctamente');
     };
 
     return (
         <section className="container-fluid row mt-5 d-flex justify-content-around">
-        
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   Dorctor
+                </button>
+                <ul class="dropdown-menu">
+                    <li><button class="dropdown-item" type="button">Dr 1</button></li>
+                    <li><button class="dropdown-item" type="button">Dr 2</button></li>
+                    <li><button class="dropdown-item" type="button">Dr 3</button></li>
+                </ul>
+            </div>
             <div className="col-5 border border-dark m-3 rounded-2 bg-secondary bg-opacity-75 text-light">
                 <h3 className="text-center">Lista de Pacientes</h3>
                 <ul className="list-unstyled">
@@ -74,7 +83,7 @@ function PacienteDoctor() {
                             <span
                                 className={
                                     pacientes.find((p) => p.id === selectedPacienteId)?.estado ===
-                                    'atendido'
+                                        'atendido'
                                         ? 'text-success'
                                         : 'text-danger'
                                 }
