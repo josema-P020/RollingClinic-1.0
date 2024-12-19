@@ -38,6 +38,7 @@ function RegisterPatient() {
     passwordrepeat: "",
     id: new Date().getTime(),
     role: "PACIENTE",
+    aprobbed: true,
     turnos: [""],
   });
 
@@ -116,8 +117,10 @@ function RegisterPatient() {
       obraSocial: formValues.obraSocial,
       email: formValues.email,
       password: formValues.password,
-      id: formValues.id,
       role: formValues.role,
+      aprobbed: formValues.aprobbed,
+      turnos: formValues.turnos,
+      id: formValues.id
     };
 
     data.push(newUser);
