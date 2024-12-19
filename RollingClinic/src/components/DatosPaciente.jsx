@@ -46,7 +46,7 @@ function DatosPaciente() {
             <div className="row">
               <div className="col-lg-3 col-md-4 col-sm-12 text-center py-2">
                 <img
-                  src="./public/foto-perfil.jpg"
+                  src="src/images/avatar-hombre.jpg"
                   alt="avatar paciente"
                   className="avatarPte"
                 />

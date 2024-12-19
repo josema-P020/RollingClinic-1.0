@@ -10,6 +10,7 @@ function ListadoTurnos() {
       especialidad: "Pediatria",
       avatar: "foto-perfil.jpg",
       estado: "Completada",
+      sexo: "hombre",
     },
     {
       id: 2,
@@ -18,38 +19,43 @@ function ListadoTurnos() {
       especialidad: "Odontologia",
       avatar: "foto-perfil.jpg",
       estado: "Incompleta",
+      sexo: "hombre",
     },
     {
       id: 3,
       nombre: "Nahuel",
       apellido: "Romano",
-      especialidad: "Ginecologo",
+      especialidad: "Ginecologia",
       avatar: "foto-perfil.jpg",
       estado: "Completada",
+      sexo: "hombre",
     },
     {
       id: 4,
       nombre: "Mauricio",
       apellido: "Gomez",
-      especialidad: "Urologo",
+      especialidad: "Urologia",
       avatar: "foto-perfil.jpg",
       estado: "Completada",
+      sexo: "hombre",
     },
     {
       id: 5,
       nombre: "Jose",
       apellido: "Perez",
-      especialidad: "Proctologo",
+      especialidad: "Proctologia",
       avatar: "foto-perfil.jpg",
       estado: "Completada",
+      sexo: "hombre",
     },
     {
       id: 5,
-      nombre: "Jose",
-      apellido: "Perez",
-      especialidad: "Proctologo",
+      nombre: "Sofia",
+      apellido: "Soria",
+      especialidad: "Pediatria",
       avatar: "foto-perfil.jpg",
       estado: "Incompleta",
+      sexo: "mujer",
     },
   ];
 
@@ -57,52 +63,56 @@ function ListadoTurnos() {
     <div>
       <div className="text-center flex-grow-1">
         <h2 className="fw-bold pb-3">Mis Turnos</h2>
-        <table className="table table-hover">
-          <thead>
-            <tr>
-              <th></th>
-              <th className="text-start col-4">Doctor / Doctora</th>
-              <th className="text-start col-4">Especialidad</th>
-              <th className="text-start col-4">Estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            {medicos.map((medico, index) => (
-              <tr key={medico.id}>
-                <th scope="row" className="align-middle"></th>
-                <th>
-                  <div>
-                    <div className="d-flex align-items-center">
-                      <img
-                        src={medico.avatar}
-                        // alt="avatar usuario"
-                        className="avatarPte flex-start"
-                        loading="lazy"
-                      />
-                      <span className="ms-5">
-                        {medico.nombre} {medico.apellido}
-                      </span>
-                    </div>
-                  </div>
-                </th>
-                <td className="align-middle text-start">
-                  {medico.especialidad}
-                </td>
-                <td className="align-middle text-start">
-                  <span
-                    className={`btn ${
-                      medico.estado === "Completada"
-                        ? "btn-success"
-                        : "btn-danger"
-                    }`}
-                  >
-                    {medico.estado}
-                  </span>
-                </td>
+        <div className="table-responsive">
+          <table className="table table-hover ">
+            <thead>
+              <tr>
+                <th className="text-start text-nowrap">Doctor / Doctora</th>
+                <th className="text-start text-nowrap">Especialidad</th>
+                <th className="text-start text-nowrap">Estado</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {medicos.map((medico) => (
+                <tr key={medico.id}>
+                  <th>
+                    <div>
+                      <div className="d-flex align-items-center">
+                        <img
+                          src={`${
+                            medico.sexo === "hombre"
+                              ? "src/images/avatar-hombre.jpg"
+                              : "src/images/avatar-mujer.webp"
+                          }`}
+                          alt="avatar usuario"
+                          className="avatarPte"
+                          loading="lazy"
+                        />
+                        <span className="ms-2">
+                          {medico.nombre} {medico.apellido}
+                        </span>
+                      </div>
+                    </div>
+                  </th>
+                  <td className="align-middle text-start">
+                    {medico.especialidad}
+                  </td>
+                  <td className="align-middle text-start">
+                    <span
+                      className={`btn ${
+                        medico.estado === "Completada"
+                          ? "btn-success"
+                          : "btn-danger"
+                      }`}
+                    >
+                      {medico.estado}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
       <div className="d-flex justify-content-center">
         <nav aria-label="paginacion">
