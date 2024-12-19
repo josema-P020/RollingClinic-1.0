@@ -38,6 +38,10 @@ function RegisterDoctor() {
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
 
+  const phoneRegex = /^\d{8,15}$/;
+
+
+
   const [formValues, setFormValues] = useState({
     name: "",
     tel: "",
@@ -96,6 +100,23 @@ function RegisterDoctor() {
       return;
     }
 
+    if (!phoneRegex.test(formValues.tel)) {
+      alert("El número de teléfono debe contener entre 8 y 15 dígitos.");
+      return;
+    }
+
+    if (formValues.dni.length < 7 || formValues.dni.length > 8) {
+      alert("El DNI debe contener entre 7 y 8 dígitos.");
+      return;
+    }
+
+    if (formValues.name.length < 3 || formValues.name.length > 20) {
+      alert("El nombre debe tener entre 3 y 20 caracteres.");
+      return;
+    }
+
+    
+
     if (formValues.password !== formValues.passwordrepeat) {
       alert("Las contraseñas deben coincidir!");
       return;
@@ -117,6 +138,11 @@ function RegisterDoctor() {
       alert(
         "La contraseña debe tener mínimo 6 caracteres, maximo 20, incluyendo mayúscula, minúscula, número y carácter especial"
       );
+      return;
+    }
+
+    if (formValues.matricula.toString().length > 5) {
+      alert("La matrícula no puede tener más de 5 dígitos.");
       return;
     }
 
@@ -159,7 +185,6 @@ function RegisterDoctor() {
       role: "DOCTOR",
       aprobbed: false,
     });
-    
   };
   return (
     <>
@@ -417,10 +442,7 @@ function RegisterDoctor() {
           </div>
 
           <div className="mb-3 d-grid">
-            <button
-              type="submit"
-              className="btn btn-success"
-            >
+            <button type="submit" className="btn btn-success">
               Registrarse
             </button>
           </div>

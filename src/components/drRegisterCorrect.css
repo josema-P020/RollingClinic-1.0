@@ -17,10 +17,10 @@
     padding: 20px; 
     max-width: 600px; /* Ancho máximo del modal */
     width: 90%; /* Ancho adaptativo para pantallas más pequeñas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para realce */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); Sombra para realce */
   }
 
   .modal-bg {
-    background-color: rgb(220, 245, 237);
+    background-color: rgb(213, 245, 235);
     border-radius: 10px;
   }
