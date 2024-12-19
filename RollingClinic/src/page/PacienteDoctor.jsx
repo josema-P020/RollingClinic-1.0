@@ -64,8 +64,6 @@ function PacienteDoctor() {
                     ))}
                 </ul>
             </div>
-
-            {/* Detalles del Paciente */}
             <div className="col-5 border border-dark m-3 rounded-2 bg-secondary bg-opacity-75 text-light">
                 {selectedPacienteId ? (
                     <>
@@ -78,7 +76,7 @@ function PacienteDoctor() {
                                     pacientes.find((p) => p.id === selectedPacienteId)?.estado ===
                                     'atendido'
                                         ? 'text-success'
-                                        : 'text-warning'
+                                        : 'text-danger'
                                 }
                             >
                                 (
