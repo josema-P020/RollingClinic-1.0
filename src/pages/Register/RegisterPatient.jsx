@@ -13,30 +13,36 @@ function RegisterPatient() {
     setIsAccepted(!isAccepted);
   };
 
- 
-  
   const year = new Date().getFullYear() - 18;
-  
+
   const month = new Date().getMonth() + 1;
-  
+
   const day = new Date().getDate();
-  
-  const maxDate = year+"-"+month+"-"+day
+
+  const maxDate = year + "-" + month + "-" + day;
   console.log(maxDate);
-  
 
-
-  
-
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
-
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
 
   const [formValues, setFormValues] = useState({
+    name: "",
+    tel: "",
+    dateBirth: "",
+    city: "",
+    dni: "",
+    genre: "",
+    obraSocial: "",
     email: "",
     password: "",
     passwordrepeat: "",
+    id: new Date().getTime(),
+    role: "PACIENTE",
+    turnos: [""],
   });
-  
+
+  console.log(formValues);
+
   const [showPassword, setShowPassword] = useState(false);
 
   const showPwd = () => {
@@ -55,6 +61,7 @@ function RegisterPatient() {
       [e.target.name]: e.target.value,
     });
   };
+  console.log(formValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,9 +69,16 @@ function RegisterPatient() {
     if (
       !formValues.email ||
       !formValues.password ||
-      !formValues.passwordrepeat
+      !formValues.passwordrepeat ||
+      !formValues.dateBirth ||
+      !formValues.dni ||
+      !formValues.tel ||
+      !formValues.name ||
+      !formValues.obraSocial ||
+      !formValues.city ||
+      !formValues.genre
     ) {
-      alert("Debe completar los campos obligatorios!");
+      alert("Debe completar todos los campos");
       return;
     }
 
@@ -93,8 +107,17 @@ function RegisterPatient() {
     }
 
     const newUser = {
+      name: formValues.name,
+      tel: parseInt(formValues.tel),
+      dateBirth: formValues.dateBirth,
+      city: formValues.city,
+      dni: parseInt(formValues.dni),
+      genre: formValues.genre,
+      obraSocial: formValues.obraSocial,
       email: formValues.email,
       password: formValues.password,
+      id: formValues.id,
+      role: formValues.role,
     };
 
     data.push(newUser);
@@ -104,9 +127,19 @@ function RegisterPatient() {
 
     alert("Registro exitoso!");
     setFormValues({
+      name: "",
+      tel: "",
+      dateBirth: "",
+      city: "",
+      dni: "",
+      obraSocial: "",
+      genre: "",
       email: "",
       password: "",
       passwordrepeat: "",
+      id: new Date().getTime(),
+      role: "PACIENTE",
+      turnos: [""],
     });
   };
   return (
@@ -132,35 +165,58 @@ function RegisterPatient() {
                 name="name"
                 placeholder="Juan Lucas Perez"
                 required
+                onChange={handleChange}
+                value={formValues.name}
               />
             </div>
             <div className="col-sm-12 col-md-6">
-              <label htmlFor="tel" className="mb-1">Teléfono</label>
-              <input type="tel"
-              className="form-control mb-3"
-              id="tel"
-              name="tel"
-              placeholder="(381)-6093788 (Sin 0 ni 15)"  />
+              <label htmlFor="tel" className="mb-1">
+                Teléfono
+              </label>
+              <input
+                type="phone"
+                className="form-control mb-3"
+                id="tel"
+                name="tel"
+                placeholder="(381)-6093788 (Sin 0 ni 15)"
+                required
+                onChange={handleChange}
+                value={formValues.tel}
+              />
             </div>
             <div className="col-sm-12 col-md-6">
-              <label htmlFor="date" className="mb-1">Fecha de nacimiento</label>
-              <input type="date"
-              className="form-control mb-1"
-              id="date"
-              name="date"
-              min="1930-01-01"
-              max={maxDate}
+              <label htmlFor="date" className="mb-1">
+                Fecha de nacimiento
+              </label>
+              <input
+                type="date"
+                className="form-control mb-1"
+                id="date"
+                name="dateBirth"
+                min="1930-01-01"
+                max={maxDate}
+                value={formValues.dateBirth}
+                onChange={handleChange}
               />
               <p className="text-muted mb-3">
-                  Debes ser mayor de 18 años para registrarte como paciente.
-                </p>
+                Debes ser mayor de 18 años para registrarte como paciente.
+              </p>
             </div>
             <div className="col-sm-12 col-md-6">
               <label htmlFor="city" className="mb-1">
                 Elige tu ciudad
               </label>
-              <select className="form-control mb-3" name="city" id="city">
-                <option value="San Miguel de Tucuman">San Miguel de Tucuman</option>
+              <select
+                className="form-control mb-3"
+                name="city"
+                id="city"
+                required
+                onChange={handleChange}
+                value={formValues.city}
+              >
+                <option value="San Miguel de Tucuman">
+                  San Miguel de Tucuman
+                </option>
                 <option value="Tafi Viejo">Tafi Viejo</option>
                 <option value="Monteros">Monteros</option>
                 <option value="Lules">Lules</option>
@@ -180,6 +236,8 @@ function RegisterPatient() {
                 name="dni"
                 placeholder="Sin puntos ni guiones"
                 required
+                value={formValues.dni}
+                onChange={handleChange}
               />
             </div>
 
@@ -187,21 +245,27 @@ function RegisterPatient() {
               <label htmlFor="obraSocial" className="mb-1">
                 ¿Tienes obra social?
               </label>
-              <select className="form-control mb-3" name="obraSocial" id="obraSocial">
+              <select
+                className="form-control mb-3"
+                name="obraSocial"
+                id="obraSocial"
+                value={formValues.obraSocial}
+                onChange={handleChange}
+              >
                 <option value="OSDE">OSDE</option>
                 <option value="SWISS MEDICAL">SWISS MEDICAL</option>
                 <option value="PRENSA">PRENSA</option>
                 <option value="SUBSIDIO">SUBSIDIO</option>
                 <option value="PAMI">PAMI</option>
                 <option value="OSECAC">OSECAC</option>
-                <option value="PARTICULAR">No tengo obra social (particular)</option>
-            </select>
+                <option value="PARTICULAR">
+                  No tengo obra social (particular)
+                </option>
+              </select>
             </div>
 
-            <div className="col-sm-12">
-              <div className="row">
-<div className="col-6">
-<label htmlFor="email" className="mb-1">
+            <div className="col-sm-12 col-md-6">
+              <label htmlFor="email" className="mb-1">
                 Correo Electrónico
               </label>
               <input
@@ -214,10 +278,25 @@ function RegisterPatient() {
                 value={formValues.email}
                 onChange={handleChange}
               />
-</div>
-              </div>
-              
             </div>
+
+            <div className="col-sm-12 col-md-6">
+              <label htmlFor="genre" className="mb-1">
+                Sexo
+              </label>
+              <select
+                className="form-control mb-3"
+                name="genre"
+                id="genre"
+                value={formValues.genre}
+                onChange={handleChange}
+              >
+                <option value="female">Mujer</option>
+                <option value="male">Varon</option>
+                <option value="other">Otro</option>
+              </select>
+            </div>
+
             <div className="col-sm-12 col-md-6">
               <label htmlFor="password" className="mb-1">
                 Contraseña
@@ -246,9 +325,9 @@ function RegisterPatient() {
                 )}
               </div>
               <p className="text-muted mb-3">
-                  Mínimo 6 caracteres, incluyendo mayúscula, minúscula, número y
-                  carácter especial.
-                </p>
+                Mínimo 6 caracteres, incluyendo mayúscula, minúscula, número y
+                carácter especial.
+              </p>
             </div>
 
             <div className="col-sm-12 col-md-6">
@@ -281,7 +360,6 @@ function RegisterPatient() {
             </div>
           </div>
 
-          <div className="mb-3 d-grid"></div>
           <div className="mb-3 d-flex justify-content-center align-items-center gap-2">
             <input
               className="mb-2"
@@ -289,11 +367,9 @@ function RegisterPatient() {
               onChange={handleCheckboxClick}
               required
             />
+            {/* esto debe mandar al error 404 */}
             <p>
-              Acepto los{" "}
-              <a to="*" target="_blank">
-                Términos y condiciones
-              </a>
+              Acepto los <strong>Terminos y Condiciones</strong>
             </p>
           </div>
 

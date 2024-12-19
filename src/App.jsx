@@ -1,8 +1,8 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Login from "./pages/Login/Login"
-import RegisterDoctor from "./pages/Register/RegisterDoctor"
 import RegisterPatient from "./pages/Register/RegisterPatient"
+import RegisterDoctor from "./pages/Register/RegisterDoctor"
+// import ContainerBtn from "./pages/ContainerLoginBtn/ContainerBtn"
 
 function App() {
   
@@ -11,9 +11,10 @@ function App() {
     <>
       <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/registerDoctor" element={<RegisterDoctor/>}/>
-        <Route path="/registerPatient" element={<RegisterPatient/>}/>
+<Route path="/RegisterPatient" element={<RegisterPatient/>}/>
+<Route path="/RegisterDoctor" element={<RegisterDoctor/>}/>
+        {/* <Route path="/login" element={<Login/>}/> */}
+        {/* <Route path="/containerBtn" element={<ContainerBtn/>}/> */}
       </Routes>
       </BrowserRouter>
       
