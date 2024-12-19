@@ -154,8 +154,9 @@ function RegisterDoctor() {
           </div>
         </div> */}
         <h3 className="text-center mt-5">
-          Registrate para comenzar a pedir turno
+          Registrate para comenzar a trabajar con nosotros
         </h3>
+        <p className="text-muted text-center">Una vez registrado, tu usuario quedará pendiente de aprobación por parte de Rolling Clinic </p>
         <form onSubmit={handleSubmit} className="mt-4">
           <div className="row">
             <div className="col-sm-12 col-md-6">
@@ -404,14 +405,15 @@ function RegisterDoctor() {
               Registrarse
             </button>
           </div>
-          <div className="mb-3 d-grid text-center d-flex justify-content-center align-items-center">
+          
+        </form>
+        <div className="mb-3 d-grid text-center d-flex justify-content-center align-items-center">
             <p className="mx-3 pt-3">¿Ya tienes una cuenta?</p>
             {/* falta agregar funcionalidad al boton para que lleve a iniciar sesion */}
             <button type="submit" className="btn btn-primary mx-3">
               Inicia sesion
             </button>
           </div>
-        </form>
       </div>
     </>
   );
