@@ -15,8 +15,8 @@ function DrRegisterCorrect({ showModal, closeModal }) {
             <p>
               {" "}
               Hemos recibido tus datos correctamente. Un administrador
-              verificará la información y aprobará tu registro. Te enviaremos
-              una notificación una vez esté listo.
+              verificará la información y aprobará tu registro. Te
+              notificaremos una vez esté listo.
             </p>
             <div className="modal-footer">
                 {/* El boton debe llevar a pagina de inicio */}

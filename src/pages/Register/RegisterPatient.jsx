@@ -191,7 +191,7 @@ function RegisterPatient() {
                 className="form-control mb-3"
                 id="name"
                 name="name"
-                placeholder="Juan Lucas Perez"
+                placeholder="Giancarlo Esposito"
                 required
                 onChange={handleChange}
                 value={formValues.name}
@@ -206,7 +206,7 @@ function RegisterPatient() {
                 className="form-control mb-3"
                 id="tel"
                 name="tel"
-                placeholder="(381)-6093788 (Sin 0 ni 15)"
+                placeholder="3816093788"
                 required
                 onChange={handleChange}
                 value={formValues.tel}
@@ -242,7 +242,7 @@ function RegisterPatient() {
                 onChange={handleChange}
                 value={formValues.city}
               >
-                <option value="" disabled >Elegir una opción</option>
+                <option value="" disabled >-- Elegir una opción --</option>
                 <option value="San Miguel de Tucuman">
                   San Miguel de Tucuman
                 </option>
@@ -263,7 +263,7 @@ function RegisterPatient() {
                 className="form-control mb-3"
                 id="dni"
                 name="dni"
-                placeholder="Sin puntos ni guiones"
+                placeholder="18016723"
                 required
                 value={formValues.dni}
                 onChange={handleChange}
@@ -281,7 +281,7 @@ function RegisterPatient() {
                 value={formValues.obraSocial}
                 onChange={handleChange}
               >
-                <option value="" disabled >Elegir una opción</option>
+                <option value="" disabled >-- Elegir una opción --</option>
                 <option value="OSDE">OSDE</option>
                 <option value="SWISS MEDICAL">SWISS MEDICAL</option>
                 <option value="PRENSA">PRENSA</option>
@@ -321,7 +321,7 @@ function RegisterPatient() {
                 value={formValues.genre}
                 onChange={handleChange}
               >
-                <option value="" disabled >Elegir una opción</option>
+                <option value="" disabled >-- Elegir una opción --</option>
                 <option value="female">Mujer</option>
                 <option value="male">Varon</option>
                 <option value="other">Otro</option>
@@ -404,7 +404,7 @@ function RegisterPatient() {
               <input className="form-check-input" type="checkbox" role="switch" id="" required onChange={handleCheckboxClick} />
             </div>
             
-            <p className="text-center justify-content-center align-items-center">
+            <p>
               Acepto los <strong>Terminos y Condiciones</strong>
             </p>
             

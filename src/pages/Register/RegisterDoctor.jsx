@@ -226,7 +226,7 @@ function RegisterDoctor() {
                 className="form-control mb-3"
                 id="tel"
                 name="tel"
-                placeholder="(381)-6093788 (Sin 0 ni 15)"
+                placeholder="3816093788"
                 required
                 onChange={handleChange}
                 value={formValues.tel}
@@ -262,6 +262,7 @@ function RegisterDoctor() {
                 onChange={handleChange}
                 value={formValues.city}
               >
+                <option value="" disabled >-- Elegir una opción --</option>
                 <option value="San Miguel de Tucuman">
                   San Miguel de Tucuman
                 </option>
@@ -320,6 +321,7 @@ function RegisterDoctor() {
                 value={formValues.especialidad}
                 onChange={handleChange}
               >
+                <option value="" disabled >-- Elegir una opción --</option>
                 <option value="CARDIOLOGIA">CARDIOLOGÍA</option>
                 <option value="CIRUGIA GENERAL">CIRUGIA GENERAL</option>
                 <option value="GASTROENTEROLOGIA">GASTROENTEROLOGIA</option>
@@ -359,6 +361,7 @@ function RegisterDoctor() {
                 value={formValues.genre}
                 onChange={handleChange}
               >
+                <option value="" disabled >-- Elegir una opción --</option>
                 <option value="female">Mujer</option>
                 <option value="male">Varon</option>
                 <option value="other">Otro</option>
@@ -428,13 +431,10 @@ function RegisterDoctor() {
             </div>
           </div>
 
-          <div className="mb-3 d-flex justify-content-center align-items-center gap-2">
-            <input
-              className="mb-2"
-              type="checkbox"
-              onChange={handleCheckboxClick}
-              required
-            />
+          <div className="my-3 d-flex justify-content-center ">
+          <div className="form-check form-switch">
+              <input className="form-check-input" type="checkbox" role="switch" id="" required onChange={handleCheckboxClick} />
+            </div>
             {/* esto debe mandar al error 404 */}
             <p>
               Acepto los <strong>Terminos y Condiciones</strong>
