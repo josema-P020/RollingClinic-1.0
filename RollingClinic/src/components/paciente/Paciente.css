@@ -16,3 +16,7 @@
 select {
   max-width: 10rem;
 }
+
+.breadcrumb {
+  margin: 0!important;
+}

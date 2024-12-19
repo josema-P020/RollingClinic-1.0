@@ -1,63 +1,9 @@
 import React from "react";
+import data from "../../data/dataBase";
 
 function ListadoTurnos() {
-  // const [avatar, setAvatar] = useState(0);
-  let medicos = [
-    {
-      id: 1,
-      nombre: "Jose",
-      apellido: "Alvarez",
-      especialidad: "Pediatria",
-      avatar: "foto-perfil.jpg",
-      estado: "Completada",
-      sexo: "hombre",
-    },
-    {
-      id: 2,
-      nombre: "Lucas",
-      apellido: "Ferruchi",
-      especialidad: "Odontologia",
-      avatar: "foto-perfil.jpg",
-      estado: "Incompleta",
-      sexo: "hombre",
-    },
-    {
-      id: 3,
-      nombre: "Nahuel",
-      apellido: "Romano",
-      especialidad: "Ginecologia",
-      avatar: "foto-perfil.jpg",
-      estado: "Completada",
-      sexo: "hombre",
-    },
-    {
-      id: 4,
-      nombre: "Mauricio",
-      apellido: "Gomez",
-      especialidad: "Urologia",
-      avatar: "foto-perfil.jpg",
-      estado: "Completada",
-      sexo: "hombre",
-    },
-    {
-      id: 5,
-      nombre: "Jose",
-      apellido: "Perez",
-      especialidad: "Proctologia",
-      avatar: "foto-perfil.jpg",
-      estado: "Completada",
-      sexo: "hombre",
-    },
-    {
-      id: 5,
-      nombre: "Sofia",
-      apellido: "Soria",
-      especialidad: "Pediatria",
-      avatar: "foto-perfil.jpg",
-      estado: "Incompleta",
-      sexo: "mujer",
-    },
-  ];
+
+  let doctor = data.filter((user) => user.role === "DOCTOR");
 
   return (
     <div>
@@ -73,14 +19,14 @@ function ListadoTurnos() {
               </tr>
             </thead>
             <tbody>
-              {medicos.map((medico) => (
-                <tr key={medico.id}>
+              {doctor.map((d) => (
+                <tr key={d.id}>
                   <th>
                     <div>
                       <div className="d-flex align-items-center">
                         <img
                           src={`${
-                            medico.sexo === "hombre"
+                            d.genre === "male"
                               ? "src/images/avatar-hombre.jpg"
                               : "src/images/avatar-mujer.webp"
                           }`}
@@ -88,24 +34,18 @@ function ListadoTurnos() {
                           className="avatarPte"
                           loading="lazy"
                         />
-                        <span className="ms-2">
-                          {medico.nombre} {medico.apellido}
-                        </span>
+                        <span className="ms-2">{d.name}</span>
                       </div>
                     </div>
                   </th>
-                  <td className="align-middle text-start">
-                    {medico.especialidad}
-                  </td>
+                  <td className="align-middle text-start">{d.especialidad}</td>
                   <td className="align-middle text-start">
                     <span
                       className={`btn ${
-                        medico.estado === "Completada"
-                          ? "btn-success"
-                          : "btn-danger"
+                        d.status === "Completada" ? "btn-success" : "btn-danger"
                       }`}
                     >
-                      {medico.estado}
+                      {d.status}
                     </span>
                   </td>
                 </tr>
@@ -116,29 +56,29 @@ function ListadoTurnos() {
       </div>
       <div className="d-flex justify-content-center">
         <nav aria-label="paginacion">
-          <ul className="pagination">
+          <ul className="pagination ">
             <li className="page-item">
               <a className="page-link disabled" href="#">
                 Anterior
               </a>
             </li>
-            <li className="page-item active">
-              <a className="page-link" href="javascript:void(0)">
+            <li className="page-item active ">
+              <a className="page-link" href="#">
                 1
               </a>
             </li>
             <li className="page-item">
-              <a className="page-link" href="#">
+              <a className="page-link disabled" href="#">
                 2
               </a>
             </li>
             <li className="page-item">
-              <a className="page-link" href="#">
+              <a className="page-link disabled" href="#">
                 3
               </a>
             </li>
             <li className="page-item">
-              <a className="page-link" href="#">
+              <a className="page-link disabled" href="#">
                 Siguiente
               </a>
             </li>

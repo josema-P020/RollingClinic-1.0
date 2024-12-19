@@ -1,6 +1,5 @@
 import React from "react";
-import DatosPaciente from "../components/DatosPaciente.jsx";
-// import ListaMedicos from "../components/ListaMedicos.jsx";
+import DatosPaciente from "../components/paciente/DatosPaciente.jsx";
 
 function PerfilPaciente() {
   return (
