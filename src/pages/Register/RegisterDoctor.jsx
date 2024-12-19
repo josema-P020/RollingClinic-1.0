@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./register.css";
 import data from "../../data/database";
+import DrRegisterCorrect from "../../components/DrRegisterCorrect";
 
 function RegisterDoctor() {
   let usersJSON = JSON.stringify(data);
@@ -12,6 +13,18 @@ function RegisterDoctor() {
   const handleCheckboxClick = () => {
     setIsAccepted(!isAccepted);
   };
+
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false); // Cierra el modal
+  };
+
+  console.log(showModal);
 
   const year = new Date().getFullYear() - 18;
 
@@ -128,23 +141,25 @@ function RegisterDoctor() {
     localStorage.setItem("users", usersJSON);
     users = JSON.parse(localStorage.getItem("users"));
 
-    alert("Registro exitoso!");
+    openModal();
+
     setFormValues({
       name: "",
-    tel: "",
-    dateBirth: "",
-    city: "",
-    dni: "",
-    genre: "",
-    especialidad: "",
-    matricula: "",
-    email: "",
-    password: "",
-    passwordrepeat: "",
-    id: new Date().getTime(),
-    role: "DOCTOR",
-    aprobbed: false,
+      tel: "",
+      dateBirth: "",
+      city: "",
+      dni: "",
+      genre: "",
+      especialidad: "",
+      matricula: "",
+      email: "",
+      password: "",
+      passwordrepeat: "",
+      id: new Date().getTime(),
+      role: "DOCTOR",
+      aprobbed: false,
     });
+    
   };
   return (
     <>
@@ -156,7 +171,10 @@ function RegisterDoctor() {
         <h3 className="text-center mt-5">
           Registrate para comenzar a trabajar con nosotros
         </h3>
-        <p className="text-muted text-center">Una vez registrado, tu usuario quedará pendiente de aprobación por parte de Rolling Clinic </p>
+        <p className="text-muted text-center">
+          Una vez registrado, tu usuario quedará pendiente de aprobación por
+          parte de Rolling Clinic{" "}
+        </p>
         <form onSubmit={handleSubmit} className="mt-4">
           <div className="row">
             <div className="col-sm-12 col-md-6">
@@ -285,9 +303,7 @@ function RegisterDoctor() {
                   GINECOLOGIA Y OBSTETRICIA
                 </option>
                 <option value="PEDIATRIA">PEDIATRIA</option>
-                <option value="PSICOLOGIA">
-                  PSICOLOGIA
-                </option>
+                <option value="PSICOLOGIA">PSICOLOGIA</option>
               </select>
             </div>
 
@@ -401,20 +417,23 @@ function RegisterDoctor() {
           </div>
 
           <div className="mb-3 d-grid">
-            <button type="submit" className="btn btn-success">
+            <button
+              type="submit"
+              className="btn btn-success"
+            >
               Registrarse
             </button>
           </div>
-          
         </form>
         <div className="mb-3 d-grid text-center d-flex justify-content-center align-items-center">
-            <p className="mx-3 pt-3">¿Ya tienes una cuenta?</p>
-            {/* falta agregar funcionalidad al boton para que lleve a iniciar sesion */}
-            <button type="submit" className="btn btn-primary mx-3">
-              Inicia sesion
-            </button>
-          </div>
+          <p className="mx-3 pt-3">¿Ya tienes una cuenta?</p>
+          {/* falta agregar funcionalidad al boton para que lleve a iniciar sesion */}
+          <button type="submit" className="btn btn-primary mx-3">
+            Inicia sesion
+          </button>
+        </div>
       </div>
+      <DrRegisterCorrect showModal={showModal} closeModal={closeModal} />
     </>
   );
 }
