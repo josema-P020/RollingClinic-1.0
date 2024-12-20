@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import "./Paciente.css";
 import ListaMedicos from "./ListadoTurnos.jsx";
 import data from "../../data/dataBase.js";
-//importar base de datos de nahuel 
+import { Link } from "react-router-dom";
+//importar base de datos de nahuel
 function DatosPaciente() {
   const [editar, setEditar] = useState(false);
   const [info, setInfo] = useState(data);
   localStorage.setItem("users", JSON.stringify(info));
-//realizar un state con la base de datos de nahuel
-//extraer las fechas de la base de datos de nahuel y mostrarlas en el return.
+  //realizar un state con la base de datos de nahuel
+  //extraer las fechas de la base de datos de nahuel y mostrarlas en el return.
 
   //Tengo que esperar a la lista de nahuel para ver si puedo enlazar con el paciente que esta
   const paciente = info[0];
@@ -35,6 +36,7 @@ function DatosPaciente() {
   const handleClick = () => {
     setEditar(!editar);
   };
+  const handleLogout = () => {};
 
   return (
     <>
@@ -178,6 +180,12 @@ function DatosPaciente() {
                 </div>
               </div>
               <div className="col-lg-9 col-md-8 col-sm-12 pt-2 d-flex flex-column justify-content-center">
+                <div className="d-flex justify-content-end me-5 mb-2">
+                  <Link to="/login" className="my-3 btn btn-secondary">
+                    <i className="bi bi-box-arrow-right me-2"></i>
+                    Cerrar Sesión
+                  </Link>
+                </div>
                 <ListaMedicos />
               </div>
             </div>
