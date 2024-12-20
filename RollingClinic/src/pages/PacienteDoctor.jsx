@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { pacientes as initialPacientes } from '../data/BdDPaciente';
+import { pacientes as initialPacientes } from '../../data/BdDPaciente';
 
 function PacienteDoctor() {
     const [pacientes, setPacientes] = useState([]);
