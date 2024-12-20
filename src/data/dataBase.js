@@ -5,14 +5,23 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     dateBirth: "2006-12-03",
     city: "Yerba Buena",
     dni: 39078547,
-    genre: male,
+    genre: "male",
     obraSocial: "SUBSIDIO",
     email: "javier@gmail.com",
     password: "Asdasd123123!!",
     id: 1734555347601,
     role: "PACIENTE",
     aprobbed: true,
-    turnos: [],
+    turnos: [
+      {
+        id: 1,
+        fecha: "2021-10-20",
+        hora: "10:00",
+        especialidad: "GINECOLOGIA Y OBSTETRICIA",
+        doctor: "Chapatin",
+        estado: "pendiente",
+      },
+    ],
   },
   {
     name: "Juan Perez",
@@ -27,7 +36,15 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     id: 1734555347609,
     role: "PACIENTE",
     aprobbed: true,
-    turnos: [],
+    turnos: [
+      {
+        id: 2,
+        fecha: "2021-10-20",
+        hora: "11:00",
+        especialidad: "GINECOLOGIA Y OBSTETRICIA",
+        doctor: "Chapatin",
+        estado: "pendiente",
+      },],
   },
   {
     name: "Chapatin",
