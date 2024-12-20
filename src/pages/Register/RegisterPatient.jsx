@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./register.css";
 import data from "../../data/database";
+import PatientRegisterCorrect from "../../components/PatientRegisterCorrect";
 
 function RegisterPatient() {
   let usersJSON = JSON.stringify(data);
@@ -13,6 +14,19 @@ function RegisterPatient() {
     setIsAccepted(!isAccepted);
   };
 
+  console.log(isAccepted);
+  
+
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false); // Cierra el modal
+  };
+
   const year = new Date().getFullYear() - 18;
 
   const month = new Date().getMonth() + 1;
@@ -22,8 +36,6 @@ function RegisterPatient() {
   const maxDate = year + "-" + month + "-" + day;
   console.log(maxDate);
 
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
 
   const [formValues, setFormValues] = useState({
     name: "",
@@ -100,6 +112,17 @@ function RegisterPatient() {
       return;
     }
 
+    const passwordRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
+
+
+    if (!passwordRegex.test(formValues.password)) {
+      alert(
+        "La contraseña debe tener mínimo 6 caracteres, maximo 20, incluyendo mayúscula, minúscula, número y carácter especial"
+      );
+      return;
+    }
+
     if (!passwordRegex.test(formValues.password)) {
       alert(
         "La contraseña debe tener mínimo 6 caracteres, maximo 20, incluyendo mayúscula, minúscula, número y carácter especial"
@@ -120,7 +143,7 @@ function RegisterPatient() {
       role: formValues.role,
       aprobbed: formValues.aprobbed,
       turnos: formValues.turnos,
-      id: formValues.id
+      id: formValues.id,
     };
 
     data.push(newUser);
@@ -128,7 +151,9 @@ function RegisterPatient() {
     localStorage.setItem("users", usersJSON);
     users = JSON.parse(localStorage.getItem("users"));
 
-    alert("Registro exitoso!");
+    openModal();
+
+
     setFormValues({
       name: "",
       tel: "",
@@ -166,7 +191,7 @@ function RegisterPatient() {
                 className="form-control mb-3"
                 id="name"
                 name="name"
-                placeholder="Juan Lucas Perez"
+                placeholder="Giancarlo Esposito"
                 required
                 onChange={handleChange}
                 value={formValues.name}
@@ -181,7 +206,7 @@ function RegisterPatient() {
                 className="form-control mb-3"
                 id="tel"
                 name="tel"
-                placeholder="(381)-6093788 (Sin 0 ni 15)"
+                placeholder="3816093788"
                 required
                 onChange={handleChange}
                 value={formValues.tel}
@@ -217,6 +242,7 @@ function RegisterPatient() {
                 onChange={handleChange}
                 value={formValues.city}
               >
+                <option value="" disabled >-- Elegir una opción --</option>
                 <option value="San Miguel de Tucuman">
                   San Miguel de Tucuman
                 </option>
@@ -237,7 +263,7 @@ function RegisterPatient() {
                 className="form-control mb-3"
                 id="dni"
                 name="dni"
-                placeholder="Sin puntos ni guiones"
+                placeholder="18016723"
                 required
                 value={formValues.dni}
                 onChange={handleChange}
@@ -255,6 +281,7 @@ function RegisterPatient() {
                 value={formValues.obraSocial}
                 onChange={handleChange}
               >
+                <option value="" disabled >-- Elegir una opción --</option>
                 <option value="OSDE">OSDE</option>
                 <option value="SWISS MEDICAL">SWISS MEDICAL</option>
                 <option value="PRENSA">PRENSA</option>
@@ -294,6 +321,7 @@ function RegisterPatient() {
                 value={formValues.genre}
                 onChange={handleChange}
               >
+                <option value="" disabled >-- Elegir una opción --</option>
                 <option value="female">Mujer</option>
                 <option value="male">Varon</option>
                 <option value="other">Otro</option>
@@ -363,17 +391,23 @@ function RegisterPatient() {
             </div>
           </div>
 
-          <div className="mb-3 d-flex justify-content-center align-items-center gap-2">
-            <input
+          <div className="my-3 d-flex justify-content-center">
+            {/* <input
               className="mb-2"
               type="checkbox"
               onChange={handleCheckboxClick}
               required
-            />
+            /> */}
             {/* esto debe mandar al error 404 */}
+
+            <div className="form-check form-switch">
+              <input className="form-check-input" type="checkbox" role="switch" id="" required onChange={handleCheckboxClick} />
+            </div>
+            
             <p>
               Acepto los <strong>Terminos y Condiciones</strong>
             </p>
+            
           </div>
 
           <div className="mb-3 d-grid">
@@ -381,15 +415,17 @@ function RegisterPatient() {
               Registrarse
             </button>
           </div>
-          <div className="mb-3 d-grid text-center d-flex justify-content-center align-items-center">
+          
+        </form>
+        <div className="mb-3 d-grid text-center d-flex justify-content-center align-items-center">
             <p className="mx-3 pt-3">¿Ya tienes una cuenta?</p>
             {/* falta agregar funcionalidad al boton para que lleve a iniciar sesion */}
             <button type="submit" className="btn btn-primary mx-3">
               Inicia sesion
             </button>
           </div>
-        </form>
       </div>
+      <PatientRegisterCorrect showModal={showModal} closeModal={closeModal} />
     </>
   );
 }
