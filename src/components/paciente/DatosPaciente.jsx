@@ -6,18 +6,28 @@ import data from "../../data/dataBase.js";
 function DatosPaciente() {
   const [editar, setEditar] = useState(false);
   const [info, setInfo] = useState(data);
+  localStorage.setItem("users", JSON.stringify(info));
 
-  // Aca lo que me falta es que cuando el paciente se logee con nahuel, yo muestre en la variable paciente la informacion del paciente logeado. Filtrando por el id o algo asi.
+  //Tengo que esperar a la lista de nahuel para ver si puedo enlazar con el paciente que esta
   const paciente = info[0];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInfo([
-      {
-        ...paciente,
-        [name]: value,
-      },
-    ]);
+
+    // Busco el índice del usuario que quiero actualizar
+    const updatedInfo = info.map((paciente) => {
+      if (paciente.id === info[0].id) {
+        return {
+          ...paciente,
+          [name]: value,
+        };
+      }
+      return paciente; 
+    });
+
+    setInfo(updatedInfo);
+
+    localStorage.setItem("users", JSON.stringify(updatedInfo));
   };
 
   const handleClick = () => {
@@ -48,6 +58,7 @@ function DatosPaciente() {
                   alt="avatar paciente"
                   className="avatarPte"
                 />
+
                 <p className="pt-2">{paciente.name}</p>
 
                 <div className="container">
@@ -61,7 +72,7 @@ function DatosPaciente() {
                           maxLength={25}
                           required
                           value={paciente.name}
-                          onChange={handleChange}
+                          // onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
@@ -78,7 +89,7 @@ function DatosPaciente() {
                           minLength={6}
                           required
                           value={paciente.email}
-                          onChange={handleChange}
+                          // onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
@@ -95,7 +106,6 @@ function DatosPaciente() {
                           minLength={9}
                           maxLength={18}
                           value={paciente.tel}
-                          onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
@@ -109,7 +119,6 @@ function DatosPaciente() {
                           type="date"
                           name="dateBirth"
                           value={paciente.dateBirth}
-                          onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
@@ -123,7 +132,6 @@ function DatosPaciente() {
                           type="text"
                           name="city"
                           value={paciente.city}
-                          onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
@@ -139,7 +147,6 @@ function DatosPaciente() {
                           minLength={6}
                           maxLength={9}
                           value={paciente.dni}
-                          onChange={handleChange}
                           className="form-control"
                         />
                       ) : (

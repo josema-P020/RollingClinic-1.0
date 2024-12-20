@@ -7,21 +7,31 @@ function DatosAdmin() {
   const [editar, setEditar] = useState(false);
   const [info, setInfo] = useState(data);
 
-  // Aca lo que me falta es que cuando el paciente se logee con nahuel, yo muestre en la variable paciente la informacion del paciente logeado. Filtrando por el id o algo asi.
-  const paciente = info[0];
+  const admin = info.find((usuario) => usuario.role === "ADMIN");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInfo([
-      {
-        ...paciente,
-        [name]: value,
-      },
-    ]);
+    const updatedInfo = info.map((item) =>
+      item.id === admin.id ? { ...item, [name]: value } : item
+    );
+    setInfo(updatedInfo);
+  };
+
+  //Como hago para 
+  const modificarDb = () => {
+    const actualizarAdmin = info.map((admin) =>
+      admin.role === "ADMIN" ? { ...admin, aprobbed: !admin.aprobbed } : admin
+    );
+ //Desactivar los botones para modificar datos. 
+ 
+    // Actualizar el estado y guardar en localStorage
+    setInfo(actualizarAdmin);
+    localStorage.setItem("users", JSON.stringify(actualizarAdmin));
   };
 
   const handleClick = () => {
     setEditar(!editar);
+    modificarDb();
   };
 
   return (
@@ -35,11 +45,11 @@ function DatosAdmin() {
               </a>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-              Perfil de Admin
+              Perfil de {admin.role}
             </li>
           </ol>
         </nav>
-        <section className="">
+        <section>
           <div>
             <div className="row">
               <div className="col-lg-3 col-md-4 col-sm-12 text-center pt-4 pb-2">
@@ -48,7 +58,9 @@ function DatosAdmin() {
                   alt="avatar admin"
                   className="avatarPte"
                 />
-                <p className="py-2">{`Admin: ${paciente.name}`}</p>
+                <p className="py-2">
+                  {admin.role}: {admin.name}
+                </p>
 
                 <div className="container">
                   <ul className="list-group list-group-flush text-start">
@@ -60,12 +72,12 @@ function DatosAdmin() {
                           name="name"
                           maxLength={25}
                           required
-                          value={paciente.name}
+                          value={admin.name}
                           onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
-                        paciente.name
+                        admin.name
                       )}
                     </li>
                     <li className="list-group-item text-break">
@@ -77,12 +89,12 @@ function DatosAdmin() {
                           maxLength={200}
                           minLength={6}
                           required
-                          value={paciente.email}
+                          value={admin.email}
                           onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
-                        paciente.email
+                        admin.email
                       )}
                     </li>
                     <li className="list-group-item">
@@ -94,12 +106,12 @@ function DatosAdmin() {
                           required
                           minLength={9}
                           maxLength={18}
-                          value={paciente.tel}
+                          value={admin.tel}
                           onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
-                        paciente.tel
+                        admin.tel
                       )}
                     </li>
                     <li className="list-group-item ">
@@ -108,12 +120,12 @@ function DatosAdmin() {
                         <input
                           type="date"
                           name="dateBirth"
-                          value={paciente.dateBirth}
+                          value={admin.dateBirth}
                           onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
-                        paciente.dateBirth
+                        admin.dateBirth
                       )}
                     </li>
                     <li className="list-group-item">
@@ -122,12 +134,12 @@ function DatosAdmin() {
                         <input
                           type="text"
                           name="city"
-                          value={paciente.city}
+                          value={admin.city}
                           onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
-                        paciente.city
+                        admin.city
                       )}
                     </li>
                     <li className="list-group-item">
@@ -138,26 +150,12 @@ function DatosAdmin() {
                           name="dni"
                           minLength={6}
                           maxLength={9}
-                          value={paciente.dni}
+                          value={admin.dni}
                           onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
-                        paciente.dni
-                      )}
-                    </li>
-                    <li className="list-group-item">
-                      <span className="fw-bold">Obra Social: </span>
-                      {editar ? (
-                        <input
-                          type="text"
-                          name="obraSocial"
-                          value={paciente.obraSocial}
-                          onChange={handleChange}
-                          className="form-control"
-                        />
-                      ) : (
-                        paciente.obraSocial
+                        admin.dni
                       )}
                     </li>
                   </ul>

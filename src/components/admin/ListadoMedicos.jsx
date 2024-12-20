@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import data from "../../data/dataBase";
 
 function ListadoMedicos() {
@@ -62,10 +62,7 @@ function ListadoMedicos() {
                   <td className="align-middle text-start">{d.dni}</td>
                   <td className="align-middle text-start">
                     <button
-                      className={`btn ${
-                        d.aprobbed ? "btn-success" : "btn-danger"
-                      }`}
-                      onClick={() => botonAprobbed(d.id)}
+                      className={`btn ${d.aprobbed ? "btn-success" : "btn-danger"}`} onClick={() => botonAprobbed(d.id)}
                     >
                       {d.aprobbed ? "Activo" : "Inactivo"}
                     </button>

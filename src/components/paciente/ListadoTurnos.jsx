@@ -2,7 +2,6 @@ import React from "react";
 import data from "../../data/dataBase";
 
 function ListadoTurnos() {
-
   let doctor = data.filter((user) => user.role === "DOCTOR");
 
   return (
@@ -15,6 +14,7 @@ function ListadoTurnos() {
               <tr>
                 <th className="text-start text-nowrap">Doctor / Doctora</th>
                 <th className="text-start text-nowrap">Especialidad</th>
+                <th className="text-start text-nowrap">Fecha</th>
                 <th className="text-start text-nowrap">Estado</th>
               </tr>
             </thead>
@@ -38,7 +38,9 @@ function ListadoTurnos() {
                       </div>
                     </div>
                   </th>
+
                   <td className="align-middle text-start">{d.especialidad}</td>
+                  <td className="align-middle text-start">{} Aca va la fecha</td>
                   <td className="align-middle text-start">
                     <span
                       className={`btn ${
