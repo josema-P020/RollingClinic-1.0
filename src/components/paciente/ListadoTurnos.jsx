@@ -40,7 +40,9 @@ function ListadoTurnos() {
                   </th>
 
                   <td className="align-middle text-start">{d.especialidad}</td>
-                  <td className="align-middle text-start">{} Aca va la fecha</td>
+                  <td className="align-middle text-start">
+                    {} Aca va la fecha
+                  </td>
                   <td className="align-middle text-start">
                     <span
                       className={`btn ${

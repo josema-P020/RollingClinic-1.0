@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import "./Paciente.css";
 import ListaMedicos from "./ListadoTurnos.jsx";
 import data from "../../data/dataBase.js";
-
+//importar base de datos de nahuel 
 function DatosPaciente() {
   const [editar, setEditar] = useState(false);
   const [info, setInfo] = useState(data);
   localStorage.setItem("users", JSON.stringify(info));
+//realizar un state con la base de datos de nahuel
+//extraer las fechas de la base de datos de nahuel y mostrarlas en el return.
 
   //Tengo que esperar a la lista de nahuel para ver si puedo enlazar con el paciente que esta
   const paciente = info[0];
@@ -22,7 +24,7 @@ function DatosPaciente() {
           [name]: value,
         };
       }
-      return paciente; 
+      return paciente;
     });
 
     setInfo(updatedInfo);
@@ -45,7 +47,7 @@ function DatosPaciente() {
               </a>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-              Mi Perfil
+              Paciente
             </li>
           </ol>
         </nav>

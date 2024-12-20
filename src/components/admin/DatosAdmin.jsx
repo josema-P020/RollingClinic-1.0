@@ -11,27 +11,15 @@ function DatosAdmin() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const updatedInfo = info.map((item) =>
+    const actualizarInfo = info.map((item) =>
       item.id === admin.id ? { ...item, [name]: value } : item
     );
-    setInfo(updatedInfo);
-  };
-
-  //Como hago para 
-  const modificarDb = () => {
-    const actualizarAdmin = info.map((admin) =>
-      admin.role === "ADMIN" ? { ...admin, aprobbed: !admin.aprobbed } : admin
-    );
- //Desactivar los botones para modificar datos. 
- 
-    // Actualizar el estado y guardar en localStorage
-    setInfo(actualizarAdmin);
-    localStorage.setItem("users", JSON.stringify(actualizarAdmin));
+    setInfo(actualizarInfo);
+    localStorage.setItem("users", JSON.stringify(actualizarInfo));
   };
 
   const handleClick = () => {
     setEditar(!editar);
-    modificarDb();
   };
 
   return (

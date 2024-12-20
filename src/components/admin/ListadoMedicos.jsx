@@ -2,21 +2,19 @@ import React, { useState } from "react";
 import data from "../../data/dataBase";
 
 function ListadoMedicos() {
-  // Recuperar datos del localStorage, si existen
-  const recuperarDoctores =
-    JSON.parse(localStorage.getItem("users")) ||
-    data.filter((user) => user.role === "DOCTOR");
-
+  const recuperarDoctores = JSON.parse(localStorage.getItem("users")) || data;
   const [doctores, setDoctores] = useState(recuperarDoctores);
 
   const botonAprobbed = (id) => {
-    // Cambiar el estado del doctor
-    const actualizarDoctores = doctores.map((doctor) =>
-      doctor.id === id ? { ...doctor, aprobbed: !doctor.aprobbed } : doctor
-    );
+    const actualizarDoctores = doctores.map((doctor) => {
+      if (doctor.id === id) {
+        return { ...doctor, aprobbed: !doctor.aprobbed };
+      }
+      return doctor;
+    });
 
-    // Actualizar el estado y guardar en localStorage
     setDoctores(actualizarDoctores);
+
     localStorage.setItem("users", JSON.stringify(actualizarDoctores));
   };
 
@@ -30,7 +28,7 @@ function ListadoMedicos() {
               <tr>
                 <th className="text-start text-nowrap">Usuario</th>
                 <th className="text-start text-nowrap">Email</th>
-                <th className="text-start text-nowrap">Telefono</th>
+                <th className="text-start text-nowrap">Matricula</th>
                 <th className="text-start text-nowrap">DNI</th>
                 <th className="text-start text-nowrap">Estado</th>
               </tr>
@@ -55,14 +53,17 @@ function ListadoMedicos() {
                       </div>
                     </div>
                   </th>
-                  <td className="align-middle text-start">{d.especialidad}</td>
+                  <td className="align-middle text-start">{d.email}</td>
                   <td className="align-middle text-start">
-                    <span>{d.tel}</span>
+                    <span>{d.matricula}</span>
                   </td>
                   <td className="align-middle text-start">{d.dni}</td>
                   <td className="align-middle text-start">
                     <button
-                      className={`btn ${d.aprobbed ? "btn-success" : "btn-danger"}`} onClick={() => botonAprobbed(d.id)}
+                      className={`btn ${
+                        d.aprobbed ? "btn-success" : "btn-danger"
+                      }`}
+                      onClick={() => botonAprobbed(d.id)}
                     >
                       {d.aprobbed ? "Activo" : "Inactivo"}
                     </button>
