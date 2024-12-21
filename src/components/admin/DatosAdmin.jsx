@@ -149,7 +149,10 @@ function DatosAdmin() {
                   </ul>
                 </div>
                 <div className="pt-3">
-                  <button className="btn btn-success" onClick={handleClick}>
+                  <button
+                    className="btn btn-success disabled"
+                    onClick={handleClick}
+                  >
                     {editar ? "Guardar" : "Modificar Datos"}
                   </button>
                 </div>

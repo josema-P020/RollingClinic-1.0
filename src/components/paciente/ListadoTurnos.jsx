@@ -45,11 +45,14 @@ function ListadoTurnos() {
                   </td>
                   <td className="align-middle text-start">
                     <span
-                      className={`btn ${
-                        d.status === "Completada" ? "btn-success" : "btn-danger"
+                      className={`${
+                        d.estado === "Completada"
+                          ? "text-success"
+                          : "text-danger"
                       }`}
                     >
-                      {d.status}
+                      Incompleto
+                      {d.estado}
                     </span>
                   </td>
                 </tr>

@@ -4,6 +4,7 @@ import data from "../../data/dataBase";
 function ListadoMedicos() {
   const recuperarDoctores = JSON.parse(localStorage.getItem("users")) || data;
   const [doctores, setDoctores] = useState(recuperarDoctores);
+  const medicos = doctores.filter((usuario) => usuario.role === "DOCTOR");
 
   const botonAprobbed = (id) => {
     const actualizarDoctores = doctores.map((doctor) => {
@@ -34,7 +35,7 @@ function ListadoMedicos() {
               </tr>
             </thead>
             <tbody>
-              {doctores.map((d) => (
+              {medicos.map((d) => (
                 <tr key={d.id}>
                   <th>
                     <div>
