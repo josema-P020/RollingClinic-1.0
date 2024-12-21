@@ -421,7 +421,7 @@ function Calendario() {
                 </ul>
                 <div className="boton-reserva-container">
                   <button className="btn-reservar" onClick={manejarReserva}>
-                    Reservar turno
+                    Reservar Turno
                   </button>
                 </div>
               </>
