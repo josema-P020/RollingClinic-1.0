@@ -1,18 +1,16 @@
-import { useState } from 'react'
-
-
+import { useState } from "react";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <div>
-        
+        <NavBar />
       </div>
-      
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
