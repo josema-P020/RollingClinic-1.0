@@ -1,113 +1,60 @@
 .pagina-contenedor {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Elimina el desplazamiento horizontal */
-  width: 100%;
-  box-sizing: border-box; /* Incluye paddings y bordes en los cálculos de ancho */
+  overflow-x: hidden; 
+  box-sizing: border-box; 
 }
 
 .navbar {
   height: 60px;
   width: 100%;
-  display: flex;
+  display: flex; 
   align-items: center;
-  justify-content: space-between;
-  background: #ff8d01;
-  padding: 0 15px;
-  position: relative;
+  background: #61c0bf;
   margin-bottom: 15px;
+}
+
+.envoltura-contenido {
+  display: flex;
+  width: 100%; 
+  justify-content: space-between; 
+  align-items: center;
+  margin: 0 15px;
+}
+
+
+.sector-derecho {
+  display: flex; 
+  gap: 10px; 
 }
 
 .nav_logo {
   font-weight: bold;
   font-size: 20px;
   color: white;
-  margin: 0 15px;
 }
 
-.nav_search input {
-  width: 250px;
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-}
-
-.nav_actions button {
-  margin-left: 10px;
-  padding: 5px 10px;
+.nav_login, .nav_cart {
+  padding: 8px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  background-color: #2a9df4; 
+  color: white;
+  transition: background-color 0.3s ease;
 }
 
-.nav_toggle {
-  display: none; /* Oculto por defecto */
-  cursor: pointer;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.nav_login:hover, .nav_cart:hover {
+  background-color: #1f80d3; 
 }
 
-.nav_toggle span {
-  width: 25px;
-  height: 3px;
-  background-color: white;
-  margin: 3px 0;
-  transition: all 0.3s ease;
-}
 
-.fila1 {
-  margin: 0;
-}
-/* Estilo para dispositivos pequeños */
 @media (max-width: 768px) {
   .navbar {
-    justify-content: flex-start; /* Alinea los elementos al inicio */
-    margin: 0;
+    justify-content: flex-start; 
   }
 
-  .nav_toggle {
-    display: flex; /* Muestra el toggle */
-    margin-right: 10px;
-    margin-left: 20px;
-  }
-
-  .nav_logo {
-    margin-right: auto; /* Mueve el logo a la derecha del toggle */
-  }
-
-  .nav_search,
-  .nav_actions {
-    display: none; /* Oculta el buscador y las acciones en pantallas pequeñas */
-  }
-
-  .fila1 {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background-color: rgb(233, 105, 0);
-    flex-direction: column;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-in-out;
-  }
-
-  .fila1.open {
-    max-height: 300px; /* Muestra los enlaces al abrir el toggle */
-  }
-
-  .fila1 a {
-    display: block;
-    padding: 10px 15px;
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .fila1 a:last-child {
-    border-bottom: none;
+  .nav_login, .nav_cart {
+    margin: 0 5px;
   }
 }

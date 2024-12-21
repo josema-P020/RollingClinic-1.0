@@ -1,17 +1,20 @@
 import React from "react";
-import "./App.css";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import { BrowserRouter } from "react-router-dom"; // Importa BrowserRouter
+import NavBar from "./components/NavBar"; // Asegúrate de que el archivo esté bien importado
+import Footer from "./components/Footer"; // Asegúrate de que el archivo esté bien importado
+import "./App.css"; // Estilos de tu aplicación
 
 function App() {
   return (
-    <div className="pagina-contenedor">
-      <NavBar />
-      <div className="contenedor-envoltura">
-
+    <BrowserRouter>
+      <div className="pagina-contenedor">
+        <NavBar />
+        <div className="contenedor-envoltura">
+          
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </BrowserRouter>
   );
 }
 
