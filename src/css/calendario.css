@@ -4,6 +4,16 @@
   font-family: "Poppins", sans-serif;
 }
 
+.contenedor-padre{
+    display: flex; /* Activa el modelo de caja flexible */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    margin: 0; /* Elimina márgenes adicionales */
+    padding: 0; /* Elimina padding adicional */
+    box-sizing: border-box; /* Asegura que el tamaño incluya border y padding */
+}
+
 .container-rectangular {
   display: flex;
   flex-direction: row; /* Alinea el calendario y los doctores en línea */

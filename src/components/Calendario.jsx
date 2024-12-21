@@ -268,7 +268,7 @@ function Calendario() {
   }, []);
 
   return (
-    <div>
+    <div className="contenedor-padre">
       <div className="container-rectangular">
         <div className="container-calendario">
           <div className="wrapper poppins-font">
