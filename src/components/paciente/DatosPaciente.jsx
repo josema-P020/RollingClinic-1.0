@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Paciente.css";
 import ListaMedicos from "./ListadoTurnos.jsx";
 import data from "../../data/dataBase.js";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 //importar base de datos de nahuel
 function DatosPaciente() {
   const [editar, setEditar] = useState(false);
@@ -36,7 +36,11 @@ function DatosPaciente() {
   const handleClick = () => {
     setEditar(!editar);
   };
-  const handleLogout = () => {};
+  
+  //Borrar esta funcion despues
+  const handleLogout = () => {
+    window.location.href = "/login";
+  };
 
   return (
     <>
@@ -44,7 +48,7 @@ function DatosPaciente() {
         <nav aria-label="breadcrumb" className="bg-white p-2">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="#" className="nave">
+              <a href="/login" className="nave">
                 Home
               </a>
             </li>
@@ -181,10 +185,11 @@ function DatosPaciente() {
               </div>
               <div className="col-lg-9 col-md-8 col-sm-12 pt-2 d-flex flex-column justify-content-center">
                 <div className="d-flex justify-content-end me-5 mb-2">
-                  <Link to="/login" className="my-3 btn btn-secondary">
+                  {/* Cambiar a <Link to="/login"> */}
+                  <a className="my-3 btn btn-secondary" onClick={handleLogout}>
                     <i className="bi bi-box-arrow-right me-2"></i>
                     Cerrar Sesión
-                  </Link>
+                  </a>
                 </div>
                 <ListaMedicos />
               </div>
