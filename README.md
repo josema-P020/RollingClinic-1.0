@@ -38,8 +38,8 @@ Este proyecto consiste en una página web para una clínica que permite la gesti
 ## Instalación y Configuración
 1. Clonar el repositorio:
    ```bash
-   git clone https://github.com/usuario/web-clinica.git](https://github.com/josema-P020/RollingClinic.git
-   cd RollingClinic
+   git clone https://github.com/josema-P020/RollingClinic-1.0.git
+   cd RollingClinic-1.0
    ```
 
 2. Instalar dependencias (ejemplo para Node.js):
