@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
-import data from "../../data/database";
+import data from "../../data/dataBase";
 
 function Login() {
   const navigate = useNavigate();
