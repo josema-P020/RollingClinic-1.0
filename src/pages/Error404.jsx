@@ -12,9 +12,9 @@ function Error404() {
           </div>
           <div className="error_title">Página no encontrada</div>
           <div className="error_description">!Ups! Algo no salió bien.</div>
-          {/* <Link to="/login" className="btn btn-lg btn-warning">
+          <Link to="/login" className="btn btn-lg btn-warning">
             Volver al inicio
-          </Link> */}
+          </Link>
         </div>
       </div>
     </div>

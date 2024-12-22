@@ -76,6 +76,18 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     role: "DOCTOR",
     aprobbed: false,
   },
+  {
+    name: "Admin Admino",
+    tel: "3813995090",
+    dateBirth: "1997-05-04",
+    city: "San Miguel de Tucuman",
+    dni: "40436799",
+    genre: "male",
+    email: "adminAdmino@gmail.com",
+    password: "Asdasd1&",
+    id: 17345709930199,
+    role: "ADMIN",
+  },
 ];
 
 export default data;
