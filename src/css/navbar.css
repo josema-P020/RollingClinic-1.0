@@ -51,7 +51,7 @@
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: calc(100% + 5px);
+  top: calc(100% + 1px);
   right: 0;
   background-color: white;
   border-radius: 5px;
