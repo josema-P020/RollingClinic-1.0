@@ -1,11 +1,13 @@
 import React from "react"
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import PacienteDoctor from "./pages/PacienteDoctor"
-import RegisterPatient from "./pages/Register/RegisterPatient"
-import RegisterDoctor from "./pages/Register/RegisterDoctor"
-import HomeScreen from "./pages/HomeScreen"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import PacienteDoctor from "./pages/PacienteDoctor";
+import RegisterPatient from "./pages/Register/RegisterPatient";
+import RegisterDoctor from "./pages/Register/RegisterDoctor";
+import HomeScreen from "./pages/HomeScreen";
+import Login from './pages/Login/Login';
+import Calendario from "./components/Calendario";
 import "./App.css"
 function App() {
 
@@ -26,7 +28,7 @@ function App() {
       </BrowserRouter>
 
     </>
-  )
+  );
 }
 
-export default App
+export default App;
