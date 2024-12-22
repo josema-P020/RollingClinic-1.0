@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import "./register.css";
+import "../../css/registerCorrect.css";
+import "../../css/register.css";
 import data from "../../data/database";
-import DrRegisterCorrect from "../../components/DrRegisterCorrect";
+import DrRegisterCorrect from "../../components/DrResgisterCorrect";
 
 function RegisterDoctor() {
   let usersJSON = JSON.stringify(data);
@@ -21,10 +22,10 @@ function RegisterDoctor() {
   };
 
   const closeModal = () => {
-    setShowModal(false); // Cierra el modal
+    setShowModal(false);
   };
 
-  console.log(showModal);
+
 
   const year = new Date().getFullYear() - 18;
 
@@ -33,7 +34,7 @@ function RegisterDoctor() {
   const day = new Date().getDate();
 
   const maxDate = year + "-" + month + "-" + day;
-  console.log(maxDate);
+
 
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
@@ -59,7 +60,6 @@ function RegisterDoctor() {
     aprobbed: false,
   });
 
-  console.log(formValues);
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -79,7 +79,7 @@ function RegisterDoctor() {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(formValues);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -188,7 +188,7 @@ function RegisterDoctor() {
   };
   return (
     <>
-      <div className="container">
+      <div className="container bg-form">
         {/* <div className="row">
           <div className="col-12">
           </div>
@@ -247,7 +247,7 @@ function RegisterDoctor() {
                 onChange={handleChange}
               />
               <p className="text-muted mb-3">
-                Debes ser mayor de 18 años para registrarte como paciente.
+                Debes ser mayor de 18 años para registrarte como prestador de servicios.
               </p>
             </div>
             <div className="col-sm-12 col-md-6">
@@ -294,7 +294,7 @@ function RegisterDoctor() {
                 </div>
                 <div className="col-sm-12 col-md-6">
                   <label htmlFor="matricula" className="mb-1">
-                    M.P.
+                    Matricula Profesional
                   </label>
                   <input
                     type="number"
@@ -437,7 +437,7 @@ function RegisterDoctor() {
             </div>
             {/* esto debe mandar al error 404 */}
             <p>
-              Acepto los <strong>Terminos y Condiciones</strong>
+              Acepto los <a href="/*">Términos y Condiciones</a>
             </p>
           </div>
 
@@ -453,6 +453,9 @@ function RegisterDoctor() {
           <button type="submit" className="btn btn-primary mx-3">
             Inicia sesion
           </button>
+        </div>
+        <div className="mb-3 d-grid text-center">
+          <p>¿No te sentís bien? Registrate <a href="/registerPatient">acá</a> para pedir turno</p>
         </div>
       </div>
       <DrRegisterCorrect showModal={showModal} closeModal={closeModal} />

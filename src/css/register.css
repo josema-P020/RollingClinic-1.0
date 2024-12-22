@@ -1,0 +1,20 @@
+.showPwd {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: #6c757d;
+  }
+  
+
+.bg-form {
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgb(172, 219, 222) 100%);
+  border-radius: 15px;
+}
+
+html, #root {
+  background-color: rgb(255, 255, 255);
+}

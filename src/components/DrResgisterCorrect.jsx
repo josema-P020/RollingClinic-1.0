@@ -1,18 +1,25 @@
-import React from 'react'
+import React from "react";
 import "../css/registerCorrect.css";
 
-function PatientRegisterCorrect( { showModal, closeModal} ) {
-    if (!showModal) return null;
+function DrRegisterCorrect({ showModal, closeModal }) {
+  if (!showModal) return null;
+
   return (
     <>
-    <div className="modal-overlay">
+      <div className="modal-overlay">
         <div className="modal-content">
           <div className="row text-center text-dark modal-bg">
-            <h3 className='mt-3'>
+            <h3>
               <i className="bi bi-check2-all"></i> REGISTRO EXITOSO
             </h3>
+            <p>
+              {" "}
+              Hemos recibido tus datos correctamente. Un administrador
+              verificará la información y aprobará tu registro. Te
+              notificaremos una vez esté listo.
+            </p>
             <div className="modal-footer">
-              
+                {/* El boton debe llevar a pagina de inicio */}
                 <button
                 type='button'
                 className='btn btn-primary m-2'
@@ -29,7 +36,7 @@ function PatientRegisterCorrect( { showModal, closeModal} ) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default PatientRegisterCorrect
+export default DrRegisterCorrect;
