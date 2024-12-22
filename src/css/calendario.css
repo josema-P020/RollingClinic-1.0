@@ -1,0 +1,294 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,400&display=swap");
+
+.poppins-font {
+  font-family: "Poppins", sans-serif;
+}
+
+.contenedor-padre{
+    display: flex; /* Activa el modelo de caja flexible */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    margin: 0; /* Elimina márgenes adicionales */
+    padding: 0; /* Elimina padding adicional */
+    box-sizing: border-box; /* Asegura que el tamaño incluya border y padding */
+}
+
+.container-rectangular {
+  display: flex;
+  flex-direction: row; /* Alinea el calendario y los doctores en línea */
+  justify-content: center;
+  gap: 40px; /* Espacio entre el calendario y los doctores */
+  background-color: #0080ff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: auto;
+  max-width: auto;
+  margin: auto;
+}
+
+h4{
+  font-family: "Poppins", sans-serif;
+}
+
+li{
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+}
+.container-doctores {
+  display: flex;
+  align-items: center;
+  padding: 13px;
+  height: 100%;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/*DOCTOR Y HORARIOS*/
+.listado-doctores {
+  /* margin-right: 50px; */
+  width: auto;
+}
+
+.listado-doctores ul {
+  list-style: none;
+  padding: 0;
+}
+
+.listado-doctores li {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  width: 270px;
+}
+
+.listado-doctores ul li {
+  display: flex;
+  justify-content: space-between; /* Esto asegura que los elementos estén a los lados opuestos */
+  padding: 8px 16px; /* Un poco más de espacio horizontal */
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.listado-doctores li span {
+  margin-left: 20px; /* Este margen puede ser opcional si necesitas más espacio entre el nombre y el span */
+}
+
+.listado-doctores ul li.activo {
+  background-color: #9b59b6;
+  color: white;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.horarios {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  gap: 10px;
+}
+
+.horario {
+  display: flex;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #f1f1f1;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.horario.reservado {
+  background-color: #ccc;
+  color: white;
+  cursor: not-allowed;
+}
+
+.horario:hover:not(.reservado) {
+  background-color: #88c1fd; /* Celeste claro para hover */
+  border-color: #a6c8f0;
+}
+
+.horario.seleccionado {
+  background-color: #58abfd; /* Azul intermedio para seleccionado */
+  color: rgb(0, 0, 0);
+  border-color: #468fcc;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Efecto de resaltado */
+}
+
+.btn-reservar {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn-reservar:hover {
+  background-color: #218838;
+}
+
+/*CALENDARIO*/
+.container-calendario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none; /* Evita la selección de texto */
+}
+
+.wrapper {
+  width: 450px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.wrapper .calendario-header {
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
+}
+
+.calendario-header .mes-actual {
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+
+.calendario-header .icons span {
+  height: 38px;
+  width: 38px;
+  color: #878787;
+  font-size: 1.9rem;
+  margin: 0 1px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 38px;
+  border-radius: 50%;
+}
+
+.calendario-header .icons span:hover {
+  background: #f2f2f2;
+}
+
+.calendario-header .icons span:last-child {
+  margin-right: -10px;
+}
+
+.calendario {
+  padding: 10px;
+  margin-right: 8%;
+}
+
+.calendario ul {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.calendario .dias {
+  margin-bottom: 20px;
+}
+
+.calendario .semanas li {
+  font-weight: 500;
+}
+
+.calendario ul li {
+  position: relative;
+  width: calc(100% / 7);
+}
+
+.calendario .dias li {
+  z-index: 1;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.dias li.inactivo {
+  color: #bbbbbb;
+}
+
+.dias li.activo {
+  color: #fff;
+}
+
+.dias li,
+.calendario-header .icons span {
+  user-select: none;
+}
+
+.calendario .dias li::before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 40px;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dias li:hover::before {
+  background: #f2f2f2;
+}
+
+.dias li.activo::before {
+  background-color: #9b59b6;
+}
+
+/* Estilo para el día seleccionado */
+.dias li.seleccionado {
+  color: white;
+}
+
+.dias li.seleccionado::before {
+  position: absolute;
+  content: "";
+  height: 40px; /* Mantén este valor igual que en .activo */
+  width: 40px; /* Mantén este valor igual que en .activo */
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  border-radius: 50%; /* Asegura que sea completamente circular */
+  transform: translate(-50%, -50%);
+  background-color: #44acf1; /* Color personalizado para el seleccionado */
+}
+
+/* .container-calendario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  padding: 2%;
+  background-color: #9e2323;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+} */
+
+/* .container-calendario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  padding: 2%;
+  background-color: #9e2323;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+} */

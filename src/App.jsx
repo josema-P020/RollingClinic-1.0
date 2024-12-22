@@ -1,6 +1,7 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from './pages/Login/Login'
+import Calendario from "./components/Calendario";
 // import './App.css'
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
       </Routes>
       </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
