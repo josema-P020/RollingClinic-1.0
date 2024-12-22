@@ -97,3 +97,21 @@
     opacity: 1;
   }
 }
+
+.pagina-contenedor {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.contenedor-envoltura {
+  flex: 1;
+}
+
+.footer-style {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+  position: relative;
+}

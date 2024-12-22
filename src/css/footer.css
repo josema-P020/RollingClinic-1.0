@@ -1,0 +1,40 @@
+.ul-style {
+  text-align: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ul-style li {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  color: #555; /* Color base más suave */
+  margin: 10px 0; /* Espacio entre los elementos */
+}
+
+.ul-style li .active {
+  color: #2a9df4; /* Color suave celeste para el enlace activo */
+  font-weight: bold;
+}
+
+.ul-style li .active:hover {
+  transform: translateY(-2px); /* Efecto de desplazamiento cuando el enlace está activo */
+}
+
+.ul-style li .navlink-style {
+  text-decoration: none; /* Elimina el subrayado de los enlaces */
+  color: #61c0bf; /* Color celeste suave */
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.ul-style li .navlink-style:hover {
+  color: #2a9df4; /* Color azul celeste más oscuro al pasar el ratón */
+  transform: translateY(-2px); /* Efecto de desplazamiento al pasar el ratón */
+}
+
+.ul-style li .navlink-style:focus {
+  outline: none; /* Elimina el borde del enfoque por defecto */
+  color: #2a9df4; /* Color para el enlace cuando está enfocado */
+  box-shadow: 0 0 5px rgba(42, 157, 244, 0.5); /* Resplandor al enfocarse */
+}
