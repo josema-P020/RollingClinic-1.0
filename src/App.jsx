@@ -6,8 +6,8 @@ import PacienteDoctor from "./pages/PacienteDoctor";
 import RegisterPatient from "./pages/Register/RegisterPatient";
 import RegisterDoctor from "./pages/Register/RegisterDoctor";
 import HomeScreen from "./pages/HomeScreen";
-import Login from './pages/Login/Login';
-import Calendario from "./components/Calendario";
+// import Login from './pages/Login/Login';
+// import Calendario from "./components/Calendario";
 import "./App.css"
 function App() {
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import data from '../data/database'; // Asegúrate de importar correctamente la base de datos
+import data from '../data/database';
 
 function PacienteDoctor() {
     const [dataBase, setPacientes] = useState([]);
@@ -8,7 +8,6 @@ function PacienteDoctor() {
     const [consultaDetalles, setConsultaDetalles] = useState('');
     const [resumenConsulta, setResumenConsulta] = useState('');
 
-    // Cargar la base de datos desde localStorage o inicializarla con datos predeterminados
     useEffect(() => {
         const storedPacientes = localStorage.getItem('users');
         if (storedPacientes) {
@@ -20,7 +19,7 @@ function PacienteDoctor() {
 
     const handleSelectDoctor = (doctor) => {
         setSelectedDoctor(doctor);
-        setSelectedTurno(null); // Reinicia el turno seleccionado al cambiar de doctor
+        setSelectedTurno(null);
     };
 
     const handleSelectTurno = (turno) => {
@@ -38,7 +37,7 @@ function PacienteDoctor() {
                             ...turno,
                             detalles: consultaDetalles,
                             resumenConsulta: resumenConsulta,
-                            estado: turno.estado === 'pendiente' ? 'atendido' : 'pendiente',
+                            estado: 'atendido',
                         };
                     }
                     return turno;
@@ -50,7 +49,7 @@ function PacienteDoctor() {
 
         setPacientes(updatedPacientes);
         localStorage.setItem('users', JSON.stringify(updatedPacientes));
-        alert('Datos guardados correctamente');
+        alert('El turno ha sido actualizado a "atendido"');
     };
 
     const doctors = dataBase.filter((user) => user.role === 'DOCTOR');
@@ -59,7 +58,7 @@ function PacienteDoctor() {
     );
 
     return (
-        <section className="container-fluid row mt-5 d-flex justify-content-around">
+        <section className="container-fluid row d-flex justify-content-around">
             <div className="mb-3">
                 <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {selectedDoctor ? selectedDoctor.name : 'Seleccione un doctor'}

@@ -5,15 +5,13 @@ import "../css/navbar.css";
 function NavBar() {
   return (
     <>
-      <div className="navbar">
+      <div className="navbar container-fluid">
         <div className="envoltura-contenido">
           {/* Sector Izquierdo - Logo */}
           <div className="sector-izquierdo">
             <div className="nav_logo">CLINICA</div>
           </div>
 
-
-          {/* Sector Derecho - Opciones de Sesión */}
           <div className="sector-derecho">
             <div className="dropdown">
               <button className="dropdown-button">Iniciar Sesión</button>
