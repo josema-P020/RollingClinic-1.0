@@ -3,10 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import RegisterPatient from "./pages/Register/RegisterPatient"
 import RegisterDoctor from "./pages/Register/RegisterDoctor"
 // import ContainerBtn from "./pages/ContainerLoginBtn/ContainerBtn"
-
+import "./App.css"
 function App() {
   
-
   return (
     <>
       <BrowserRouter>
