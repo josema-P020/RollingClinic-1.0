@@ -4,7 +4,7 @@ import "../css/footer.css";
 
 function Footer() {
   return (
-    <div className="row text-center footer-style">
+    <div className="container-fluid row text-center footer-style">
       {/* Primera columna */}
       <div className="col-12 col-md-3 mb-3 mb-md-0">
         <NavLink className="navbar-brand" to="#">

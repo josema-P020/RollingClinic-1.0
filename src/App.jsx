@@ -2,6 +2,7 @@ import React from "react"
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import PacienteDoctor from "./pages/PacienteDoctor"
 import RegisterPatient from "./pages/Register/RegisterPatient"
 import RegisterDoctor from "./pages/Register/RegisterDoctor"
 import HomeScreen from "./pages/HomeScreen"
@@ -16,6 +17,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<HomeScreen/>} />
+          <Route path="/*doc" element={<PacienteDoctor/>} />
           <Route path="/RegisterPatient" element={<RegisterPatient />} />
           <Route path="/RegisterDoctor" element={<RegisterDoctor />} />
           {/* <Route path="/login" element={<Login/>}/> */}

@@ -3,8 +3,8 @@ import "../css/HomeScreen.css"
 
 function HomeScreen() {
   return (
-    <div>
-        <section className="container-fluid row d-flex flex-wrap">
+
+        <section className="row d-flex flex-wrap">
         <div className="mb-4">
             <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner border border-black">
@@ -33,7 +33,7 @@ function HomeScreen() {
                 </button>
             </div>
     </section>
-    </div>
+    
   )
 }
 
