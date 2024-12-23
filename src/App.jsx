@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Login from './pages/Login/Login'
+import Login from './pages/Login/Login.jsx'
 import Calendario from "./components/Calendario";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
@@ -25,7 +25,7 @@ function App() {
           <Route path="/" element={<HomeScreen />} />
           <Route path="/calendario" element={<Calendario />} />
           <Route path="/Paciente" element={<PerfilPaciente/>} />
-          <Route path="/Admi" element={<PerfilAdmin/>} />
+          <Route path="/Admin" element={<PerfilAdmin/>} />
           <Route path="/doc" element={<PacienteDoctor />} />
           <Route path="/RegisterPatient" element={<RegisterPatient />} />
           <Route path="/RegisterDoctor" element={<RegisterDoctor />} />
