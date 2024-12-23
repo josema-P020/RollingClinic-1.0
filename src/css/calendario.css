@@ -36,6 +36,7 @@ li {
   font-size: 14px;
   font-family: "Poppins", sans-serif;
 }
+
 .container-doctores {
   display: flex;
   align-items: center;
@@ -266,4 +267,66 @@ li {
   border-radius: 50%;
   transform: translate(-50%, -50%);
   background-color: #44acf1;
+}
+
+/* Media Queries para dispositivos pequeños */
+@media (max-width: 768px) {
+  .container-rectangular {
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .container-doctores {
+    width: 100%;
+  }
+
+  .listado-doctores li {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .horarios {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .horario {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .btn-reservar {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .wrapper {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .calendario {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-rectangular {
+    padding: 5px;
+  }
+
+  .listado-doctores li {
+    font-size: 12px;
+  }
+
+  .horario {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .btn-reservar {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
 }

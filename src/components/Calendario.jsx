@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import data from "../data/dataBase";
 import { agregarTurno } from "../data/enviarTurnos";
-import "../css/calendario.css"
-import { v4 as uuidv4 } from "uuid";
+import "../css/calendario.css";
 import Swal from "sweetalert2";
 
 function Calendario() {
@@ -12,52 +12,24 @@ function Calendario() {
   const [doctorSeleccionado, setDoctorSeleccionado] = useState(null);
   const [turnoSeleccionado, setTurnoSeleccionado] = useState(null);
   const [horarioSeleccionado, setHorarioSeleccionado] = useState(null);
+  const [doctores, setDoctores] = useState([]);
 
- 
-  const [doctores, setDoctores] = useState([
-    {
-      idUnico: uuidv4(),
-      nombre: "Dr. Juan Pérez",
-      especialidad: "Cardiología",
+  useEffect(() => {
+    const doctoresFiltrados = data.filter(
+      (user) => user.role === "DOCTOR" && user.aprobbed
+    ).map((doctor) => ({
+      idUnico: doctor.id,
+      nombre: doctor.name,
+      especialidad: doctor.especialidad,
       horarios: {
-        mañana: ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 AM"],
-        tarde: ["15:00 PM", "16:00 PM", "17:00 PM", "18:00 AM"],
+        mañana: ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"],
+        tarde: ["15:00 PM", "16:00 PM", "17:00 PM", "18:00 PM"],
       },
       turnosReservados: [],
-    },
-    {
-      idUnico: uuidv4(),
-      nombre: "Dra. María López",
-      especialidad: "Dermatología",
-      horarios: {
-        mañana: ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 AM"],
-        tarde: ["15:00 PM", "16:00 PM", "17:00 PM", "18:00 AM"],
-      },
-      turnosReservados: [],
-    },
-    {
-      idUnico: uuidv4(),
-      nombre: "Dr. Pedro Sánchez",
-      especialidad: "Pediatría",
-      horarios: {
-        mañana: ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 AM"],
-        tarde: ["15:00 PM", "16:00 PM", "17:00 PM", "18:00 AM"],
-      },
-      turnosReservados: [],
-    },
-    {
-      idUnico: uuidv4(),
-      nombre: "Dr. Pedro Sánchez",
-      especialidad: "Pediatría",
-      horarios: {
-        mañana: ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 AM"],
-        tarde: ["15:00 PM", "16:00 PM", "17:00 PM", "18:00 AM"],
-      },
-      turnosReservados: [],
-    },
-  ]);
+    }));
+    setDoctores(doctoresFiltrados);
+  }, []);
 
-  
   const manejarSeleccionDoctor = (idUnicoDoctor) => {
     const doctor = doctores.find((d) => d.idUnico === idUnicoDoctor);
     if (doctor) {
@@ -65,16 +37,13 @@ function Calendario() {
     }
   };
 
-
   const manejarSeleccionHorario = (turno, hora) => {
     setTurnoSeleccionado(turno);
     setHorarioSeleccionado(hora);
   };
 
- 
   const manejarReserva = () => {
     let errores = [];
-
     if (!diaSeleccionado) errores.push("una fecha");
     if (!doctorSeleccionado) errores.push("un doctor");
     if (!horarioSeleccionado) errores.push("un horario");
@@ -83,9 +52,7 @@ function Calendario() {
       Swal.fire({
         icon: "error",
         title: "Faltan datos",
-        text: `Debe seleccionar ${errores.join(
-          ", "
-        )} antes de reservar el turno.`,
+        text: `Debe seleccionar ${errores.join(", ")} antes de reservar el turno.`,
         confirmButtonText: "Entendido",
       });
       return;
@@ -93,11 +60,10 @@ function Calendario() {
 
     const fechaSeleccionada = `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}`;
     const nuevoTurno = {
-      id: uuidv4(),
+      idUnico: `${doctorSeleccionado.idUnico} - ${fechaSeleccionada} - ${horarioSeleccionado}`,
       fecha: fechaSeleccionada,
       doctor: doctorSeleccionado.nombre,
       horario: horarioSeleccionado,
-      idDoctor: doctorSeleccionado.idUnico,
     };
 
     const turnosGuardados =
@@ -167,28 +133,6 @@ function Calendario() {
     });
   };
 
- 
-  useEffect(() => {
-    const turnosGuardados =
-      JSON.parse(localStorage.getItem("reservasTurnos")) || [];
-
-    const doctoresConTurnos = doctores.map((doctor) => {
-      const turnosDelDoctor = turnosGuardados.filter(
-        (turno) => turno.doctor === doctor.nombre
-      );
-      return {
-        ...doctor,
-        turnosReservados: turnosDelDoctor.map((turno) => ({
-          fecha: turno.fecha,
-          horario: turno.horario,
-        })),
-      };
-    });
-
-    setDoctores(doctoresConTurnos);
-  }, []);
-
-  
   const nombresMes = [
     "Enero",
     "Febrero",
@@ -258,7 +202,6 @@ function Calendario() {
     }
   };
 
-  
   useEffect(() => {
     const date = new Date();
     const anioActual = date.getFullYear();
@@ -363,33 +306,20 @@ function Calendario() {
                       <li
                         key={hora}
                         className={`horario ${
-                          doctorSeleccionado.turnosReservados.some(
-                            (turno) =>
-                              turno.fecha ===
-                                `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}` &&
-                              turno.horario === hora
-                          )
-                            ? "reservado"
-                            : horarioSeleccionado === hora
-                            ? "seleccionado"
+                          turnoSeleccionado === "mañana" &&
+                          horarioSeleccionado === hora
+                            ? "activo"
                             : ""
-                        }`}
+                        } ${horarioReservado ? "reservado" : ""}`}
                         onClick={() =>
-                          !doctorSeleccionado.turnosReservados.some(
-                            (turno) =>
-                              turno.fecha ===
-                                `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}` &&
-                              turno.horario === hora
-                          ) && manejarSeleccionHorario("mañana", hora)
+                          !horarioReservado &&
+                          manejarSeleccionHorario("mañana", hora)
                         }
                       >
                         {hora}
                       </li>
                     );
                   })}
-                </ul>
-
-                <ul className="horarios">
                   {doctorSeleccionado.horarios.tarde.map((hora) => {
                     const horarioReservado =
                       doctorSeleccionado.turnosReservados.some(
@@ -403,12 +333,11 @@ function Calendario() {
                       <li
                         key={hora}
                         className={`horario ${
-                          horarioReservado
-                            ? "reservado"
-                            : horarioSeleccionado === hora
-                            ? "seleccionado"
+                          turnoSeleccionado === "tarde" &&
+                          horarioSeleccionado === hora
+                            ? "activo"
                             : ""
-                        }`}
+                        } ${horarioReservado ? "reservado" : ""}`}
                         onClick={() =>
                           !horarioReservado &&
                           manejarSeleccionHorario("tarde", hora)
@@ -419,13 +348,18 @@ function Calendario() {
                     );
                   })}
                 </ul>
-                <div className="boton-reserva-container">
-                  <button className="btn-reservar" onClick={manejarReserva}>
-                    Reservar Turno
-                  </button>
-                </div>
               </>
             )}
+          </div>
+
+          <div className="acciones">
+            <button
+              className="btn btn-primary"
+              onClick={manejarReserva}
+              disabled={!doctorSeleccionado}
+            >
+              Confirmar Turno
+            </button>
           </div>
         </div>
       </div>

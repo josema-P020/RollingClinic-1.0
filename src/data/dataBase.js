@@ -62,7 +62,8 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     password: "Asdasd123!!",
     id: 1734570993013,
     role: "DOCTOR",
-    aprobbed: false,
+    aprobbed: true,
+    reservas: [],
   },
   {
     name: "Juguetes",
@@ -77,7 +78,7 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     password: "Asdasd1&",
     id: 1734570993014,
     role: "DOCTOR",
-    aprobbed: false,
+    aprobbed: true,
   },
   {
     name: "Admin Admino",

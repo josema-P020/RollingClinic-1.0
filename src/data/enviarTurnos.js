@@ -3,4 +3,3 @@ export const agregarTurno = (nuevoTurno) => {
     const turnosActualizados = [...turnosExistentes, nuevoTurno];
     localStorage.setItem("reservasTurnos", JSON.stringify(turnosActualizados));
   };
-  
