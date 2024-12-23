@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/HomeScreen.css";
 
@@ -40,11 +41,13 @@ function CustomCarousel() {
       </div>
    
           <div className="button-container d-flex justify-content-around align-items-center">
-            <button type="button" className="btn btn-danger m-3">
-              <p className="p-button">pedir tu turno</p>
+            <button type="button" className="btn-1 btn btn-danger m-3">
+              <Link to="/calendario"><p className="p-button">pedir tu turno</p></Link>
+              
             </button>
-            <button type="button" className="btn btn-info m-3">
-              <p className="p-button">info de turnos</p>
+            <button type="button" className="btn-1 btn btn-info m-3">
+              <Link to="/Paciente"><p className="p-button">info de turnos</p></Link>
+              
             </button>
           </div>
         
