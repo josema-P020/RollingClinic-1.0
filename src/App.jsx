@@ -1,35 +1,40 @@
-import React from "react"
+import React, { useState } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from './pages/Login/Login.jsx'
-import Calendario from "./components/Calendario";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import PacienteDoctor from "./pages/PacienteDoctor";
+import RoutesApp from "./routes/RoutesApp";
+import ProtectedRoutes from "./routes/ProtectedRoutes";
 import RegisterPatient from "./pages/Register/RegisterPatient";
 import RegisterDoctor from "./pages/Register/RegisterDoctor";
-import HomeScreen from "./pages/HomeScreen";
-import PerfilAdmin from "./pages/PerfilAdmin";
-import PerfilPaciente from "./pages/PerfilPaciente";
 import "./App.css";
-import Error404 from "./pages/Error404";
 
 function App() {
+
+const [login, setLogin] = useState(false);
+
+const cambiarLogin = () => {
+    setLogin(!login);
+}
+
+
   return (
     <>
-      <BrowserRouter>
-        <NavBar />
+       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/calendario" element={<Calendario />} />
-          <Route path="/Paciente" element={<PerfilPaciente/>} />
-          <Route path="/Admin" element={<PerfilAdmin/>} />
-          <Route path="/doc" element={<PacienteDoctor />} />
-          <Route path="/RegisterPatient" element={<RegisterPatient />} />
-          <Route path="/RegisterDoctor" element={<RegisterDoctor />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/*" element={<Error404/>} />
+          <Route
+            path="/*"
+            element={
+              <ProtectedRoutes login={login}>
+                <RoutesApp cambiarLogin={cambiarLogin} />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/login"
+            element={<Login cambiarLogin={cambiarLogin} /> }
+          />
+            <Route path="/RegisterPatient" element={<RegisterPatient />} />
+            <Route path="/RegisterDoctor" element={<RegisterDoctor />} />
         </Routes>
-        <Footer /> 
       </BrowserRouter>
     </>
   );
