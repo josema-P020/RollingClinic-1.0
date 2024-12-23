@@ -10,16 +10,13 @@ import RegisterDoctor from "./pages/Register/RegisterDoctor";
 import HomeScreen from "./pages/HomeScreen";
 import PerfilAdmin from "./pages/PerfilAdmin";
 import PerfilPaciente from "./pages/PerfilPaciente";
-import "./App.css"
+import "./App.css";
 import Error404 from "./pages/Error404";
-function App() {
 
+function App() {
   return (
     <>
-
-
       <BrowserRouter>
-
         <NavBar />
         <Routes>
           <Route path="/" element={<HomeScreen />} />
@@ -32,10 +29,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/*" element={<Error404/>} />
         </Routes>
-        <Footer />
+        <Footer /> 
       </BrowserRouter>
-    </>);
+    </>
+  );
 }
-
 
 export default App;

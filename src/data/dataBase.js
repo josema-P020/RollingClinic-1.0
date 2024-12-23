@@ -1,6 +1,7 @@
 let data = JSON.parse(localStorage.getItem("users")) || [
   {
     name: "Javier Gomez",
+    login: false,
     tel: 3816093788,
     dateBirth: "2006-12-03",
     city: "Yerba Buena",
@@ -25,6 +26,7 @@ let data = JSON.parse(localStorage.getItem("users")) || [
   },
   {
     name: "Juan Perez",
+    login: false,
     tel: 381219456,
     dateBirth: "1997-11-02",
     city: "San Miguel de Tucuman",
@@ -44,7 +46,8 @@ let data = JSON.parse(localStorage.getItem("users")) || [
         especialidad: "GINECOLOGIA Y OBSTETRICIA",
         doctor: "Chapatin",
         estado: "pendiente",
-      },],
+      },
+    ],
   },
   {
     name: "Chapatin",
