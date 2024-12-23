@@ -4,21 +4,21 @@
   font-family: "Poppins", sans-serif;
 }
 
-.contenedor-padre{
-    display: flex; /* Activa el modelo de caja flexible */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
-    margin: 0; /* Elimina márgenes adicionales */
-    padding: 0; /* Elimina padding adicional */
-    box-sizing: border-box; /* Asegura que el tamaño incluya border y padding */
+.contenedor-padre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .container-rectangular {
   display: flex;
-  flex-direction: row; /* Alinea el calendario y los doctores en línea */
+  flex-direction: row;
   justify-content: center;
-  gap: 40px; /* Espacio entre el calendario y los doctores */
+  gap: 40px;
   background-color: #0080ff;
   padding: 20px;
   border-radius: 10px;
@@ -28,11 +28,11 @@
   margin: auto;
 }
 
-h4{
+h4 {
   font-family: "Poppins", sans-serif;
 }
 
-li{
+li {
   font-size: 14px;
   font-family: "Poppins", sans-serif;
 }
@@ -46,9 +46,7 @@ li{
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/*DOCTOR Y HORARIOS*/
 .listado-doctores {
-  /* margin-right: 50px; */
   width: auto;
 }
 
@@ -66,8 +64,8 @@ li{
 
 .listado-doctores ul li {
   display: flex;
-  justify-content: space-between; /* Esto asegura que los elementos estén a los lados opuestos */
-  padding: 8px 16px; /* Un poco más de espacio horizontal */
+  justify-content: space-between;
+  padding: 8px 16px;
   border: 1px solid #ccc;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -75,7 +73,7 @@ li{
 }
 
 .listado-doctores li span {
-  margin-left: 20px; /* Este margen puede ser opcional si necesitas más espacio entre el nombre y el span */
+  margin-left: 20px;
 }
 
 .listado-doctores ul li.activo {
@@ -116,15 +114,15 @@ li{
 }
 
 .horario:hover:not(.reservado) {
-  background-color: #88c1fd; /* Celeste claro para hover */
+  background-color: #88c1fd;
   border-color: #a6c8f0;
 }
 
 .horario.seleccionado {
-  background-color: #58abfd; /* Azul intermedio para seleccionado */
+  background-color: #58abfd;
   color: rgb(0, 0, 0);
   border-color: #468fcc;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Efecto de resaltado */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .btn-reservar {
@@ -143,12 +141,11 @@ li{
   background-color: #218838;
 }
 
-/*CALENDARIO*/
 .container-calendario {
   display: flex;
   align-items: center;
   justify-content: center;
-  user-select: none; /* Evita la selección de texto */
+  user-select: none;
 }
 
 .wrapper {
@@ -261,34 +258,12 @@ li{
 .dias li.seleccionado::before {
   position: absolute;
   content: "";
-  height: 40px; /* Mantén este valor igual que en .activo */
-  width: 40px; /* Mantén este valor igual que en .activo */
+  height: 40px;
+  width: 40px;
   top: 50%;
   left: 50%;
   z-index: -1;
-  border-radius: 50%; /* Asegura que sea completamente circular */
+  border-radius: 50%;
   transform: translate(-50%, -50%);
-  background-color: #44acf1; /* Color personalizado para el seleccionado */
+  background-color: #44acf1;
 }
-
-/* .container-calendario {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 30%;
-  padding: 2%;
-  background-color: #9e2323;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-} */
-
-/* .container-calendario {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 30%;
-  padding: 2%;
-  background-color: #9e2323;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-} */
