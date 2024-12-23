@@ -1,22 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Paciente.css";
 import ListaMedicos from "./ListadoTurnos.jsx";
 import data from "../../data/dataBase.js";
 import { Link } from "react-router-dom";
 
 function DatosPaciente() {
+  const [info, setInfo] = useState(() => {
+    const storedUsers = localStorage.getItem("users");
+    return storedUsers ? JSON.parse(storedUsers) : data;
+  });
+
+  const [loggedInUser, setLoggedInUser] = useState(() => {
+    const usuariosGuardados = localStorage.getItem("loggedInUser");
+    return usuariosGuardados ? JSON.parse(usuariosGuardados) : null;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("users", JSON.stringify(info));
+
+    if (loggedInUser) {
+      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+    }
+  }, [loggedInUser, info]);
+
   const [editar, setEditar] = useState(false);
-  const [info, setInfo] = useState(data);
-
-  localStorage.setItem("users", JSON.stringify(info));
-
-  const logeado = info.find((log) => log.login === true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     const updatedInfo = info.map((user) => {
-      if (user.id === logeado.id) {
+      if (user.id === loggedInUser.id) {
         return {
           ...user,
           [name]: value,
@@ -24,9 +37,12 @@ function DatosPaciente() {
       }
       return user;
     });
-
     setInfo(updatedInfo);
-    localStorage.setItem("users", JSON.stringify(updatedInfo));
+
+    setLoggedInUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
   };
 
   const handleClick = () => {
@@ -34,12 +50,14 @@ function DatosPaciente() {
   };
 
   const handleLogout = () => {
-    setInfo(info.map((user) => ({ ...user, login: false })));
-    localStorage.setItem("users", JSON.stringify(info));
+    const updatedInfo = info.map((user) => ({ ...user, login: false }));
+    setInfo(updatedInfo);
+    localStorage.setItem("users", JSON.stringify(updatedInfo));
+    localStorage.removeItem("loggedInUser");
     window.location.href = "/login";
   };
 
-  if (!logeado) {
+  if (!loggedInUser) {
     return (
       <div className="container mt-5 text-center">
         <h3>No hay ningún usuario logueado.</h3>
@@ -70,7 +88,7 @@ function DatosPaciente() {
             <div className="row">
               <div className="col-lg-3 col-md-4 col-sm-12 text-center py-2">
                 <img src="" alt="avatar paciente" className="avatarPte" />
-                <p className="pt-2">{logeado.name}</p>
+                <p className="pt-2">{loggedInUser.name}</p>
                 <div className="container">
                   <ul className="list-group list-group-flush text-start">
                     <li className="list-group-item">
@@ -81,12 +99,12 @@ function DatosPaciente() {
                           name="name"
                           maxLength={25}
                           required
-                          value={logeado.name}
+                          value={loggedInUser.name}
                           onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
-                        logeado.name
+                        loggedInUser.name
                       )}
                     </li>
                     <li className="list-group-item text-break">
@@ -98,12 +116,12 @@ function DatosPaciente() {
                           maxLength={200}
                           minLength={6}
                           required
-                          value={logeado.email}
+                          value={loggedInUser.email}
                           onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
-                        logeado.email
+                        loggedInUser.email
                       )}
                     </li>
                     <li className="list-group-item">
@@ -115,12 +133,12 @@ function DatosPaciente() {
                           required
                           minLength={9}
                           maxLength={18}
-                          value={logeado.tel}
+                          value={loggedInUser.tel}
                           onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
-                        logeado.tel
+                        loggedInUser.tel
                       )}
                     </li>
                     <li className="list-group-item">
@@ -129,12 +147,12 @@ function DatosPaciente() {
                         <input
                           type="date"
                           name="dateBirth"
-                          value={logeado.dateBirth}
+                          value={loggedInUser.dateBirth}
                           onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
-                        logeado.dateBirth
+                        loggedInUser.dateBirth
                       )}
                     </li>
                     <li className="list-group-item">
@@ -143,12 +161,12 @@ function DatosPaciente() {
                         <input
                           type="text"
                           name="city"
-                          value={logeado.city}
+                          value={loggedInUser.city}
                           onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
-                        logeado.city
+                        loggedInUser.city
                       )}
                     </li>
                     <li className="list-group-item">
@@ -159,12 +177,12 @@ function DatosPaciente() {
                           name="dni"
                           minLength={6}
                           maxLength={9}
-                          value={logeado.dni}
+                          value={loggedInUser.dni}
                           onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
-                        logeado.dni
+                        loggedInUser.dni
                       )}
                     </li>
                     <li className="list-group-item">
@@ -173,12 +191,12 @@ function DatosPaciente() {
                         <input
                           type="text"
                           name="obraSocial"
-                          value={logeado.obraSocial}
+                          value={loggedInUser.obraSocial}
                           onChange={handleChange}
                           className="form-control"
                         />
                       ) : (
-                        logeado.obraSocial
+                        loggedInUser.obraSocial
                       )}
                     </li>
                   </ul>
