@@ -19,7 +19,7 @@ function RoutesApp() {
           <Route path="/calendario" element={<Calendario />} />
           <Route path="/Paciente" element={<PerfilPaciente/>} />
           <Route path="/Admin" element={<PerfilAdmin/>} />
-          <Route path="/doc" element={<PacienteDoctor />} /> 
+          <Route path="/doc" element={<PacienteDoctor/>} /> 
           <Route path="/*" element={<Error404/>} />
         </Routes>
        <Footer />
