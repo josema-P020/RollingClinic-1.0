@@ -35,19 +35,20 @@
 .error_code p:first-of-type {
   animation: fall 0.8s linear;
   transform: rotateZ(-20deg);
-  color: rgb(14, 14, 14);
+  color: #ffffff;
 }
 
 .error_code p:last-of-type {
   animation: fall 1s linear;
   transform: rotateZ(8deg);
-  color: rgb(14, 14, 14);
+  color: #ffffff;
 }
 
 .error_code p:nth-of-type(2) {
   color: aqua;
   animation: bounce 0.5s 1.2s linear forwards;
   opacity: 0;
+  font-size: 4.5rem;
 }
 
 .error_title {
