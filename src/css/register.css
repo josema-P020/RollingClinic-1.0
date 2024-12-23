@@ -9,12 +9,37 @@
   }
   
 
-.bg-form {
+/* .bg-form {
   background: rgb(255,255,255);
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgb(172, 219, 222) 100%);
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgb(97, 192, 191 ) 100%);
+} */
+
+.register-container {
+  max-width: 800px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 15px;
+ 
+  box-shadow: 0px 4px 8px rgb(0, 0, 0);
+  font-size: large;
 }
 
-html, #root {
-  background-color: rgb(255, 255, 255);
+.select-options {
+  max-width: 500px;
 }
+
+.imgContainer {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://t4.ftcdn.net/jpg/08/86/09/59/360_F_886095906_m0pfxyzW3WWcrSZfRHsKx7ZF4f8TnTBa.jpg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+}
+

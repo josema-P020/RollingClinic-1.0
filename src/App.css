@@ -1,9 +1,4 @@
-/* Error 404 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
 
 .error_logo {
   width: 100px;
@@ -107,12 +102,4 @@
 
 .contenedor-envoltura {
   flex: 1;
-}
-
-.footer-style {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 20px 10px;
-  position: relative;
 }
