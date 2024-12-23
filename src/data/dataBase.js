@@ -26,7 +26,7 @@ let data = JSON.parse(localStorage.getItem("users")) || [
   },
   {
     name: "Juan Perez",
-    login: true,
+    login: false,
     tel: 381219456,
     dateBirth: "1997-11-02",
     city: "San Miguel de Tucuman",
