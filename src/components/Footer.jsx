@@ -10,7 +10,7 @@ function Footer() {
           <div className="col-12 col-md-4 mb-3 mb-md-0">
             <NavLink className="navlink-style" to="#">
               <i className="fa fa-ravelry" aria-hidden="true">
-                CODER
+              CLINICA
               </i>
             </NavLink>
           </div>
