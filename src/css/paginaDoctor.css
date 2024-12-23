@@ -1,44 +1,9 @@
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px;
-    gap: 20px;
-  }
-  
-  .doctor-selector {
-    margin-bottom: 20px;
-    width: 100%;
-    text-align: center;
-  }
-  
+
   .btn-2 {
     padding: 10px 20px;
     font-size: 16px;
     border: 1px solid #b5f0ce;
     border-radius: 5px;
     background-color: #84ecd2;
-    cursor: pointer;
-  }
-  
-  .color-btn {
-    list-style-type: none;
-    padding: 0;
-    margin: 10px auto 0;
-    background-color: #b5f0ce;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 200px;
-    position: absolute;
-    z-index: 1000;
-  }
- 
-  .guardar-cambios {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
   }

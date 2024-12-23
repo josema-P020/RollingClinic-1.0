@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import data from '../data/database';
+import data from '../data/dataBase';
 import '../css/paginaDoctor.css';
 
 function PacienteDoctor() {
@@ -134,7 +134,7 @@ function PacienteDoctor() {
                             ></textarea>
                         </div>
                         <button
-                            className="btn btn-primary m-3"
+                            className="btn-2 btn btn-primary m-3"
                             onClick={handleEnviarDatos}
                         >
                             Guardar cambios

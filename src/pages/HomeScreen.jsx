@@ -46,7 +46,7 @@ function CustomCarousel() {
               
             </button>
             <button type="button" className="btn-1 btn btn-info m-3">
-              <Link to="/Paciente"><p className="p-button">info de turnos</p></Link>
+              <Link to="/Paciente"><p className=".p-1 p-button">info de turnos</p></Link>
               
             </button>
           </div>
