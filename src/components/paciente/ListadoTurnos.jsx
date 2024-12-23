@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+
 import data from "../../data/dataBase";
 
 function ListadoTurnos() {
-  let doctor = data.filter((user) => user.role === "DOCTOR");
-
+  const [info, setInfo] = useState(data);
+  const pacientes = info.filter((user) => user.role === "PACIENTE");
   return (
     <div>
       <div className="text-center flex-grow-1">
@@ -19,44 +20,46 @@ function ListadoTurnos() {
               </tr>
             </thead>
             <tbody>
-              {doctor.map((d) => (
-                <tr key={d.id}>
-                  <th>
-                    <div>
-                      <div className="d-flex align-items-center">
-                        <img
-                          src={`${
-                            d.genre === "male"
-                              ? "src/images/avatar-hombre.jpg"
-                              : "src/images/avatar-mujer.webp"
-                          }`}
-                          alt="avatar usuario"
-                          className="avatarPte"
-                          loading="lazy"
-                        />
-                        <span className="ms-2">{d.name}</span>
+              {pacientes.map((doctor) =>
+                doctor.turnos.map((turno) => (
+                  <tr key={turno.id}>
+                    <td>
+                      <div>
+                        <div className="d-flex align-items-center">
+                          <img
+                            src={`${
+                              doctor.genre === "male"
+                                ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-phYUCybCZV8ldQUDjk-S_EZumc6lYYA1Hg&s"
+                                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv-wn0BeGWOa2CGmYc83SdQtfWwPebF9KX1g&s"
+                            }`}
+                            alt="avatar usuario"
+                            className="avatarPte"
+                            loading="lazy"
+                          />
+                          <span className="ms-2">{turno.doctor}</span>
+                        </div>
                       </div>
-                    </div>
-                  </th>
-
-                  <td className="align-middle text-start">{d.especialidad}</td>
-                  <td className="align-middle text-start">
-                    {} Aca va la fecha
-                  </td>
-                  <td className="align-middle text-start">
-                    <span
-                      className={`${
-                        d.estado === "Completada"
-                          ? "text-success"
-                          : "text-danger"
-                      }`}
-                    >
-                      Incompleto
-                      {d.estado}
-                    </span>
-                  </td>
-                </tr>
-              ))}
+                    </td>
+                    <td className="align-middle text-start">
+                      {turno.especialidad}
+                    </td>
+                    <td className="align-middle text-start">{turno.fecha}</td>
+                    <td className="align-middle text-start">
+                      <span
+                        className={`${
+                          turno.estado === "pendiente"
+                            ? "text-danger"
+                            : "text-success"
+                        }`}
+                      >
+                        {turno.estado === "pendiente"
+                          ? "Pendiente"
+                          : "Completado"}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

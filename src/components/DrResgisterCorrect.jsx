@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/registerCorrect.css";
+import { Link } from "react-router-dom";
 
 function DrRegisterCorrect({ showModal, closeModal }) {
   if (!showModal) return null;
@@ -19,11 +20,7 @@ function DrRegisterCorrect({ showModal, closeModal }) {
               notificaremos una vez esté listo.
             </p>
             <div className="modal-footer">
-                {/* El boton debe llevar a pagina de inicio */}
-                <button
-                type='button'
-                className='btn btn-primary m-2'
-                >Inicio</button>
+                <Link to="/" className="btn btn-primary" onClick={closeModal}>Inicio</Link>
               <button
                 type="button"
                 className="btn btn-success m-2"
