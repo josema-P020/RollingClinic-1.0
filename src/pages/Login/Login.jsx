@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
-import data from "../../data/database";
+import data from "../../data/dataBase";
 
 function Login() {
   const navigate = useNavigate();
@@ -32,36 +32,40 @@ function Login() {
   const matchedUser = users.find(
     (eachUser) =>
       formValues.email === eachUser.email &&
-      formValues.password === eachUser.password,
+      formValues.password === eachUser.password
   );
-  
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-   
+
     if (!formValues.email || !formValues.password) {
       alert("Debe completar los campos obligatorios!");
       return;
     }
-  
+
     if (matchedUser) {
       if (!matchedUser.aprobbed) {
         alert("Usuario pendiente de aprobación");
         return;
       }
-  
+
+      const loggedInUser = { ...matchedUser, login: true };
+
       alert("Datos correctos");
       cambiarLogin();
-        navigate("/");
-      localStorage.setItem("loggedInUser", JSON.stringify(matchedUser));
-  
+      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+
+      if (matchedUser.role === "PACIENTE") {
+        navigate("/Paciente");
+      } else if (matchedUser.role === "DOCTOR") {
+        navigate("/doc");
+      } else {
+        alert("Rol no definido para este usuario");
+      }
     } else {
       alert("Email o password incorrecto!");
     }
   };
-  
 
   return (
     <>
@@ -128,38 +132,39 @@ function Login() {
                     </div>
                   </form>
                   <div className="dropdow">
-                      <button
-                        className="btn btn-primary dropdown-toggle"
-                        type="button"
-                        id="dropdownMenuButton"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Registrate
-                      </button>
-                      <ul
-                        className="dropdown-menu dropdown-menu-dark"
-                        aria-labelledby="dropdownMenuButton"
-                      >
-                        <li>
-                          <a
-                            className="dropdown-item"
-                            href="/registerPatient"
-                            target="_blank"
-                          >Paciente
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            className="dropdown-item"
-                            href="/registerDoctor"
-                            target="_blank"
-                          >
-                            Profesional de Salud
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
+                    <button
+                      className="btn btn-primary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Registrate
+                    </button>
+                    <ul
+                      className="dropdown-menu dropdown-menu-dark"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <li>
+                        <a
+                          className="dropdown-item"
+                          href="/registerPatient"
+                          target="_blank"
+                        >
+                          Paciente
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="dropdown-item"
+                          href="/registerDoctor"
+                          target="_blank"
+                        >
+                          Profesional de Salud
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
