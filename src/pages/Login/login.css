@@ -10,27 +10,22 @@
 
   .login-container {
     max-width: 550px;
-    /* margin: 0 auto; */
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 15px;
-    /* border: solid 1px black; */
+   
     box-shadow: 0px 4px 8px rgb(0, 0, 0);
     font-size: large;
   }
 
   .imgContainer {
     background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('/src/assets/bgLogin.jpg');
-    background-size: cover; /* Ajusta el tamaño de la imagen */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
  
-  body {
-    min-width: 100%;
-    min-height: 100%;
-  }

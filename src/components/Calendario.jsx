@@ -13,7 +13,7 @@ function Calendario() {
   const [turnoSeleccionado, setTurnoSeleccionado] = useState(null);
   const [horarioSeleccionado, setHorarioSeleccionado] = useState(null);
 
-  // listado de doctores
+ 
   const [doctores, setDoctores] = useState([
     {
       idUnico: uuidv4(),
@@ -57,7 +57,7 @@ function Calendario() {
     },
   ]);
 
-  //seleccionar doctor
+  
   const manejarSeleccionDoctor = (idUnicoDoctor) => {
     const doctor = doctores.find((d) => d.idUnico === idUnicoDoctor);
     if (doctor) {
@@ -65,13 +65,13 @@ function Calendario() {
     }
   };
 
-  //manejar seleccion de horario
+
   const manejarSeleccionHorario = (turno, hora) => {
     setTurnoSeleccionado(turno);
     setHorarioSeleccionado(hora);
   };
 
-  //manejar reserva de turnos
+ 
   const manejarReserva = () => {
     let errores = [];
 
@@ -167,7 +167,7 @@ function Calendario() {
     });
   };
 
-  //obtiene los datos del local storage
+ 
   useEffect(() => {
     const turnosGuardados =
       JSON.parse(localStorage.getItem("reservasTurnos")) || [];
@@ -188,7 +188,7 @@ function Calendario() {
     setDoctores(doctoresConTurnos);
   }, []);
 
-  //se crea los datos del calendario
+  
   const nombresMes = [
     "Enero",
     "Febrero",
@@ -258,7 +258,7 @@ function Calendario() {
     }
   };
 
-  //se obtiene el anio y mes actual
+  
   useEffect(() => {
     const date = new Date();
     const anioActual = date.getFullYear();
