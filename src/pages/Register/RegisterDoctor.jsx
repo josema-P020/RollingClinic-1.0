@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../../css/registerCorrect.css";
 import "../../css/register.css";
 import data from "../../data/database";
 import DrRegisterCorrect from "../../components/DrResgisterCorrect";
@@ -310,12 +309,12 @@ function RegisterDoctor() {
               </div>
             </div>
 
-            <div className="col-sm-12 col-md-6">
+            <div className="col-sm-12 col-md-6 select">
               <label htmlFor="especialidad" className="mb-1">
                 Especialidad
               </label>
               <select
-                className="form-control mb-3"
+                className="form-control mb-3 select"
                 name="especialidad"
                 id="especialidad"
                 value={formValues.especialidad}

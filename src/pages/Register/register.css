@@ -8,5 +8,9 @@
     color: #6c757d;
   }
   
+  .select {
+    max-width: 500px !important;
+    background-color: aqua !important;
+}
 
 
