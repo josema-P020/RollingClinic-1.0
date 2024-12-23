@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../css/register.css";
 import data from "../../data/database";
 import DrRegisterCorrect from "../../components/DrResgisterCorrect";
+import { Link } from "react-router-dom";
 
 function RegisterDoctor() {
   let usersJSON = JSON.stringify(data);
@@ -187,17 +188,14 @@ function RegisterDoctor() {
   };
   return (
     <>
-      <div className="container bg-form">
-        {/* <div className="row">
-          <div className="col-12">
-          </div>
-        </div> */}
+      <div className="container bg-form imgContainer">
+        <div className="register-container text-white">
         <h3 className="text-center mt-5">
           Registrate para comenzar a trabajar con nosotros
         </h3>
         <p className="text-muted text-center">
           Una vez registrado, tu usuario quedará pendiente de aprobación por
-          parte de Rolling Clinic{" "}
+          parte de Rolling Clinic.
         </p>
         <form onSubmit={handleSubmit} className="mt-4">
           <div className="row">
@@ -216,7 +214,7 @@ function RegisterDoctor() {
                 value={formValues.name}
               />
             </div>
-            <div className="col-sm-12 col-md-6">
+            <div className="col-sm-6 col-md-3">
               <label htmlFor="tel" className="mb-1">
                 Teléfono
               </label>
@@ -231,7 +229,7 @@ function RegisterDoctor() {
                 value={formValues.tel}
               />
             </div>
-            <div className="col-sm-12 col-md-6">
+            <div className="col-sm-6 col-md-3">
               <label htmlFor="date" className="mb-1">
                 Fecha de nacimiento
               </label>
@@ -245,16 +243,14 @@ function RegisterDoctor() {
                 value={formValues.dateBirth}
                 onChange={handleChange}
               />
-              <p className="text-muted mb-3">
-                Debes ser mayor de 18 años para registrarte como prestador de servicios.
-              </p>
+              
             </div>
             <div className="col-sm-12 col-md-6">
               <label htmlFor="city" className="mb-1">
                 Elige tu ciudad
               </label>
               <select
-                className="form-control mb-3"
+                className="form-control mb-3 select-options"
                 name="city"
                 id="city"
                 required
@@ -276,7 +272,7 @@ function RegisterDoctor() {
 
             <div className="col-sm-12 col-md-6">
               <div className="row">
-                <div className="col-sm-12 col-md-6">
+                <div className="col-6">
                   <label htmlFor="dni" className="mb-1">
                     DNI
                   </label>
@@ -291,7 +287,7 @@ function RegisterDoctor() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-sm-12 col-md-6">
+                <div className="col-6">
                   <label htmlFor="matricula" className="mb-1">
                     Matricula Profesional
                   </label>
@@ -309,12 +305,12 @@ function RegisterDoctor() {
               </div>
             </div>
 
-            <div className="col-sm-12 col-md-6 select">
+            <div className="col-sm-12 col-md-6 select-options">
               <label htmlFor="especialidad" className="mb-1">
                 Especialidad
               </label>
               <select
-                className="form-control mb-3 select"
+                className="form-control mb-3 select-options"
                 name="especialidad"
                 id="especialidad"
                 value={formValues.especialidad}
@@ -330,6 +326,24 @@ function RegisterDoctor() {
                 </option>
                 <option value="PEDIATRIA">PEDIATRIA</option>
                 <option value="PSICOLOGIA">PSICOLOGIA</option>
+              </select>
+            </div>
+
+            <div className="col-sm-8 col-md-6">
+              <label htmlFor="genre" className="mb-1">
+                Sexo
+              </label>
+              <select
+                className="form-control mb-3 select-options"
+                name="genre"
+                id="genre"
+                value={formValues.genre}
+                onChange={handleChange}
+              >
+                <option value="" disabled >-- Elegir una opción --</option>
+                <option value="female">Mujer</option>
+                <option value="male">Varon</option>
+                <option value="other">Otro</option>
               </select>
             </div>
 
@@ -349,23 +363,7 @@ function RegisterDoctor() {
               />
             </div>
 
-            <div className="col-sm-12 col-md-6">
-              <label htmlFor="genre" className="mb-1">
-                Sexo
-              </label>
-              <select
-                className="form-control mb-3"
-                name="genre"
-                id="genre"
-                value={formValues.genre}
-                onChange={handleChange}
-              >
-                <option value="" disabled >-- Elegir una opción --</option>
-                <option value="female">Mujer</option>
-                <option value="male">Varon</option>
-                <option value="other">Otro</option>
-              </select>
-            </div>
+            
 
             <div className="col-sm-12 col-md-6">
               <label htmlFor="password" className="mb-1">
@@ -434,28 +432,29 @@ function RegisterDoctor() {
           <div className="form-check form-switch">
               <input className="form-check-input" type="checkbox" role="switch" id="" required onChange={handleCheckboxClick} />
             </div>
-            {/* esto debe mandar al error 404 */}
             <p>
-              Acepto los <a href="/*">Términos y Condiciones</a>
+              Acepto los <Link to="/*" className="text-dark">Términos y Condiciones</Link>
             </p>
           </div>
 
-          <div className="mb-3 d-grid">
-            <button type="submit" className="btn btn-success">
+          <div className="mb-3 d-grid justify-content-center">
+            <button type="submit" className="btn btn-success px-5">
               Registrarse
             </button>
           </div>
         </form>
         <div className="mb-3 d-grid text-center d-flex justify-content-center align-items-center">
           <p className="mx-3 pt-3">¿Ya tienes una cuenta?</p>
-          {/* falta agregar funcionalidad al boton para que lleve a iniciar sesion */}
-          <button type="submit" className="btn btn-primary mx-3">
+          <Link to="/login"><button type="submit" className="btn btn-primary mx-1">
             Inicia sesion
-          </button>
+          </button></Link>
+          
         </div>
         <div className="mb-3 d-grid text-center">
-          <p>¿No te sentís bien? Registrate <a href="/registerPatient">acá</a> para pedir turno</p>
+          <p>¿No te sentís bien? Registrate <Link to="/registerPatient" className="text-dark">acá</Link> para pedir turno</p>
         </div>
+        </div>
+        
       </div>
       <DrRegisterCorrect showModal={showModal} closeModal={closeModal} />
     </>
