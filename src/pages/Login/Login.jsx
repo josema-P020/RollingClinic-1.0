@@ -3,15 +3,15 @@ import "./login.css";
 import { useNavigate } from "react-router-dom";
 import data from "../../data/dataBase";
 
-function Login() {
+function Login({ cambiarLogin }) {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const [login, setLogin] = useState(false);
-  const cambiarLogin = () => {
-    setLogin(!login);
-  };
+  // const [login, setLogin] = useState(false);
+  // const cambiarLogin = () => {
+  //   setLogin(!login);
+  // };
 
   const [formValues, setFormValues] = useState({
     email: "",
@@ -56,7 +56,7 @@ function Login() {
       localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
 
       if (matchedUser.role === "PACIENTE") {
-        navigate("/Paciente");
+        navigate("/");
       } else if (matchedUser.role === "DOCTOR") {
         navigate("/doc");
       } else {
