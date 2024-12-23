@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "../css/navbar.css";
 
 function NavBar() {
@@ -9,16 +9,17 @@ function NavBar() {
 
       <div className="sector-derecho">
         <div className="dropdown">
-          <button className="dropdown-button">Iniciar Sesion</button>
+        <Link to="/login"><button className="dropdown-button">Iniciar sesion</button></Link>
+          
         </div>
 
         <div className="dropdown">
           <button className="dropdown-button">Registrarse</button>
           <div className="dropdown-menu">
-            <NavLink to="/usuario" className="dropdown-link">
+            <NavLink to="/registerPatient" className="dropdown-link">
               Paciente
             </NavLink>
-            <NavLink to="/doctor" className="dropdown-link">
+            <NavLink to="/registerDoctor" className="dropdown-link">
               Doctor
             </NavLink>
           </div>
