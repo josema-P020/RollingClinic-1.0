@@ -91,6 +91,7 @@ function Login({ cambiarLogin }) {
                         className="form-control"
                         name="email"
                         id="email"
+                        required
                         placeholder="ejemplo@gmail.com"
                         value={formValues.email}
                         onChange={handleChange}
@@ -107,6 +108,7 @@ function Login({ cambiarLogin }) {
                           className="form-control"
                           name="password"
                           id="password"
+                          required
                           placeholder="Ingrese aqui"
                           value={formValues.password}
                           onChange={handleChange}
@@ -160,7 +162,7 @@ function Login({ cambiarLogin }) {
                           href="/registerDoctor"
                           target="_blank"
                         >
-                          Profesional de Salud
+                          Médico
                         </a>
                       </li>
                     </ul>
