@@ -2,16 +2,12 @@ import React, { useState } from "react";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
 import data from "../../data/dataBase";
+import Swal from "sweetalert2";
 
-function Login({ cambiarLogin }) {
+function Login( {cambiarLogin} ) {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
-
-  // const [login, setLogin] = useState(false);
-  // const cambiarLogin = () => {
-  //   setLogin(!login);
-  // };
 
   const [formValues, setFormValues] = useState({
     email: "",
@@ -39,31 +35,47 @@ function Login({ cambiarLogin }) {
     e.preventDefault();
 
     if (!formValues.email || !formValues.password) {
-      alert("Debe completar los campos obligatorios!");
+      Swal.fire({
+        icon: "error",
+        title: "Datos faltantes",
+        text: `Debe completar todos los campos para continuar.`,
+        confirmButtonText: "Entendido",
+      });
       return;
     }
 
     if (matchedUser) {
       if (!matchedUser.aprobbed) {
-        alert("Usuario pendiente de aprobación");
+        Swal.fire({
+          icon: "error",
+          title: "Validación pendiente",
+          text: `Usuario pendiente de aprobación. Por favor, espere a que un administrador valide su cuenta.`,
+          confirmButtonText: "Entendido",
+        });
         return;
       }
 
-      const loggedInUser = { ...matchedUser, login: true };
+      const loggedInUser = { ...matchedUser };
 
-      alert("Datos correctos");
-      cambiarLogin();
       localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
 
-      if (matchedUser.role === "PACIENTE") {
+     if (loggedInUser.role === "PACIENTE") {
+      cambiarLogin();
         navigate("/");
-      } else if (matchedUser.role === "DOCTOR") {
+        return;
+      }
+     if (loggedInUser.role === "DOCTOR") {
+      cambiarLogin();
         navigate("/doc");
-      } else {
-        alert("Rol no definido para este usuario");
+        return;
       }
     } else {
-      alert("Email o password incorrecto!");
+      Swal.fire({
+        icon: "error",
+        title: "Datos erróneos",
+        text: `Email o contraseña incorrectos. Por favor, verifique sus datos e intente nuevamente.`,
+        confirmButtonText: "Entendido",
+      });
     }
   };
 
@@ -148,20 +160,12 @@ function Login({ cambiarLogin }) {
                       aria-labelledby="dropdownMenuButton"
                     >
                       <li>
-                        <a
-                          className="dropdown-item"
-                          href="/registerPatient"
-                          
-                        >
+                        <a className="dropdown-item" href="/registerPatient">
                           Paciente
                         </a>
                       </li>
                       <li>
-                        <a
-                          className="dropdown-item"
-                          href="/registerDoctor"
-                          
-                        >
+                        <a className="dropdown-item" href="/registerDoctor">
                           Médico
                         </a>
                       </li>
