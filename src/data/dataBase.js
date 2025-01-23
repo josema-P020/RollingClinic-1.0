@@ -1,6 +1,7 @@
 let data = JSON.parse(localStorage.getItem("users")) || [
   {
     name: "Javier Gomez",
+    login: false,
     tel: 3816093788,
     dateBirth: "2006-12-03",
     city: "Yerba Buena",
@@ -25,6 +26,7 @@ let data = JSON.parse(localStorage.getItem("users")) || [
   },
   {
     name: "Juan Perez",
+    login: false,
     tel: 381219456,
     dateBirth: "1997-11-02",
     city: "San Miguel de Tucuman",
@@ -44,7 +46,8 @@ let data = JSON.parse(localStorage.getItem("users")) || [
         especialidad: "GINECOLOGIA Y OBSTETRICIA",
         doctor: "Chapatin",
         estado: "pendiente",
-      },],
+      },
+    ],
   },
   {
     name: "Chapatin",
@@ -59,7 +62,8 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     password: "Asdasd123!!",
     id: 1734570993013,
     role: "DOCTOR",
-    aprobbed: false,
+    aprobbed: true,
+    reservas: [],
   },
   {
     name: "Juguetes",
@@ -74,7 +78,7 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     password: "Asdasd1&",
     id: 1734570993014,
     role: "DOCTOR",
-    aprobbed: false,
+    aprobbed: true,
   },
   {
     name: "Admin Admino",

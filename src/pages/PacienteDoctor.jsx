@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import data from '../data/database';
+import data from '../data/dataBase';
+import '../css/paginaDoctor.css';
 
 function PacienteDoctor() {
     const [dataBase, setPacientes] = useState([]);
@@ -60,10 +61,10 @@ function PacienteDoctor() {
     return (
         <section className="container-fluid row d-flex justify-content-around">
             <div className="mb-3">
-                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button className="btn-2 btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {selectedDoctor ? selectedDoctor.name : 'Seleccione un doctor'}
                 </button>
-                <ul className="dropdown-menu">
+                <ul className="color-btn dropdown-menu">
                     {doctors.map((doctor) => (
                         <li key={doctor.id}>
                             <button
@@ -133,7 +134,7 @@ function PacienteDoctor() {
                             ></textarea>
                         </div>
                         <button
-                            className="btn btn-primary mt-3"
+                            className="btn-2 btn btn-primary m-3"
                             onClick={handleEnviarDatos}
                         >
                             Guardar cambios
