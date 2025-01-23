@@ -151,7 +151,7 @@ function Login({ cambiarLogin }) {
                         <a
                           className="dropdown-item"
                           href="/registerPatient"
-                          target="_blank"
+                          
                         >
                           Paciente
                         </a>
@@ -160,7 +160,7 @@ function Login({ cambiarLogin }) {
                         <a
                           className="dropdown-item"
                           href="/registerDoctor"
-                          target="_blank"
+                          
                         >
                           Médico
                         </a>
