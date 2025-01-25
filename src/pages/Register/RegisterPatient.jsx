@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "../../css/registerCorrect.css";
 import data from "../../data/dataBase";
-import PatientRegisterCorrect from "../../components/PatientRegisterCorrect";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function RegisterPatient() {
+  const navigate = useNavigate();
+
   let usersJSON = JSON.stringify(data);
   localStorage.setItem("users", usersJSON);
   let users = JSON.parse(localStorage.getItem("users"));
@@ -15,26 +17,20 @@ function RegisterPatient() {
     setIsAccepted(!isAccepted);
   };
 
-  console.log(isAccepted);
-
-  const [showModal, setShowModal] = useState(false);
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false); // Cierra el modal
-  };
-
   const year = new Date().getFullYear() - 18;
 
-  const month = new Date().getMonth() + 1;
+  const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
 
-  const day = new Date().getDate();
+  const day = new Date().getDate().toString().padStart(2, "0");
 
-  const maxDate = year + "-" + month + "-" + day;
-  console.log(maxDate);
+  const maxDate = `${year}-${month}-${day}`;
+
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
+
+  const phoneRegex = /^\d{8,15}$/;
+
+  const nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
 
   const [formValues, setFormValues] = useState({
     name: "",
@@ -52,8 +48,6 @@ function RegisterPatient() {
     aprobbed: true,
     turnos: [""],
   });
-
-  console.log(formValues);
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -90,41 +84,84 @@ function RegisterPatient() {
       !formValues.city ||
       !formValues.genre
     ) {
-      alert("Debe completar todos los campos");
+      Swal.fire({
+        icon: "error",
+        title: "Datos faltantes",
+        text: `Debe completar todos los campos para continuar.`,
+        confirmButtonText: "Entendido",
+      });
+      return;
+    }
+
+    if (!nameRegex.test(formValues.name)) {
+      Swal.fire({
+        icon: "error",
+        title: "Datos erróneos o faltantes",
+        text: `El nombre debe contener solo letras, con un mínimo de 3 y un máximo de 20 caracteres.`,
+        confirmButtonText: "Entendido",
+      });
+      return;
+    }
+
+    if (!phoneRegex.test(formValues.tel)) {
+      Swal.fire({
+        icon: "error",
+        title: "Datos erróneos o faltantes",
+        text: `El número de teléfono debe contener entre 8 y 15 dígitos.`,
+        confirmButtonText: "Entendido",
+      });
+      return;
+    }
+
+    if (formValues.dni.length < 7 || formValues.dni.length > 8) {
+      Swal.fire({
+        icon: "error",
+        title: "Datos erróneos o faltantes",
+        text: `El DNI debe contener entre 7 y 8 dígitos.`,
+        confirmButtonText: "Entendido",
+      });
       return;
     }
 
     if (formValues.password !== formValues.passwordrepeat) {
-      alert("Las contraseñas deben coincidir!");
+      Swal.fire({
+        icon: "error",
+        title: "Datos erróneos o faltantes",
+        text: `Las contraseñas deben coincidir`,
+        confirmButtonText: "Entendido",
+      });
       return;
     }
 
     if (!isAccepted) {
-      alert("Debe aceptar los Términos y Condiciones para registrarse.");
+      Swal.fire({
+        icon: "error",
+        title: "Datos erróneos o faltantes",
+        text: `Debe aceptar los términos y condiciones.`,
+        confirmButtonText: "Entendido",
+      });
       return;
     }
 
     const emailExists = users.find((user) => user.email === formValues.email);
 
     if (emailExists) {
-      alert("Este correo ya está registrado. Por favor, usa otro.");
-      return;
-    }
-
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
-
-    if (!passwordRegex.test(formValues.password)) {
-      alert(
-        "La contraseña debe tener mínimo 6 caracteres, maximo 20, incluyendo mayúscula, minúscula, número y carácter especial"
-      );
+      Swal.fire({
+        icon: "error",
+        title: "Datos erróneos o faltantes",
+        text: `Este correo ya está registrado, por favor, elige otro.`,
+        confirmButtonText: "Entendido",
+      });
       return;
     }
 
     if (!passwordRegex.test(formValues.password)) {
-      alert(
-        "La contraseña debe tener mínimo 6 caracteres, maximo 20, incluyendo mayúscula, minúscula, número y carácter especial"
-      );
+      Swal.fire({
+        icon: "error",
+        title: "Datos erróneos o faltantes",
+        text: `La contraseña debe tener mínimo 6 caracteres, maximo 20, incluyendo mayúscula, minúscula, número y carácter especial.`,
+        confirmButtonText: "Entendido",
+      });
       return;
     }
 
@@ -149,7 +186,14 @@ function RegisterPatient() {
     localStorage.setItem("users", usersJSON);
     users = JSON.parse(localStorage.getItem("users"));
 
-    openModal();
+    Swal.fire({
+      icon: "success",
+      title: "Registro exitoso",
+      text: `Hemos recibido tus datos correctamente. Ya puedes iniciar sesión.`,
+      confirmButtonText: "Entendido",
+    }).then(() => {
+      navigate("/login");
+    });
 
     setFormValues({
       name: "",
@@ -163,8 +207,6 @@ function RegisterPatient() {
       password: "",
       passwordrepeat: "",
       id: new Date().getTime(),
-      role: "PACIENTE",
-      turnos: [""],
     });
   };
   return (
@@ -187,6 +229,8 @@ function RegisterPatient() {
                   name="name"
                   placeholder="Giancarlo Esposito"
                   required
+                  minLength={3}
+                  maxLength={20}
                   onChange={handleChange}
                   value={formValues.name}
                 />
@@ -202,6 +246,8 @@ function RegisterPatient() {
                   name="tel"
                   placeholder="3816093788"
                   required
+                  minLength={8}
+                  maxLength={15}
                   onChange={handleChange}
                   value={formValues.tel}
                 />
@@ -215,6 +261,7 @@ function RegisterPatient() {
                   className="form-control mb-1"
                   id="date"
                   name="dateBirth"
+                  required
                   min="1930-01-01"
                   max={maxDate}
                   value={formValues.dateBirth}
@@ -257,6 +304,7 @@ function RegisterPatient() {
                   className="form-control mb-3 select-options"
                   name="obraSocial"
                   id="obraSocial"
+                  required
                   value={formValues.obraSocial}
                   onChange={handleChange}
                 >
@@ -286,6 +334,8 @@ function RegisterPatient() {
                   name="email"
                   placeholder="usuario@outlook.com"
                   required
+                  minLength={5}
+                  maxLength={254}
                   value={formValues.email}
                   onChange={handleChange}
                 />
@@ -299,6 +349,7 @@ function RegisterPatient() {
                   className="form-control mb-3 select-options"
                   name="genre"
                   id="genre"
+                  required
                   value={formValues.genre}
                   onChange={handleChange}
                 >
@@ -322,6 +373,9 @@ function RegisterPatient() {
                   name="dni"
                   placeholder="18016723"
                   required
+                  min={0}
+                  minLength={7}
+                  maxLength={8}
                   value={formValues.dni}
                   onChange={handleChange}
                 />
@@ -339,6 +393,8 @@ function RegisterPatient() {
                     id="password"
                     placeholder="Ingrese aquí su contraseña"
                     required
+                    minLength={6}
+                    maxLength={20}
                     value={formValues.password}
                     onChange={handleChange}
                   />
@@ -372,6 +428,8 @@ function RegisterPatient() {
                     id="repeatedpassword"
                     placeholder="Ingrese aquí su contraseña nuevamente"
                     required
+                    minLength={6}
+                    maxLength={20}
                     value={formValues.passwordrepeat}
                     onChange={handleChange}
                   />
@@ -403,7 +461,10 @@ function RegisterPatient() {
               </div>
 
               <p>
-                Acepto los <Link to="/*" className="text-dark">Términos y Condiciones</Link>
+                Acepto los{" "}
+                <Link to="/*" className="text-dark">
+                  Términos y Condiciones
+                </Link>
               </p>
             </div>
 
@@ -423,12 +484,15 @@ function RegisterPatient() {
           </div>
           <div className="mb-3 d-grid text-center">
             <p>
-              ¿Sos Profesional de Salud? Registrate <Link to="/registerDoctor" className="text-dark">acá</Link> para trabajar con nosotros
+              ¿Sos Profesional de Salud? Registrate{" "}
+              <Link to="/registerDoctor" className="text-dark">
+                acá
+              </Link>{" "}
+              para trabajar con nosotros
             </p>
           </div>
         </div>
       </div>
-      <PatientRegisterCorrect showModal={showModal} closeModal={closeModal} />
     </>
   );
 }
