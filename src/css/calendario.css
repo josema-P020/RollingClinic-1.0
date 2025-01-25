@@ -251,7 +251,7 @@ li {
   background-color: #9b59b6;
 }
 
-/* Estilo para el día seleccionado */
+
 .dias li.seleccionado {
   color: white;
 }
@@ -269,7 +269,6 @@ li {
   background-color: #44acf1;
 }
 
-/* Media Queries para dispositivos pequeños */
 @media (max-width: 768px) {
   .container-rectangular {
     flex-direction: column;
