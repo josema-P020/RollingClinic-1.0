@@ -87,7 +87,8 @@ function DatosPaciente() {
           <div>
             <div className="row">
               <div className="col-lg-3 col-md-4 col-sm-12 text-center py-2">
-                <img src="" alt="avatar paciente" className="avatarPte" />
+                <h4 className="py-2">Mis datos</h4>
+
                 <p className="pt-2">{loggedInUser.name}</p>
                 <div className="container">
                   <ul className="list-group list-group-flush text-start">

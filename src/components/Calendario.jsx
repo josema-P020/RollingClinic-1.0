@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import data from "../data/dataBase";
 import { agregarTurno } from "../data/enviarTurnos";
@@ -16,18 +15,18 @@ function Calendario() {
   const [doctores, setDoctores] = useState([]);
 
   useEffect(() => {
-    const doctoresFiltrados = data.filter(
-      (user) => user.role === "DOCTOR" && user.aprobbed
-    ).map((doctor) => ({
-      idUnico: doctor.id,
-      nombre: doctor.name,
-      especialidad: doctor.especialidad,
-      horarios: {
-        mañana: ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"],
-        tarde: ["15:00 PM", "16:00 PM", "17:00 PM", "18:00 PM"],
-      },
-      turnosReservados: [],
-    }));
+    const doctoresFiltrados = data
+      .filter((user) => user.role === "DOCTOR" && user.aprobbed)
+      .map((doctor) => ({
+        idUnico: doctor.id,
+        nombre: doctor.name,
+        especialidad: doctor.especialidad,
+        horarios: {
+          mañana: ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"],
+          tarde: ["15:00 PM", "16:00 PM", "17:00 PM", "18:00 PM"],
+        },
+        turnosReservados: [],
+      }));
     setDoctores(doctoresFiltrados);
   }, []);
 
@@ -53,7 +52,9 @@ function Calendario() {
       Swal.fire({
         icon: "error",
         title: "Faltan datos",
-        text: `Debe seleccionar ${errores.join(", ")} antes de reservar el turno.`,
+        text: `Debe seleccionar ${errores.join(
+          ", "
+        )} antes de reservar el turno.`,
         confirmButtonText: "Entendido",
       });
       return;

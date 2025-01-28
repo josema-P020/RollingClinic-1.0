@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import data from "../../data/dataBase";
 
 function ListadoTurnos() {
-  const [info, setInfo] = useState(data);
-  const pacientes = info.filter((user) => user.role === "PACIENTE");
+  const [info, setInfo] = useState(() => {
+    const usuariosGuardados = localStorage.getItem("reservasTurnos");
+    return usuariosGuardados ? JSON.parse(usuariosGuardados) : [];
+  });
   return (
     <div>
       <div className="text-center flex-grow-1">
@@ -13,52 +14,25 @@ function ListadoTurnos() {
             <thead>
               <tr>
                 <th className="text-start text-nowrap">Doctor / Doctora</th>
-                <th className="text-start text-nowrap">Especialidad</th>
                 <th className="text-start text-nowrap">Fecha</th>
-                <th className="text-start text-nowrap">Estado</th>
+                <th className="text-start text-nowrap">Hora</th>
               </tr>
             </thead>
             <tbody>
-              {pacientes.map((doctor) =>
-                doctor.turnos.map((turno) => (
-                  <tr key={turno.id}>
-                    <td>
-                      <div>
-                        <div className="d-flex align-items-center">
-                          <img
-                            src={`${
-                              doctor.genre === "male"
-                                ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-phYUCybCZV8ldQUDjk-S_EZumc6lYYA1Hg&s"
-                                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv-wn0BeGWOa2CGmYc83SdQtfWwPebF9KX1g&s"
-                            }`}
-                            alt="avatar usuario"
-                            className="avatarPte"
-                            loading="lazy"
-                          />
-                          <span className="ms-2">{turno.doctor}</span>
-                        </div>
+              {info.map((turno) => (
+                <tr key={turno.idUnico}>
+                  <td>
+                    <div>
+                      <div className="d-flex align-items-center">
+                        <span className="ms-2">{turno.doctor}</span>
                       </div>
-                    </td>
-                    <td className="align-middle text-start">
-                      {turno.especialidad}
-                    </td>
-                    <td className="align-middle text-start">{turno.fecha}</td>
-                    <td className="align-middle text-start">
-                      <span
-                        className={`${
-                          turno.estado === "pendiente"
-                            ? "text-danger"
-                            : "text-success"
-                        }`}
-                      >
-                        {turno.estado === "pendiente"
-                          ? "Pendiente"
-                          : "Completado"}
-                      </span>
-                    </td>
-                  </tr>
-                ))
-              )}
+                    </div>
+                  </td>
+
+                  <td className="align-middle text-start">{turno.fecha}</td>
+                  <td className="align-middle text-start">{turno.horario}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
