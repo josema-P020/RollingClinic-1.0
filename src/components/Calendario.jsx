@@ -66,6 +66,7 @@ function Calendario() {
       fecha: fechaSeleccionada,
       doctor: doctorSeleccionado.nombre,
       horario: horarioSeleccionado,
+      paciente: pacienteLogeado,
     };
 
     const turnosGuardados =

@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import { React, useState } from "react";
 
 function ListadoTurnos() {
   const [info, setInfo] = useState(() => {
-    const usuariosGuardados = localStorage.getItem("reservasTurnos");
-    return usuariosGuardados ? JSON.parse(usuariosGuardados) : [];
+    const turnosGuardados = localStorage.getItem("reservasTurnos");
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!turnosGuardados || !loggedInUser) return [];
+    const reservasTurnos = JSON.parse(turnosGuardados);
+
+    const turnosUsuario = reservasTurnos.filter((turno) => {
+      return turno.paciente && turno.paciente.id === loggedInUser.id;
+    });
+
+    return turnosUsuario;
   });
+
   return (
     <div>
       <div className="text-center flex-grow-1">

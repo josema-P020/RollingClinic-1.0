@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import data from "../../data/dataBase";
 import Swal from "sweetalert2";
 
-function Login( {cambiarLogin} ) {
+function Login({ cambiarLogin }) {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -59,13 +59,13 @@ function Login( {cambiarLogin} ) {
 
       localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
 
-     if (loggedInUser.role === "PACIENTE") {
-      cambiarLogin();
+      if (loggedInUser.role === "PACIENTE") {
+        cambiarLogin();
         navigate("/");
         return;
       }
-     if (loggedInUser.role === "DOCTOR") {
-      cambiarLogin();
+      if (loggedInUser.role === "DOCTOR") {
+        cambiarLogin();
         navigate("/doc");
         return;
       }
