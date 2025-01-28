@@ -1,16 +1,17 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../css/navbar.css";
 
 function NavBar() {
   return (
     <div className="navbar">
-      <div className="nav_logo">CLINICA</div>
-
-      <div className="sector-derecho">
-        
-    
+      <div className="nav_logo">
+        <Link to="/" className="nav_logo-link">
+          CLINICA
+        </Link>
       </div>
+
+      <div className="sector-derecho"></div>
     </div>
   );
 }

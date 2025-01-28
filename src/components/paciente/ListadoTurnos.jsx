@@ -10,10 +10,13 @@ function ListadoTurnos() {
     const turnosUsuario = reservasTurnos.filter((turno) => {
       return turno.paciente && turno.paciente.id === loggedInUser.id;
     });
-
     return turnosUsuario;
   });
-
+  if (!info) {
+    console.log(info);
+  } else {
+    console.log("se");
+  }
   return (
     <div>
       <div className="text-center flex-grow-1">
@@ -28,20 +31,25 @@ function ListadoTurnos() {
               </tr>
             </thead>
             <tbody>
-              {info.map((turno) => (
-                <tr key={turno.idUnico}>
-                  <td>
-                    <div>
-                      <div className="d-flex align-items-center">
-                        <span className="ms-2">{turno.doctor}</span>
+              {info.length === 0 ? (
+                <td colSpan="3" className="fw-bold py-2">
+                  No hay turnos aun
+                </td>
+              ) : (
+                info.map((turno) => (
+                  <tr key={turno.idUnico}>
+                    <td>
+                      <div>
+                        <div className="d-flex align-items-center">
+                          <span className="ms-2">{turno.doctor}</span>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-
-                  <td className="align-middle text-start">{turno.fecha}</td>
-                  <td className="align-middle text-start">{turno.horario}</td>
-                </tr>
-              ))}
+                    </td>
+                    <td className="align-middle text-start">{turno.fecha}</td>
+                    <td className="align-middle text-start">{turno.horario}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

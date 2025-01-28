@@ -3,6 +3,7 @@ import data from "../data/dataBase";
 import { agregarTurno } from "../data/enviarTurnos";
 import "../css/calendario.css";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 function Calendario() {
   const [anio, setAnio] = useState(null);
@@ -13,7 +14,10 @@ function Calendario() {
   const [turnoSeleccionado, setTurnoSeleccionado] = useState(null);
   const [horarioSeleccionado, setHorarioSeleccionado] = useState(null);
   const [doctores, setDoctores] = useState([]);
-
+  const [pacienteLogeado, setPacienteLogeado] = useState(() => {
+    const usuariosGuardados = localStorage.getItem("loggedInUser");
+    return usuariosGuardados ? JSON.parse(usuariosGuardados) : null;
+  });
   useEffect(() => {
     const doctoresFiltrados = data
       .filter((user) => user.role === "DOCTOR" && user.aprobbed)
@@ -214,159 +218,176 @@ function Calendario() {
   }, []);
 
   return (
-    <div className="contenedor-padre">
-      <div className="container-rectangular">
-        <div className="container-calendario">
-          <div className="wrapper poppins-font">
-            <div className="calendario-header">
-              <p className="mes-actual">
-                {mes !== null && anio !== null
-                  ? `${nombresMes[mes]} ${anio}`
-                  : "Cargando..."}
-              </p>
-              <div className="icons">
-                <span
-                  className="material-symbols-outlined"
-                  onClick={irAlMesAnterior}
-                >
-                  chevron_left
-                </span>
-                <span
-                  className="material-symbols-outlined"
-                  onClick={irAlMesSiguiente}
-                >
-                  chevron_right
-                </span>
+    <>
+      <div className="container-fluid ">
+        <nav aria-label="breadcrumb" className="bg-white p-2">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <Link to="/" className="nave">
+                Home
+              </Link>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Calendario
+            </li>
+          </ol>
+        </nav>
+      </div>
+      <div className="contenedor-padre">
+        <div className="container-rectangular">
+          <div className="container-calendario">
+            <div className="wrapper poppins-font">
+              <div className="calendario-header">
+                <p className="mes-actual">
+                  {mes !== null && anio !== null
+                    ? `${nombresMes[mes]} ${anio}`
+                    : "Cargando..."}
+                </p>
+                <div className="icons">
+                  <span
+                    className="material-symbols-outlined"
+                    onClick={irAlMesAnterior}
+                  >
+                    chevron_left
+                  </span>
+                  <span
+                    className="material-symbols-outlined"
+                    onClick={irAlMesSiguiente}
+                  >
+                    chevron_right
+                  </span>
+                </div>
+              </div>
+
+              <div className="calendario">
+                <ul className="semanas">
+                  <li>Dom</li>
+                  <li>Lun</li>
+                  <li>Mar</li>
+                  <li>Mie</li>
+                  <li>Jue</li>
+                  <li>Vie</li>
+                  <li>Sab</li>
+                </ul>
+                <ul className="dias">
+                  {dias &&
+                    dias.map((dia, index) => (
+                      <li
+                        key={index}
+                        className={`${dia.clase} ${
+                          diaSeleccionado === dia.dia &&
+                          dia.clase !== "inactivo"
+                            ? "seleccionado"
+                            : ""
+                        }`}
+                        onClick={() => manejarSeleccionDia(dia)}
+                      >
+                        {dia.dia}
+                      </li>
+                    ))}
+                </ul>
               </div>
             </div>
+          </div>
 
-            <div className="calendario">
-              <ul className="semanas">
-                <li>Dom</li>
-                <li>Lun</li>
-                <li>Mar</li>
-                <li>Mie</li>
-                <li>Jue</li>
-                <li>Vie</li>
-                <li>Sab</li>
-              </ul>
-              <ul className="dias">
-                {dias &&
-                  dias.map((dia, index) => (
-                    <li
-                      key={index}
-                      className={`${dia.clase} ${
-                        diaSeleccionado === dia.dia && dia.clase !== "inactivo"
-                          ? "seleccionado"
-                          : ""
-                      }`}
-                      onClick={() => manejarSeleccionDia(dia)}
-                    >
-                      {dia.dia}
-                    </li>
-                  ))}
+          <div className="container-doctores">
+            <div className="listado-doctores">
+              <h4>Elegir un Doctor</h4>
+              <ul>
+                {doctores.map((doctor) => (
+                  <li
+                    key={doctor.idUnico}
+                    className={`doctor ${
+                      doctorSeleccionado?.idUnico === doctor.idUnico
+                        ? "activo"
+                        : ""
+                    }`}
+                    onClick={() => manejarSeleccionDoctor(doctor.idUnico)}
+                  >
+                    <p>{doctor.nombre}</p>
+                    <span>{doctor.especialidad}</span>
+                  </li>
+                ))}
               </ul>
             </div>
-          </div>
-        </div>
 
-        <div className="container-doctores">
-          <div className="listado-doctores">
-            <h4>Elegir un Doctor</h4>
-            <ul>
-              {doctores.map((doctor) => (
-                <li
-                  key={doctor.idUnico}
-                  className={`doctor ${
-                    doctorSeleccionado?.idUnico === doctor.idUnico
-                      ? "activo"
-                      : ""
-                  }`}
-                  onClick={() => manejarSeleccionDoctor(doctor.idUnico)}
-                >
-                  <p>{doctor.nombre}</p>
-                  <span>{doctor.especialidad}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+            <div className="campo">
+              {doctorSeleccionado && (
+                <>
+                  <h4>Horarios disponibles</h4>
+                  <ul className="horarios">
+                    {doctorSeleccionado.horarios.mañana.map((hora) => {
+                      const horarioReservado =
+                        doctorSeleccionado.turnosReservados.some(
+                          (turno) =>
+                            turno.fecha ===
+                              `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}` &&
+                            turno.horario === hora
+                        );
 
-          <div className="campo">
-            {doctorSeleccionado && (
-              <>
-                <h4>Horarios disponibles</h4>
-                <ul className="horarios">
-                  {doctorSeleccionado.horarios.mañana.map((hora) => {
-                    const horarioReservado =
-                      doctorSeleccionado.turnosReservados.some(
-                        (turno) =>
-                          turno.fecha ===
-                            `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}` &&
-                          turno.horario === hora
+                      return (
+                        <li
+                          key={hora}
+                          className={`horario ${
+                            turnoSeleccionado === "mañana" &&
+                            horarioSeleccionado === hora
+                              ? "activo"
+                              : ""
+                          } ${horarioReservado ? "reservado" : ""}`}
+                          onClick={() =>
+                            !horarioReservado &&
+                            manejarSeleccionHorario("mañana", hora)
+                          }
+                        >
+                          {hora}
+                        </li>
                       );
+                    })}
+                    {doctorSeleccionado.horarios.tarde.map((hora) => {
+                      const horarioReservado =
+                        doctorSeleccionado.turnosReservados.some(
+                          (turno) =>
+                            turno.fecha ===
+                              `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}` &&
+                            turno.horario === hora
+                        );
 
-                    return (
-                      <li
-                        key={hora}
-                        className={`horario ${
-                          turnoSeleccionado === "mañana" &&
-                          horarioSeleccionado === hora
-                            ? "activo"
-                            : ""
-                        } ${horarioReservado ? "reservado" : ""}`}
-                        onClick={() =>
-                          !horarioReservado &&
-                          manejarSeleccionHorario("mañana", hora)
-                        }
-                      >
-                        {hora}
-                      </li>
-                    );
-                  })}
-                  {doctorSeleccionado.horarios.tarde.map((hora) => {
-                    const horarioReservado =
-                      doctorSeleccionado.turnosReservados.some(
-                        (turno) =>
-                          turno.fecha ===
-                            `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}` &&
-                          turno.horario === hora
+                      return (
+                        <li
+                          key={hora}
+                          className={`horario ${
+                            turnoSeleccionado === "tarde" &&
+                            horarioSeleccionado === hora
+                              ? "activo"
+                              : ""
+                          } ${horarioReservado ? "reservado" : ""}`}
+                          onClick={() =>
+                            !horarioReservado &&
+                            manejarSeleccionHorario("tarde", hora)
+                          }
+                        >
+                          {hora}
+                        </li>
                       );
+                    })}
+                  </ul>
+                </>
+              )}
+            </div>
 
-                    return (
-                      <li
-                        key={hora}
-                        className={`horario ${
-                          turnoSeleccionado === "tarde" &&
-                          horarioSeleccionado === hora
-                            ? "activo"
-                            : ""
-                        } ${horarioReservado ? "reservado" : ""}`}
-                        onClick={() =>
-                          !horarioReservado &&
-                          manejarSeleccionHorario("tarde", hora)
-                        }
-                      >
-                        {hora}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </>
-            )}
-          </div>
-
-          <div className="acciones">
-            <button
-              className="btn btn-primary"
-              onClick={manejarReserva}
-              disabled={!doctorSeleccionado}
-            >
-              Confirmar Turno
-            </button>
+            <div className="acciones">
+              <button
+                className="btn btn-primary"
+                onClick={manejarReserva}
+                disabled={!doctorSeleccionado}
+              >
+                Confirmar Turno
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

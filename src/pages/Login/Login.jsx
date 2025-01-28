@@ -8,7 +8,10 @@ function Login({ cambiarLogin }) {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
-
+  const [logeado, setLogeado] = useState(() => {
+    const usuariosGuardados = localStorage.getItem("loggedInUser");
+    return usuariosGuardados ? JSON.parse(usuariosGuardados) : null;
+  });
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",

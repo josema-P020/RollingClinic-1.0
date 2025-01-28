@@ -21,7 +21,7 @@ function CustomCarousel() {
                 alt="escritorio de recepcion"
               />
             </div>
-           
+
             <div className="carousel-item">
               <img
                 src="https://images.squarespace-cdn.com/content/v1/613b5a0384c780048e17f234/0a6ea39f-4e24-466e-90e6-9d9fd8ad5c81/odontopediatria-3.jpg?format=2500w"
@@ -29,7 +29,7 @@ function CustomCarousel() {
                 alt="odontologia"
               />
             </div>
-             <div className="carousel-item">
+            <div className="carousel-item">
               <img
                 src="https://images.squarespace-cdn.com/content/v1/613b5a0384c780048e17f234/62686aaa-d2a0-40eb-9e7d-e1d3ab296036/dos-odontologas.jpg?format=2500w"
                 className="img-fluid"
@@ -39,18 +39,19 @@ function CustomCarousel() {
           </div>
         </div>
       </div>
-   
-          <div className="button-container d-flex justify-content-around align-items-center">
-            <button type="button" className="btn-1 btn btn-danger m-3">
-              <Link to="/calendario"><p className="p-button">pedir tu turno</p></Link>
-              
-            </button>
-            <button type="button" className="btn-1 btn btn-info m-3">
-              <Link to="/Paciente"><p className=".p-1 p-button">info de turnos</p></Link>
-              
-            </button>
-          </div>
-        
+
+      <div className="button-container d-flex justify-content-around align-items-center">
+        <button type="button" className="btn-1 btn btn-danger m-3">
+          <Link to="/calendario">
+            <p className="p-button">pedir tu turno</p>
+          </Link>
+        </button>
+        <button type="button" className="btn-1 btn btn-info m-3">
+          <Link to="/Paciente">
+            <p className=".p-1 p-button">info de turnos</p>
+          </Link>
+        </button>
+      </div>
     </div>
   );
 }

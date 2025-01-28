@@ -70,11 +70,11 @@ function DatosPaciente() {
 
   return (
     <>
-      <div className="diseño container-fluid">
+      <div className="container-fluid">
         <nav aria-label="breadcrumb" className="bg-white p-2">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link to="/login" className="nave">
+              <Link to="/" className="nave">
                 Home
               </Link>
             </li>
