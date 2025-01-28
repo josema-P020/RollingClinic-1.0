@@ -12,11 +12,7 @@ function ListadoTurnos() {
     });
     return turnosUsuario;
   });
-  if (!info) {
-    console.log(info);
-  } else {
-    console.log("se");
-  }
+
   return (
     <div>
       <div className="text-center flex-grow-1">

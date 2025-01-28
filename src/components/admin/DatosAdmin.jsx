@@ -31,18 +31,6 @@ function DatosAdmin() {
   return (
     <>
       <div className="diseño container-fluid">
-        <nav aria-label="breadcrumb" className="bg-white p-2">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <a href="#" className="nave">
-                Home
-              </a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Perfil de {admin.role}
-            </li>
-          </ol>
-        </nav>
         <section>
           <div>
             <div className="row">

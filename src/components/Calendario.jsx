@@ -3,8 +3,7 @@ import data from "../data/dataBase";
 import { agregarTurno } from "../data/enviarTurnos";
 import "../css/calendario.css";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
-
+import Breadcrumb from "./breadcrumb/Breadcrumb";
 function Calendario() {
   const [anio, setAnio] = useState(null);
   const [mes, setMes] = useState(null);
@@ -220,18 +219,7 @@ function Calendario() {
   return (
     <>
       <div className="container-fluid ">
-        <nav aria-label="breadcrumb" className="bg-white p-2">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <Link to="/" className="nave">
-                Home
-              </Link>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Calendario
-            </li>
-          </ol>
-        </nav>
+        <Breadcrumb></Breadcrumb>
       </div>
       <div className="contenedor-padre">
         <div className="container-rectangular">

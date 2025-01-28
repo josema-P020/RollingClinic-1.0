@@ -71,18 +71,6 @@ function DatosPaciente() {
   return (
     <>
       <div className="container-fluid">
-        <nav aria-label="breadcrumb" className="bg-white p-2">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <Link to="/" className="nave">
-                Home
-              </Link>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Paciente
-            </li>
-          </ol>
-        </nav>
         <section>
           <div>
             <div className="row">
