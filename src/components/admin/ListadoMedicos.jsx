@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import data from "@/data/dataBase";
+import Swal from "sweetalert2";
 
 function ListadoMedicos() {
   const recuperarDoctores = JSON.parse(localStorage.getItem("users")) || data;
@@ -7,15 +8,49 @@ function ListadoMedicos() {
   const medicos = doctores.filter((usuario) => usuario.role === "DOCTOR");
 
   const botonAprobbed = (id) => {
-    const actualizarDoctores = doctores.map((doctor) => {
-      if (doctor.id === id) {
-        return { ...doctor, aprobbed: !doctor.aprobbed };
-      }
-      return doctor;
-    });
-    setDoctores(actualizarDoctores);
+    const doctorSeleccionado = doctores.find((doctor) => doctor.id === id);
+    if (doctorSeleccionado.aprobbed) {
+      console.log(doctorSeleccionado);
+      Swal.fire({
+        icon: "question",
+        title: "¿Estás seguro de que deseas desactivar este usuario?",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const actualizarDoctores = doctores.map((doctor) => {
+            if (doctor.id === id) {
+              return { ...doctor, aprobbed: !doctor.aprobbed };
+            }
+            return doctor;
+          });
 
-    localStorage.setItem("users", JSON.stringify(actualizarDoctores));
+          setDoctores(actualizarDoctores);
+          localStorage.setItem("users", JSON.stringify(actualizarDoctores));
+        }
+      });
+    } else {
+      Swal.fire({
+        icon: "question",
+        title: "¿Estás seguro de que deseas activar este usuario?",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const actualizarDoctores = doctores.map((doctor) => {
+            if (doctor.id === id) {
+              return { ...doctor, aprobbed: !doctor.aprobbed };
+            }
+            return doctor;
+          });
+
+          setDoctores(actualizarDoctores);
+          localStorage.setItem("users", JSON.stringify(actualizarDoctores));
+        }
+      });
+    }
   };
 
   return (
