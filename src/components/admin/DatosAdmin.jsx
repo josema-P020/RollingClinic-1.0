@@ -28,11 +28,6 @@ function DatosAdmin() {
           <div>
             <div className="row">
               <div className="col-lg-3 col-md-4 col-sm-12 text-center pt-4 pb-2">
-                <img
-                  src="src/images/avatar-admin.png"
-                  alt="avatar admin"
-                  className="avatarPte"
-                />
                 <p className="py-2">
                   {admin.role}: {admin.name}
                 </p>

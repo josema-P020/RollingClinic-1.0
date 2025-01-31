@@ -61,7 +61,6 @@ function ListadoMedicos() {
           <table className="table table-hover">
             <thead>
               <tr>
-                <th className="text-start text-nowrap">Usuario</th>
                 <th className="text-start text-nowrap">Email</th>
                 <th className="text-start text-nowrap">Matricula</th>
                 <th className="text-start text-nowrap">DNI</th>
@@ -71,23 +70,6 @@ function ListadoMedicos() {
             <tbody>
               {medicos.map((d) => (
                 <tr key={d.id}>
-                  <th>
-                    <div>
-                      <div className="d-flex align-items-center">
-                        <img
-                          src={`${
-                            d.genre === "male"
-                              ? "src/images/avatar-hombre.jpg"
-                              : "src/images/avatar-mujer.webp"
-                          }`}
-                          alt="avatar usuario"
-                          className="avatarPte"
-                          loading="lazy"
-                        />
-                        <span className="ms-2">{d.name}</span>
-                      </div>
-                    </div>
-                  </th>
                   <td className="align-middle text-start">{d.email}</td>
                   <td className="align-middle text-start">
                     <span>{d.matricula}</span>
