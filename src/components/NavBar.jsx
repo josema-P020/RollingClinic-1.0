@@ -5,13 +5,13 @@ import "../css/navbar.css";
 function NavBar() {
   return (
     <div className="navbar">
-      <div className="nav_logo">
-        <Link to="/" className="nav_logo-link">
-          CLINICA
-        </Link>
+      <div className="container-fluid">
+        <div className="nav_logo">
+          <Link to="/" className="btn-shine">
+            Rolling Clinica
+          </Link>
+        </div>
       </div>
-
-      <div className="sector-derecho"></div>
     </div>
   );
 }

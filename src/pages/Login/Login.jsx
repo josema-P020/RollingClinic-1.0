@@ -67,6 +67,11 @@ function Login({ cambiarLogin }) {
         navigate("/");
         return;
       }
+      if (loggedInUser.role === "ADMIN") {
+        cambiarLogin();
+        navigate("/Admin");
+        return;
+      }
       if (loggedInUser.role === "DOCTOR") {
         cambiarLogin();
         navigate("/doc");

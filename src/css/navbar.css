@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #61c0bf;
+  background: #7b7b7b;
   padding: 0 20px;
   box-sizing: border-box;
 }
@@ -15,14 +15,25 @@
   color: white;
   margin-left: 15px;
 }
-.nav_logo-link {
+
+.btn-shine {
+  transform: translate(-50%, -50%);
+  padding: 12px 48px;
+  color: #fff;
+  background: linear-gradient(to right, #6d6d6d 0, #b7b7b7 10%, #e8e8e8 20%);
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  font-size: 16px;
   text-decoration: none;
-  color: #333;
-  transition: 0.3s;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
 }
-.nav_logo-link:hover {
-  color: #ffffff;
-}
+
 .sector-derecho {
   display: flex;
   align-items: center;
@@ -122,5 +133,49 @@
 
   .dropdown-menu .dropdown-link {
     padding: 8px;
+  }
+}
+@-moz-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-webkit-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-o-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
   }
 }

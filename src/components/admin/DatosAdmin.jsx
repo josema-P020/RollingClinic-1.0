@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "../paciente/Paciente.css";
-import data from "../../data/dataBase.js";
+import data from "@/data/dataBase.js";
 import ListadoMedicos from "./ListadoMedicos.jsx";
-import { Link } from "react-router-dom";
 function DatosAdmin() {
   const [editar, setEditar] = useState(false);
   const [info, setInfo] = useState(data);
@@ -21,13 +20,7 @@ function DatosAdmin() {
   const handleClick = () => {
     setEditar(!editar);
   };
-  const handleLogout = () => {
-    const updatedInfo = info.map((user) => ({ ...user, login: false }));
-    setInfo(updatedInfo);
-    localStorage.setItem("users", JSON.stringify(updatedInfo));
-    localStorage.removeItem("loggedInUser");
-    window.location.href = "/login";
-  };
+
   return (
     <>
       <div className="diseño container-fluid">
@@ -154,15 +147,6 @@ function DatosAdmin() {
               <div className="col-lg-9 col-md-8 col-sm-12 pt-2 d-flex flex-column justify-content-center">
                 <ListadoMedicos />
               </div>
-            </div>
-            <div className="d-flex justify-content-end me-3 mb-2">
-              <Link
-                to="/login"
-                className="my-3 btn btn-secondary"
-                onClick={handleLogout}
-              >
-                <i className="bi bi-box-arrow-right"> Cerrar Sesión</i>
-              </Link>
             </div>
           </div>
         </section>

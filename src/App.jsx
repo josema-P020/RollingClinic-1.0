@@ -5,7 +5,6 @@ import RoutesApp from "./routes/RoutesApp";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
 import RegisterPatient from "./pages/Register/RegisterPatient";
 import RegisterDoctor from "./pages/Register/RegisterDoctor";
-import PerfilAdmin from "./pages/PerfilAdmin.jsx";
 function App() {
   const [login, setLogin] = useState(false);
 
@@ -29,7 +28,6 @@ function App() {
             path="/login"
             element={<Login cambiarLogin={cambiarLogin} />}
           />
-          <Route path="/Admin" element={<PerfilAdmin />} />
           <Route path="/RegisterPatient" element={<RegisterPatient />} />
           <Route path="/RegisterDoctor" element={<RegisterDoctor />} />
         </Routes>

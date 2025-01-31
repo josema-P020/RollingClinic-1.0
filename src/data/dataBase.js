@@ -81,16 +81,17 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     aprobbed: true,
   },
   {
-    name: "Admin Admino",
+    name: "Admin",
     tel: 3813995090,
     dateBirth: "1997-05-04",
     city: "San Miguel de Tucuman",
     dni: 40436799,
     genre: "male",
-    email: "adminAdmino@gmail.com",
-    password: "Asdasd1&",
+    email: "admin@gmail.com",
+    password: "Asdasd1!",
     id: 17345709930199,
     role: "ADMIN",
+    aprobbed: true,
   },
 ];
 

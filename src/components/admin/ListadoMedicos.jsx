@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import data from "../../data/dataBase";
+import data from "@/data/dataBase";
 
 function ListadoMedicos() {
   const recuperarDoctores = JSON.parse(localStorage.getItem("users")) || data;
@@ -13,7 +13,6 @@ function ListadoMedicos() {
       }
       return doctor;
     });
-
     setDoctores(actualizarDoctores);
 
     localStorage.setItem("users", JSON.stringify(actualizarDoctores));
