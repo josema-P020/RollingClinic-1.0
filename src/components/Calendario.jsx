@@ -319,7 +319,7 @@ function Calendario() {
                           className={`horario ${
                             turnoSeleccionado === "mañana" &&
                             horarioSeleccionado === hora
-                              ? "activo"
+                              ? "seleccionado"
                               : ""
                           } ${horarioReservado ? "reservado" : ""}`}
                           onClick={() =>
@@ -346,7 +346,7 @@ function Calendario() {
                           className={`horario ${
                             turnoSeleccionado === "tarde" &&
                             horarioSeleccionado === hora
-                              ? "activo"
+                              ? "seleccionado"
                               : ""
                           } ${horarioReservado ? "reservado" : ""}`}
                           onClick={() =>
