@@ -16,10 +16,10 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     turnos: [
       {
         id: 1,
-        fecha: "2021-10-20",
+        fecha: "2025-02-20",
         hora: "10:00",
-        especialidad: "GINECOLOGIA Y OBSTETRICIA",
-        doctor: "Chapatin",
+        especialidad: "CIRUGIA GENERAL",
+        doctor: "Juguetes",
         estado: "pendiente",
       },
     ],
@@ -41,7 +41,7 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     turnos: [
       {
         id: 2,
-        fecha: "2021-10-20",
+        fecha: "2025-02-20",
         hora: "11:00",
         especialidad: "GINECOLOGIA Y OBSTETRICIA",
         doctor: "Chapatin",
@@ -62,7 +62,7 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     password: "Asdasd123!!",
     id: 1734570993013,
     role: "DOCTOR",
-    aprobbed: false,
+    aprobbed: true,
     reservas: [],
   },
   {
