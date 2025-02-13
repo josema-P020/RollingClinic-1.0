@@ -54,7 +54,10 @@ function PacienteDoctor() {
     alert('El turno ha sido actualizado a "atendido"');
   };
 
+  // Se filtran los usuarios que son doctores
   const doctors = dataBase.filter((user) => user.role === "DOCTOR");
+
+  // Se filtran los pacientes que tengan turnos para el doctor seleccionado
   const filteredPacientes = dataBase.filter((paciente) =>
     paciente.turnos?.some((turno) => turno.doctor === selectedDoctor?.name)
   );
@@ -89,20 +92,23 @@ function PacienteDoctor() {
           <h3 className="text-center">Lista de Turnos</h3>
           <ul className="list-unstyled">
             {filteredPacientes.map((paciente) =>
-              paciente.turnos?.map((turno) => (
-                <li
-                  key={turno.id}
-                  className="border border-dark m-2 p-2 text-center rounded"
-                >
-                  <a
-                    href="#"
-                    className="text-light text-decoration-none"
-                    onClick={() => handleSelectTurno(turno)}
+              // Filtramos cada turno para mostrar solo los que correspondan al doctor seleccionado
+              paciente.turnos
+                ?.filter((turno) => turno.doctor === selectedDoctor?.name)
+                .map((turno) => (
+                  <li
+                    key={turno.id}
+                    className="border border-dark m-2 p-2 text-center rounded"
                   >
-                    {`Turno: ${turno.fecha} - ${turno.hora} - ${paciente.name}`}
-                  </a>
-                </li>
-              ))
+                    <a
+                      href="#"
+                      className="text-light text-decoration-none"
+                      onClick={() => handleSelectTurno(turno)}
+                    >
+                      {`Turno: ${turno.fecha} - ${turno.hora} - ${paciente.name}`}
+                    </a>
+                  </li>
+                ))
             )}
           </ul>
         </div>
