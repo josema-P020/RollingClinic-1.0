@@ -3,6 +3,7 @@ import data from "../data/dataBase";
 import "../css/calendario.css";
 import Swal from "sweetalert2";
 import Breadcrumb from "./breadcrumb/Breadcrumb";
+import BtnLogout from "./btn-logout/BtnLogout";
 
 function Calendario() {
   const [anio, setAnio] = useState(null);
@@ -368,6 +369,7 @@ function Calendario() {
           </div>
         </div>
       </div>
+      <BtnLogout></BtnLogout>
     </>
   );
 }
