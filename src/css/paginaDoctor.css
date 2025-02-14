@@ -1,9 +1,15 @@
-
-  .btn-2 {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: 1px solid #b5f0ce;
-    border-radius: 5px;
-    background-color: #84ecd2;
-    cursor: pointer;
-  }
+.btn-2 {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 1px solid #b5f0ce;
+  border-radius: 5px;
+  background-color: #84ecd2;
+  cursor: pointer;
+}
+.ps:hover {
+  color: black;
+  animation-duration: 0.3s;
+}
+.ps {
+  color: white;
+}

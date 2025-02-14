@@ -7,11 +7,12 @@ function PacienteDoctor() {
   const [dataBase, setPacientes] = useState([]);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [selectedTurno, setSelectedTurno] = useState(null);
-  const [consultaDetalles, setConsultaDetalles] = useState("");
+  const [consultaDetalles, setConsultaDetalles] = useState({});
   const [resumenConsulta, setResumenConsulta] = useState("");
 
   useEffect(() => {
     const storedPacientes = localStorage.getItem("users");
+
     if (storedPacientes) {
       setPacientes(JSON.parse(storedPacientes));
     } else {
@@ -26,10 +27,12 @@ function PacienteDoctor() {
 
   const handleSelectTurno = (turno) => {
     setSelectedTurno(turno);
-    setConsultaDetalles(turno.detalles || "");
+    let detalle = [];
+    detalle.push(turno.detalles || "");
+    setConsultaDetalles(detalle);
     setResumenConsulta(turno.resumenConsulta || "");
   };
-
+  console.log(consultaDetalles);
   const handleEnviarDatos = () => {
     const updatedPacientes = dataBase.map((paciente) => {
       if (paciente.turnos) {
@@ -98,11 +101,11 @@ function PacienteDoctor() {
                 .map((turno) => (
                   <li
                     key={turno.id}
-                    className="border border-dark m-2 p-2 text-center rounded"
+                    className="border border-dark m-2 p-2 text-center rounded "
                   >
                     <a
                       href="#"
-                      className="text-light text-decoration-none"
+                      className="text-light text-decoration-none ps "
                       onClick={() => handleSelectTurno(turno)}
                     >
                       {`Turno: ${turno.fecha} - ${turno.hora} - ${paciente.name}`}

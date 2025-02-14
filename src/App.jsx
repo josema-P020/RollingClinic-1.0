@@ -5,6 +5,7 @@ import RoutesApp from "./routes/RoutesApp";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
 import RegisterPatient from "./pages/Register/RegisterPatient";
 import RegisterDoctor from "./pages/Register/RegisterDoctor";
+
 function App() {
   const [login, setLogin] = useState(false);
 
