@@ -6,12 +6,12 @@ import "../css/HomeScreen.css";
 function CustomCarousel() {
   return (
     <>
-      <div className="pb-5 bg-drop">
+      <div className="pb-5 bg-drop imgContainer">
         <section className="container">
           <div className="row">
             <div className="col-12 col-md-8 col-lg-6 py-4 d-flex flex-column justify-content-center align-items-center">
-              <h1 className="text-center text-light">Bienvenido a Rolling Clinic</h1>
-              <p className="lead py-2 text-center text-light">
+              <h1 className="text-center text-black">Bienvenido a Rolling Clinic</h1>
+              <p className="lead py-2 text-center text-black">
                 En Rolling Clinic, nos enorgullece ofrecerte un enfoque integral
                 y personalizado para tu salud y bienestar. Nuestro equipo de
                 expertos está comprometido a brindarte atención médica de
@@ -32,7 +32,7 @@ function CustomCarousel() {
                       <svg
                         viewBox="0 0 24 24"
                         className="arr-2"
-                        xmlns="http://www.w3.org/2000/svg"
+                       
                       >
                         <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
                       </svg>
@@ -41,7 +41,7 @@ function CustomCarousel() {
                       <svg
                         viewBox="0 0 24 24"
                         className="arr-1"
-                        xmlns="http://www.w3.org/2000/svg"
+                      
                       >
                         <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
                       </svg>

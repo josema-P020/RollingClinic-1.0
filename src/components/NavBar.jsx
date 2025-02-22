@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../css/navbar.css";
-import BtnLogout from "./btn-logout/BtnLogout";
+
 
 function NavBar() {
   return (
@@ -12,7 +12,6 @@ function NavBar() {
             Rolling Clinica
           </Link>
         </div>
-        <BtnLogout></BtnLogout>
       </div>
       
     </div>

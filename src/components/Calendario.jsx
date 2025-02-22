@@ -34,7 +34,7 @@ function Calendario() {
     "Diciembre",
   ];
 
-  // Cargar los doctores desde el array "users" en localStorage (o data por defecto)
+  
   useEffect(() => {
     const usersStorage = localStorage.getItem("users");
     const usersArray = usersStorage ? JSON.parse(usersStorage) : data;
@@ -83,7 +83,7 @@ function Calendario() {
 
     const fechaSeleccionada = `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}`;
 
-    // Se agrega la propiedad "especialidad" y "estado" (por defecto "pendiente")
+   
     const nuevoTurno = {
       idUnico: `${doctorSeleccionado.idUnico} - ${fechaSeleccionada} - ${horarioSeleccionado}`,
       fecha: fechaSeleccionada,
@@ -108,7 +108,7 @@ function Calendario() {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Actualizamos el registro del paciente logueado en el array "users"
+        
         const usersGuardados = JSON.parse(localStorage.getItem("users")) || data;
         const usersActualizados = usersGuardados.map((user) => {
           if (user.id === pacienteLogeado.id) {
@@ -121,7 +121,7 @@ function Calendario() {
         });
         localStorage.setItem("users", JSON.stringify(usersActualizados));
 
-        // Actualizamos el state de doctores para reflejar la reserva en la interfaz
+        
         const doctoresActualizados = doctores.map((doctor) => {
           if (doctor.idUnico === doctorSeleccionado.idUnico) {
             return {
@@ -140,7 +140,7 @@ function Calendario() {
           confirmButtonText: "Perfecto",
         });
 
-        // Limpiar las selecciones
+        
         setDoctorSeleccionado(null);
         setHorarioSeleccionado(null);
         setTurnoSeleccionado(null);

@@ -5,52 +5,22 @@
   align-items: center;
   min-height: 70vh;
   margin: 0;
-  width: 100%;
+  width: 150vw;
   box-sizing: border-box;
   overflow-x: hidden;
-  /* background: linear-gradient(90deg, #bb54ff85, #fcff4793, #70f07ad0); */
+  
 }
-
-.carousel-container {
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-  border-radius: 0;
+.imgContainer {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://t4.ftcdn.net/jpg/08/86/09/59/360_F_886095906_m0pfxyzW3WWcrSZfRHsKx7ZF4f8TnTBa.jpg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-width: 100%;
 }
-
-.carousel-inner {
-  width: 100%;
-  height: 100%;
-}
-
-.carousel-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.btn-1 {
-  width: 500px;
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.p-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-.p-1 {
-  font-size: 40px;
-}
-/* Estilos del boton del HomeScreen */
-
 .animated-button {
   position: relative;
   display: flex;
@@ -60,7 +30,7 @@
   border: 4px solid;
   border-color: transparent;
   font-size: 16px;
-  background-color: inherit;
+  background-color:olivedrab;
   border-radius: 100px;
   font-weight: 600;
   color: greenyellow;
@@ -139,7 +109,7 @@
   opacity: 1;
 }
 
-/* Estilos del bg del homeScreen */
+
 .bg-drop {
   background-color: #212121;
 }
