@@ -52,7 +52,7 @@ Este proyecto consiste en una página web para una clínica que permite la gesti
    ```
 
 4. Acceder a la aplicación desde un navegador:
-   - URL:....
+   [visita Rollingclinic](https://rollingclinic1.netlify.app/login)
 
 ## Roadmap
 1. Implementación básica de registro y login.
