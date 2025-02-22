@@ -67,7 +67,7 @@ function PacienteDoctor() {
 
   return (
     <>
-      <section className="container-fluid row d-flex justify-content-around">
+      <div className="container-fluid row d-flex justify-content-around imgConta">
         <div className="mb-3">
           <button
             className="btn-2 btn btn-secondary dropdown-toggle"
@@ -91,7 +91,7 @@ function PacienteDoctor() {
             ))}
           </ul>
         </div>
-        <div className="col-5 border border-dark m-3 rounded-2 bg-secondary bg-opacity-75 text-light">
+        <div className="col-4 border border-dark m-3 rounded-2 bg-secondary bg-opacity-75 text-light">
           <h3 className="text-center">Lista de Turnos</h3>
           <ul className="list-unstyled">
             {filteredPacientes.map((paciente) =>
@@ -114,7 +114,7 @@ function PacienteDoctor() {
             )}
           </ul>
         </div>
-        <div className="col-5 border border-dark m-3 rounded-2 bg-secondary bg-opacity-75 text-light">
+        <div className="col-4 border border-dark m-3 rounded-2 bg-secondary bg-opacity-75 text-light">
           {selectedTurno ? (
             <>
               <div className="mb-3">
@@ -161,8 +161,9 @@ function PacienteDoctor() {
             </p>
           )}
         </div>
-      </section>
-      <BtnLogout></BtnLogout>
+        <BtnLogout></BtnLogout>
+      </div>
+      
     </>
   );
 }

@@ -13,3 +13,9 @@
 .ps {
   color: white;
 }
+.imgConta {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://t4.ftcdn.net/jpg/08/86/09/59/360_F_886095906_m0pfxyzW3WWcrSZfRHsKx7ZF4f8TnTBa.jpg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+}
