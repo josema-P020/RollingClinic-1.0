@@ -32,7 +32,7 @@ function PacienteDoctor() {
     setConsultaDetalles(detalle);
     setResumenConsulta(turno.resumenConsulta || "");
   };
-  console.log(consultaDetalles);
+  
   const handleEnviarDatos = () => {
     const updatedPacientes = dataBase.map((paciente) => {
       if (paciente.turnos) {
