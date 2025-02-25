@@ -40,7 +40,7 @@ function Footer() {
             <h5>Quiénes Somos</h5>
             <ul className="ul-style">
               <li>
-                <NavLink className="navlink-style" to="/quiensomos">
+                <NavLink className="navlink-style" to="/QuienesSomos">
                   Sobre Nosotros
                 </NavLink>
               </li>

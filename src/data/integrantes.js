@@ -4,28 +4,32 @@ const integrantes = [
     nombre: "José María Pérez",
     edad: "31",
     descripcion: "Actualmente estoy estudiando para programador. Mis pasatiempos son hacer actividades al aire libre y reunirme con amigos. Me gusta mucho la pizza.",
-    git: "https://github.com/josema-P020"
+    git: "https://github.com/josema-P020",
+    id: 1
   },
   {
     foto: "",
     nombre: "",
     edad: "",
     descripcion: "",
-    git: ""
+    git: "",
+    id: 2
   },
   {
     foto: "",
     nombre: "",
     edad: "",
     descripcion: "",
-    git: ""
+    git: "",
+    id: 3
   },
   {
     foto: "",
     nombre: "",
     edad: "",
     descripcion: "",
-    git: ""
+    git: "",
+    id: 4
   },
  
 ];
