@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import data from '../data/integrantes';
+import '../css/quienesSomos.css';
 
-function quienesSomos() {
+function QuienesSomos() {
   const [integrantes, setIntegrantes] = useState([]);
 
   useEffect(() => {
@@ -17,7 +18,7 @@ function quienesSomos() {
             <h5 className="card-title tarjeta-title">{integrante.nombre}</h5>
             <p className="card-text tarjeta-text">Edad: {integrante.edad}</p>
             <p className="card-text tarjeta-text">{integrante.descripcion}</p>
-            <a href={integrante.git} className="btn bot fa-brands fa-github fa-lg" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href={integrante.git} className="btn bot fa-brands" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i>  GitHub</a>
           </div>
         </div>
       ))}
@@ -25,4 +26,4 @@ function quienesSomos() {
   );
 }
 
-export default quienesSomos;
+export default QuienesSomos;

@@ -17,7 +17,7 @@ const integrantes = [
     foto: "",
     nombre: "",
     edad: "",
-    descripcion: ".",
+    descripcion: "",
     git: ""
   },
   {

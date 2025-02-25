@@ -4,7 +4,7 @@ import Calendario from "../components/Calendario";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import PacienteDoctor from "../pages/PacienteDoctor";
-
+import QuienesSomos from "../pages/QuienesSomos";
 import HomeScreen from "../pages/HomeScreen";
 import PerfilAdmin from "../pages/PerfilAdmin";
 import PerfilPaciente from "../pages/PerfilPaciente";
@@ -20,6 +20,7 @@ function RoutesApp() {
         <Route path="/Paciente" element={<PerfilPaciente />} />
         <Route path="/Admin" element={<PerfilAdmin />} />
         <Route path="/doc" element={<PacienteDoctor />} />
+        <Route path="/quiensomos" element={<QuienesSomos/>} />
         <Route path="/*" element={<Error404 />} />
       </Routes>
       <Footer />

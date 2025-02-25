@@ -1,0 +1,53 @@
+body {
+    background-color: rgb(50, 50, 138);
+    }
+    
+    .tarjeta {
+        width: 100%;
+        max-width: 350px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+    
+    .tarjeta:hover {
+        transform: scale(1.05);
+    }
+    
+    .tarjeta-img-top {
+        width: 100%;
+        height: auto;
+        border-bottom: 3px solid #007bff;
+        object-fit: cover;
+    }
+    
+    .tarjeta-body {
+        background-color: #f8f9fa;
+        padding: 1.5rem;
+    }
+    
+    .tarjeta-title {
+        font-size: 1.25rem;
+        color: #007bff;
+        margin-bottom: 0.75rem;
+    }
+    
+    .tarjeta-text {
+        color: #555;
+        margin-bottom: 1rem;
+    }
+    
+    .bot {
+        background-color: #080808;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 0.7rem 1.5rem;
+        transition:baground-color 0.3s;
+    }
+    
+    .bot:hover {
+        background-color: #0056b3;
+    }
+    
