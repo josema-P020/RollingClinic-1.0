@@ -16,7 +16,7 @@ function Error404() {
           <div className="error_description">
             !Ups! Parece que algo no salió bien.
           </div>
-          <Link to="/login" className="btn btn-lg btn-secondary mb-3 ">
+          <Link to="/" className="btn btn-lg btn-secondary mb-3 ">
             Volver al inicio
           </Link>
         </div>

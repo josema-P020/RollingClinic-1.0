@@ -16,8 +16,8 @@ body {
     }
     
     .tarjeta-img-top {
-        width: 100%;
-        height: auto;
+        width: 200px;
+        height: 200px;
         border-bottom: 3px solid #007bff;
         object-fit: cover;
     }
