@@ -67,7 +67,6 @@ function RegisterPatient() {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(formValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -10,7 +10,6 @@ function ListadoMedicos() {
   const botonAprobbed = (id) => {
     const doctorSeleccionado = doctores.find((doctor) => doctor.id === id);
     if (doctorSeleccionado.aprobbed) {
-      console.log(doctorSeleccionado);
       Swal.fire({
         icon: "question",
         title: "¿Estás seguro de que deseas desactivar este usuario?",
