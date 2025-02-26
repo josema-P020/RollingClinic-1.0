@@ -17,8 +17,8 @@ const integrantes = [
   },
   {
     foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX-cskA2FbOzFi7ACNiGruheINgAXEqFL1TQ&s",
-    nombre: "Javier Mauricio Gomez",
-    edad: " años",
+    nombre: "Javier Mauricio Gómez ",
+    edad: "27 años",
     descripcion: "",
     git: "https://github.com/JavierMauricioGomez",
     id: 3
@@ -26,8 +26,8 @@ const integrantes = [
   {
     foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX-cskA2FbOzFi7ACNiGruheINgAXEqFL1TQ&s",
     nombre: "Ramiro Nahuel Romano",
-    edad: " años",
-    descripcion: "",
+    edad: "24 años",
+    descripcion: "Actualmente me encuentro estudiando programación y me gustaría poder llegar a vivir de este mundo en un futuro. En mis tiempos libres me gusta entrenar y escuchar música o ver películas.",
     git: "https://github.com/nahuel-11",
     id: 4
   },

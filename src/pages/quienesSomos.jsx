@@ -26,8 +26,8 @@ function quienesSomos() {
         </div>
       ))}
       <div className="container d-flex justify-content-center align-items-center">
-        <Link to="/" className="btn btn-lg btn-secondary mb-3 bot">
-          Volver al inicio
+        <Link to="/" className="btn bot bi bi-house m-2">
+        <h6> Volver al inicio</h6>
         </Link>
       </div>
 
