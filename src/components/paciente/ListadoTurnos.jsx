@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function ListadoTurnos() {
-  const [info, setInfo] = useState(() => {
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const [info, setInfo] = useState([]);
 
-    if (!loggedInUser) return []; // Si no hay usuario, devuelve un array vacío
-    return Array.isArray(loggedInUser) ? loggedInUser : [loggedInUser];
-  });
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem("users")) || [];
+    setInfo(storedData);
+  }, []);
 
+  const turnos = info.flatMap((usuario) =>
+    usuario.turnos
+      ? usuario.turnos.map((turno) => ({
+          doctor: turno.doctor,
+          fecha: turno.fecha,
+          hora: turno.hora,
+        }))
+      : []
+  );
+  console.log(info);
+  console.log(turnos);
   return (
     <div>
       <div className="text-center flex-grow-1">
@@ -22,22 +33,20 @@ function ListadoTurnos() {
               </tr>
             </thead>
             <tbody>
-              {info.length === 0 ? (
+              {turnos.length === 0 ? (
                 <tr>
                   <td colSpan="3" className="fw-bold py-2">
                     No hay turnos aún
                   </td>
                 </tr>
               ) : (
-                info.map((turno, key) =>
-                  turno.turnos.map((turn, index) => (
-                    <tr key={`${key}-${index}`}>
-                      <td>{turn.doctor}</td>
-                      <td>{turn.fecha}</td>
-                      <td>{turn.hora}</td>
-                    </tr>
-                  ))
-                )
+                turnos.map((turno, index) => (
+                  <tr key={index}>
+                    <td>{turno.doctor}</td>
+                    <td>{turno.fecha}</td>
+                    <td>{turno.hora}</td>
+                  </tr>
+                ))
               )}
             </tbody>
           </table>
