@@ -34,7 +34,6 @@ function Calendario() {
     "Diciembre",
   ];
 
-  
   useEffect(() => {
     const usersStorage = localStorage.getItem("users");
     const usersArray = usersStorage ? JSON.parse(usersStorage) : data;
@@ -75,7 +74,9 @@ function Calendario() {
       Swal.fire({
         icon: "error",
         title: "Faltan datos",
-        text: `Debe seleccionar ${errores.join(", ")} antes de reservar el turno.`,
+        text: `Debe seleccionar ${errores.join(
+          ", "
+        )} antes de reservar el turno.`,
         confirmButtonText: "Entendido",
       });
       return;
@@ -83,7 +84,6 @@ function Calendario() {
 
     const fechaSeleccionada = `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}`;
 
-   
     const nuevoTurno = {
       idUnico: `${doctorSeleccionado.idUnico} - ${fechaSeleccionada} - ${horarioSeleccionado}`,
       fecha: fechaSeleccionada,
@@ -108,8 +108,8 @@ function Calendario() {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        
-        const usersGuardados = JSON.parse(localStorage.getItem("users")) || data;
+        const usersGuardados =
+          JSON.parse(localStorage.getItem("users")) || data;
         const usersActualizados = usersGuardados.map((user) => {
           if (user.id === pacienteLogeado.id) {
             const turnosActualizados = user.turnos
@@ -121,7 +121,6 @@ function Calendario() {
         });
         localStorage.setItem("users", JSON.stringify(usersActualizados));
 
-        
         const doctoresActualizados = doctores.map((doctor) => {
           if (doctor.idUnico === doctorSeleccionado.idUnico) {
             return {
@@ -140,7 +139,6 @@ function Calendario() {
           confirmButtonText: "Perfecto",
         });
 
-        
         setDoctorSeleccionado(null);
         setHorarioSeleccionado(null);
         setTurnoSeleccionado(null);
@@ -219,9 +217,7 @@ function Calendario() {
 
   return (
     <>
-      <div className="container-fluid">
-        <Breadcrumb />
-      </div>
+      <Breadcrumb />
       <div className="contenedor-padre">
         <div className="container-rectangular">
           <div className="container-calendario">
@@ -264,7 +260,8 @@ function Calendario() {
                       <li
                         key={index}
                         className={`${dia.clase} ${
-                          diaSeleccionado === dia.dia && dia.clase !== "inactivo"
+                          diaSeleccionado === dia.dia &&
+                          dia.clase !== "inactivo"
                             ? "seleccionado"
                             : ""
                         }`}
@@ -286,7 +283,9 @@ function Calendario() {
                   <li
                     key={doctor.idUnico}
                     className={`doctor ${
-                      doctorSeleccionado?.idUnico === doctor.idUnico ? "activo" : ""
+                      doctorSeleccionado?.idUnico === doctor.idUnico
+                        ? "activo"
+                        : ""
                     }`}
                     onClick={() => manejarSeleccionDoctor(doctor.idUnico)}
                   >
@@ -303,12 +302,13 @@ function Calendario() {
                   <h4>Horarios disponibles</h4>
                   <ul className="horarios">
                     {doctorSeleccionado.hora.mañana.map((hora) => {
-                      const horarioReservado = doctorSeleccionado.turnosReservados.some(
-                        (turno) =>
-                          turno.fecha ===
-                            `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}` &&
-                          turno.hora === hora
-                      );
+                      const horarioReservado =
+                        doctorSeleccionado.turnosReservados.some(
+                          (turno) =>
+                            turno.fecha ===
+                              `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}` &&
+                            turno.hora === hora
+                        );
                       return (
                         <li
                           key={hora}
@@ -328,12 +328,13 @@ function Calendario() {
                       );
                     })}
                     {doctorSeleccionado.hora.tarde.map((hora) => {
-                      const horarioReservado = doctorSeleccionado.turnosReservados.some(
-                        (turno) =>
-                          turno.fecha ===
-                            `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}` &&
-                          turno.horario === hora
-                      );
+                      const horarioReservado =
+                        doctorSeleccionado.turnosReservados.some(
+                          (turno) =>
+                            turno.fecha ===
+                              `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}` &&
+                            turno.horario === hora
+                        );
                       return (
                         <li
                           key={hora}

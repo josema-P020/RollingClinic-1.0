@@ -32,7 +32,7 @@ function PacienteDoctor() {
     setConsultaDetalles(detalle);
     setResumenConsulta(turno.resumenConsulta || "");
   };
-  
+
   const handleEnviarDatos = () => {
     const updatedPacientes = dataBase.map((paciente) => {
       if (paciente.turnos) {
@@ -57,10 +57,8 @@ function PacienteDoctor() {
     alert('El turno ha sido actualizado a "atendido"');
   };
 
-  
   const doctors = dataBase.filter((user) => user.role === "DOCTOR");
 
- 
   const filteredPacientes = dataBase.filter((paciente) =>
     paciente.turnos?.some((turno) => turno.doctor === selectedDoctor?.name)
   );
@@ -68,7 +66,7 @@ function PacienteDoctor() {
   return (
     <>
       <div className="container-fluid row d-flex justify-content-around imgConta">
-        <div className="mb-3">
+        <div className="m-3">
           <button
             className="btn-2 btn btn-secondary dropdown-toggle"
             type="button"
@@ -163,7 +161,6 @@ function PacienteDoctor() {
         </div>
         <BtnLogout></BtnLogout>
       </div>
-      
     </>
   );
 }

@@ -9,18 +9,20 @@ function Breadcrumb() {
   };
 
   return (
-    <div className="container-fluid">
+    <div>
       <nav aria-label="breadcrumb" className="bg-white p-2">
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item">
-            <Link to="/" className="nave">
-              Home
-            </Link>
-          </li>
-          <li className="breadcrumb-item active" aria-current="page">
-            {obtenerPagina()}
-          </li>
-        </ol>
+        <div className="container">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <Link to="/" className="nave">
+                Home
+              </Link>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              {obtenerPagina()}
+            </li>
+          </ol>
+        </div>
       </nav>
     </div>
   );

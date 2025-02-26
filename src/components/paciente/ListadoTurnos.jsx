@@ -19,7 +19,7 @@ function ListadoTurnos() {
   return (
     <div>
       <div className="text-center flex-grow-1">
-        <h2 className="fw-bold pb-3">Mis Turnos</h2>
+        <h2 className="fw-bold pb-3 text-white">Mis Turnos</h2>
         <div className="table-responsive">
           <table className="table table-hover">
             <thead>

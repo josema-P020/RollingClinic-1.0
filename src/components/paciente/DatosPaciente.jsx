@@ -75,13 +75,13 @@ function DatosPaciente() {
           <div>
             <div className="row">
               <div className="col-lg-3 col-md-4 col-sm-12 text-center py-2">
-                <h4 className="py-2">Mis datos</h4>
+                <h4 className="py-2 text-white">Mis datos</h4>
 
-                <p className="pt-2">{loggedInUser.name}</p>
+                <p className="pt-2 text-white">{loggedInUser.name}</p>
                 <div className="container">
                   <ul className="list-group list-group-flush text-start">
                     <li className="list-group-item">
-                      <span className="fw-bold">Nombre: </span>
+                      <span className="fw-bold ">Nombre: </span>
                       {editar ? (
                         <input
                           type="text"
