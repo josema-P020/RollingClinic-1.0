@@ -1,5 +1,5 @@
 .footer-style {
-  background-color: #333;
+  background-color: #5a5a5a;
   color: white;
   text-align: center;
   padding: 40px 10px;
@@ -22,20 +22,15 @@
   margin: 10px 0;
 }
 
-
-
-
-
 .navlink-style {
   text-decoration: none;
-  color: #61c0bf; 
+  color: #61c0bf;
   font-weight: 500;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
-
 .navlink-style:hover {
-  color: #a4e4e1; 
+  color: #a4e4e1;
 }
 
 .navlink-style:focus {
@@ -43,7 +38,12 @@
   color: #2adcf4;
   text-shadow: 0 0 5px rgba(46, 178, 255, 0.5);
 }
-
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%; 
+}
 
 @media (max-width: 768px) {
   .footer-style {

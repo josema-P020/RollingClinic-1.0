@@ -1,23 +1,21 @@
-import React, { useState } from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Login from './pages/Login/Login.jsx'
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login/Login.jsx";
 import RoutesApp from "./routes/RoutesApp";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
 import RegisterPatient from "./pages/Register/RegisterPatient";
 import RegisterDoctor from "./pages/Register/RegisterDoctor";
 
 function App() {
+  const [login, setLogin] = useState(false);
 
-const [login, setLogin] = useState(false);
-
-const cambiarLogin = () => {
+  const cambiarLogin = () => {
     setLogin(!login);
-}
-
+  };
 
   return (
     <>
-       <BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route
             path="/*"
@@ -29,10 +27,10 @@ const cambiarLogin = () => {
           />
           <Route
             path="/login"
-            element={<Login cambiarLogin={cambiarLogin} /> }
+            element={<Login cambiarLogin={cambiarLogin} />}
           />
-            <Route path="/RegisterPatient" element={<RegisterPatient />} />
-            <Route path="/RegisterDoctor" element={<RegisterDoctor />} />
+          <Route path="/RegisterPatient" element={<RegisterPatient />} />
+          <Route path="/RegisterDoctor" element={<RegisterDoctor />} />
         </Routes>
       </BrowserRouter>
     </>

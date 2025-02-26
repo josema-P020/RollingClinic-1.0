@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import data from "../data/dataBase";
-import { agregarTurno } from "../data/enviarTurnos";
 import "../css/calendario.css";
 import Swal from "sweetalert2";
+import Breadcrumb from "./breadcrumb/Breadcrumb";
+import BtnLogout from "./btn-logout/BtnLogout";
 
 function Calendario() {
   const [anio, setAnio] = useState(null);
@@ -14,20 +14,42 @@ function Calendario() {
   const [turnoSeleccionado, setTurnoSeleccionado] = useState(null);
   const [horarioSeleccionado, setHorarioSeleccionado] = useState(null);
   const [doctores, setDoctores] = useState([]);
+  const [pacienteLogeado, setPacienteLogeado] = useState(() => {
+    const usuariosGuardados = localStorage.getItem("loggedInUser");
+    return usuariosGuardados ? JSON.parse(usuariosGuardados) : null;
+  });
 
+  const nombresMes = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
+
+  
   useEffect(() => {
-    const doctoresFiltrados = data.filter(
-      (user) => user.role === "DOCTOR" && user.aprobbed
-    ).map((doctor) => ({
-      idUnico: doctor.id,
-      nombre: doctor.name,
-      especialidad: doctor.especialidad,
-      horarios: {
-        mañana: ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"],
-        tarde: ["15:00 PM", "16:00 PM", "17:00 PM", "18:00 PM"],
-      },
-      turnosReservados: [],
-    }));
+    const usersStorage = localStorage.getItem("users");
+    const usersArray = usersStorage ? JSON.parse(usersStorage) : data;
+    const doctoresFiltrados = usersArray
+      .filter((user) => user.role === "DOCTOR" && user.aprobbed)
+      .map((doctor) => ({
+        idUnico: doctor.id,
+        nombre: doctor.name,
+        especialidad: doctor.especialidad,
+        hora: {
+          mañana: ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"],
+          tarde: ["15:00 PM", "16:00 PM", "17:00 PM", "18:00 PM"],
+        },
+        turnosReservados: doctor.turnosReservados || [],
+      }));
     setDoctores(doctoresFiltrados);
   }, []);
 
@@ -60,31 +82,18 @@ function Calendario() {
     }
 
     const fechaSeleccionada = `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}`;
+
+   
     const nuevoTurno = {
       idUnico: `${doctorSeleccionado.idUnico} - ${fechaSeleccionada} - ${horarioSeleccionado}`,
       fecha: fechaSeleccionada,
       doctor: doctorSeleccionado.nombre,
-      horario: horarioSeleccionado,
+      idDoctor: doctorSeleccionado.idUnico,
+      hora: horarioSeleccionado,
+      paciente: pacienteLogeado,
+      especialidad: doctorSeleccionado.especialidad,
+      estado: "pendiente",
     };
-
-    const turnosGuardados =
-      JSON.parse(localStorage.getItem("reservasTurnos")) || [];
-    const turnoExistente = turnosGuardados.some(
-      (turno) =>
-        turno.fecha === nuevoTurno.fecha &&
-        turno.horario === nuevoTurno.horario &&
-        turno.idDoctor === nuevoTurno.idDoctor
-    );
-
-    if (turnoExistente) {
-      Swal.fire({
-        icon: "error",
-        title: "Turno no disponible",
-        text: `El turno para el ${fechaSeleccionada} a las ${horarioSeleccionado} ya está reservado.`,
-        confirmButtonText: "Entendido",
-      });
-      return;
-    }
 
     const generoDoctor = doctorSeleccionado.nombre.includes("Dra.")
       ? `la ${doctorSeleccionado.nombre}`
@@ -99,8 +108,20 @@ function Calendario() {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        agregarTurno(nuevoTurno);
+        
+        const usersGuardados = JSON.parse(localStorage.getItem("users")) || data;
+        const usersActualizados = usersGuardados.map((user) => {
+          if (user.id === pacienteLogeado.id) {
+            const turnosActualizados = user.turnos
+              ? [...user.turnos, nuevoTurno]
+              : [nuevoTurno];
+            return { ...user, turnos: turnosActualizados };
+          }
+          return user;
+        });
+        localStorage.setItem("users", JSON.stringify(usersActualizados));
 
+        
         const doctoresActualizados = doctores.map((doctor) => {
           if (doctor.idUnico === doctorSeleccionado.idUnico) {
             return {
@@ -110,7 +131,6 @@ function Calendario() {
           }
           return doctor;
         });
-
         setDoctores(doctoresActualizados);
 
         Swal.fire({
@@ -120,6 +140,7 @@ function Calendario() {
           confirmButtonText: "Perfecto",
         });
 
+        
         setDoctorSeleccionado(null);
         setHorarioSeleccionado(null);
         setTurnoSeleccionado(null);
@@ -133,21 +154,6 @@ function Calendario() {
       }
     });
   };
-
-  const nombresMes = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
-  ];
 
   const obtenerDiasDelMes = (mes, anio) => {
     const diasDelMes = [];
@@ -212,159 +218,159 @@ function Calendario() {
   }, []);
 
   return (
-    <div className="contenedor-padre">
-      <div className="container-rectangular">
-        <div className="container-calendario">
-          <div className="wrapper poppins-font">
-            <div className="calendario-header">
-              <p className="mes-actual">
-                {mes !== null && anio !== null
-                  ? `${nombresMes[mes]} ${anio}`
-                  : "Cargando..."}
-              </p>
-              <div className="icons">
-                <span
-                  className="material-symbols-outlined"
-                  onClick={irAlMesAnterior}
-                >
-                  chevron_left
-                </span>
-                <span
-                  className="material-symbols-outlined"
-                  onClick={irAlMesSiguiente}
-                >
-                  chevron_right
-                </span>
+    <>
+      <div className="container-fluid">
+        <Breadcrumb />
+      </div>
+      <div className="contenedor-padre">
+        <div className="container-rectangular">
+          <div className="container-calendario">
+            <div className="wrapper poppins-font">
+              <div className="calendario-header">
+                <p className="mes-actual">
+                  {mes !== null && anio !== null
+                    ? `${nombresMes[mes]} ${anio}`
+                    : "Cargando..."}
+                </p>
+                <div className="icons">
+                  <span
+                    className="material-symbols-outlined"
+                    onClick={irAlMesAnterior}
+                  >
+                    chevron_left
+                  </span>
+                  <span
+                    className="material-symbols-outlined"
+                    onClick={irAlMesSiguiente}
+                  >
+                    chevron_right
+                  </span>
+                </div>
+              </div>
+
+              <div className="calendario">
+                <ul className="semanas">
+                  <li>Dom</li>
+                  <li>Lun</li>
+                  <li>Mar</li>
+                  <li>Mie</li>
+                  <li>Jue</li>
+                  <li>Vie</li>
+                  <li>Sab</li>
+                </ul>
+                <ul className="dias">
+                  {dias &&
+                    dias.map((dia, index) => (
+                      <li
+                        key={index}
+                        className={`${dia.clase} ${
+                          diaSeleccionado === dia.dia && dia.clase !== "inactivo"
+                            ? "seleccionado"
+                            : ""
+                        }`}
+                        onClick={() => manejarSeleccionDia(dia)}
+                      >
+                        {dia.dia}
+                      </li>
+                    ))}
+                </ul>
               </div>
             </div>
+          </div>
 
-            <div className="calendario">
-              <ul className="semanas">
-                <li>Dom</li>
-                <li>Lun</li>
-                <li>Mar</li>
-                <li>Mie</li>
-                <li>Jue</li>
-                <li>Vie</li>
-                <li>Sab</li>
-              </ul>
-              <ul className="dias">
-                {dias &&
-                  dias.map((dia, index) => (
-                    <li
-                      key={index}
-                      className={`${dia.clase} ${
-                        diaSeleccionado === dia.dia && dia.clase !== "inactivo"
-                          ? "seleccionado"
-                          : ""
-                      }`}
-                      onClick={() => manejarSeleccionDia(dia)}
-                    >
-                      {dia.dia}
-                    </li>
-                  ))}
+          <div className="container-doctores">
+            <div className="listado-doctores">
+              <h4>Elegir un Doctor</h4>
+              <ul>
+                {doctores.map((doctor) => (
+                  <li
+                    key={doctor.idUnico}
+                    className={`doctor ${
+                      doctorSeleccionado?.idUnico === doctor.idUnico ? "activo" : ""
+                    }`}
+                    onClick={() => manejarSeleccionDoctor(doctor.idUnico)}
+                  >
+                    <p>{doctor.nombre}</p>
+                    <span>{doctor.especialidad}</span>
+                  </li>
+                ))}
               </ul>
             </div>
-          </div>
-        </div>
 
-        <div className="container-doctores">
-          <div className="listado-doctores">
-            <h4>Elegir un Doctor</h4>
-            <ul>
-              {doctores.map((doctor) => (
-                <li
-                  key={doctor.idUnico}
-                  className={`doctor ${
-                    doctorSeleccionado?.idUnico === doctor.idUnico
-                      ? "activo"
-                      : ""
-                  }`}
-                  onClick={() => manejarSeleccionDoctor(doctor.idUnico)}
-                >
-                  <p>{doctor.nombre}</p>
-                  <span>{doctor.especialidad}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="campo">
-            {doctorSeleccionado && (
-              <>
-                <h4>Horarios disponibles</h4>
-                <ul className="horarios">
-                  {doctorSeleccionado.horarios.mañana.map((hora) => {
-                    const horarioReservado =
-                      doctorSeleccionado.turnosReservados.some(
+            <div className="campo">
+              {doctorSeleccionado && (
+                <>
+                  <h4>Horarios disponibles</h4>
+                  <ul className="horarios">
+                    {doctorSeleccionado.hora.mañana.map((hora) => {
+                      const horarioReservado = doctorSeleccionado.turnosReservados.some(
+                        (turno) =>
+                          turno.fecha ===
+                            `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}` &&
+                          turno.hora === hora
+                      );
+                      return (
+                        <li
+                          key={hora}
+                          className={`horario ${
+                            turnoSeleccionado === "mañana" &&
+                            horarioSeleccionado === hora
+                              ? "seleccionado"
+                              : ""
+                          } ${horarioReservado ? "reservado" : ""}`}
+                          onClick={() =>
+                            !horarioReservado &&
+                            manejarSeleccionHorario("mañana", hora)
+                          }
+                        >
+                          {hora}
+                        </li>
+                      );
+                    })}
+                    {doctorSeleccionado.hora.tarde.map((hora) => {
+                      const horarioReservado = doctorSeleccionado.turnosReservados.some(
                         (turno) =>
                           turno.fecha ===
                             `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}` &&
                           turno.horario === hora
                       );
-
-                    return (
-                      <li
-                        key={hora}
-                        className={`horario ${
-                          turnoSeleccionado === "mañana" &&
-                          horarioSeleccionado === hora
-                            ? "activo"
-                            : ""
-                        } ${horarioReservado ? "reservado" : ""}`}
-                        onClick={() =>
-                          !horarioReservado &&
-                          manejarSeleccionHorario("mañana", hora)
-                        }
-                      >
-                        {hora}
-                      </li>
-                    );
-                  })}
-                  {doctorSeleccionado.horarios.tarde.map((hora) => {
-                    const horarioReservado =
-                      doctorSeleccionado.turnosReservados.some(
-                        (turno) =>
-                          turno.fecha ===
-                            `${diaSeleccionado} de ${nombresMes[mes]} del ${anio}` &&
-                          turno.horario === hora
+                      return (
+                        <li
+                          key={hora}
+                          className={`horario ${
+                            turnoSeleccionado === "tarde" &&
+                            horarioSeleccionado === hora
+                              ? "seleccionado"
+                              : ""
+                          } ${horarioReservado ? "reservado" : ""}`}
+                          onClick={() =>
+                            !horarioReservado &&
+                            manejarSeleccionHorario("tarde", hora)
+                          }
+                        >
+                          {hora}
+                        </li>
                       );
+                    })}
+                  </ul>
+                </>
+              )}
+            </div>
 
-                    return (
-                      <li
-                        key={hora}
-                        className={`horario ${
-                          turnoSeleccionado === "tarde" &&
-                          horarioSeleccionado === hora
-                            ? "activo"
-                            : ""
-                        } ${horarioReservado ? "reservado" : ""}`}
-                        onClick={() =>
-                          !horarioReservado &&
-                          manejarSeleccionHorario("tarde", hora)
-                        }
-                      >
-                        {hora}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </>
-            )}
-          </div>
-
-          <div className="acciones">
-            <button
-              className="btn btn-primary"
-              onClick={manejarReserva}
-              disabled={!doctorSeleccionado}
-            >
-              Confirmar Turno
-            </button>
+            <div className="acciones">
+              <button
+                className="btn btn-primary"
+                onClick={manejarReserva}
+                disabled={!doctorSeleccionado}
+              >
+                Confirmar Turno
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <BtnLogout></BtnLogout>
+    </>
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import data from "../../data/dataBase";
+import data from "@/data/dataBase";
+import Swal from "sweetalert2";
 
 function ListadoMedicos() {
   const recuperarDoctores = JSON.parse(localStorage.getItem("users")) || data;
@@ -7,16 +8,49 @@ function ListadoMedicos() {
   const medicos = doctores.filter((usuario) => usuario.role === "DOCTOR");
 
   const botonAprobbed = (id) => {
-    const actualizarDoctores = doctores.map((doctor) => {
-      if (doctor.id === id) {
-        return { ...doctor, aprobbed: !doctor.aprobbed };
-      }
-      return doctor;
-    });
+    const doctorSeleccionado = doctores.find((doctor) => doctor.id === id);
+    if (doctorSeleccionado.aprobbed) {
+      console.log(doctorSeleccionado);
+      Swal.fire({
+        icon: "question",
+        title: "¿Estás seguro de que deseas desactivar este usuario?",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const actualizarDoctores = doctores.map((doctor) => {
+            if (doctor.id === id) {
+              return { ...doctor, aprobbed: !doctor.aprobbed };
+            }
+            return doctor;
+          });
 
-    setDoctores(actualizarDoctores);
+          setDoctores(actualizarDoctores);
+          localStorage.setItem("users", JSON.stringify(actualizarDoctores));
+        }
+      });
+    } else {
+      Swal.fire({
+        icon: "question",
+        title: "¿Estás seguro de que deseas activar este usuario?",
+        showCancelButton: true,
+        confirmButtonText: "Confirmar",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const actualizarDoctores = doctores.map((doctor) => {
+            if (doctor.id === id) {
+              return { ...doctor, aprobbed: !doctor.aprobbed };
+            }
+            return doctor;
+          });
 
-    localStorage.setItem("users", JSON.stringify(actualizarDoctores));
+          setDoctores(actualizarDoctores);
+          localStorage.setItem("users", JSON.stringify(actualizarDoctores));
+        }
+      });
+    }
   };
 
   return (
@@ -27,7 +61,6 @@ function ListadoMedicos() {
           <table className="table table-hover">
             <thead>
               <tr>
-                <th className="text-start text-nowrap">Usuario</th>
                 <th className="text-start text-nowrap">Email</th>
                 <th className="text-start text-nowrap">Matricula</th>
                 <th className="text-start text-nowrap">DNI</th>
@@ -37,23 +70,6 @@ function ListadoMedicos() {
             <tbody>
               {medicos.map((d) => (
                 <tr key={d.id}>
-                  <th>
-                    <div>
-                      <div className="d-flex align-items-center">
-                        <img
-                          src={`${
-                            d.genre === "male"
-                              ? "src/images/avatar-hombre.jpg"
-                              : "src/images/avatar-mujer.webp"
-                          }`}
-                          alt="avatar usuario"
-                          className="avatarPte"
-                          loading="lazy"
-                        />
-                        <span className="ms-2">{d.name}</span>
-                      </div>
-                    </div>
-                  </th>
                   <td className="align-middle text-start">{d.email}</td>
                   <td className="align-middle text-start">
                     <span>{d.matricula}</span>

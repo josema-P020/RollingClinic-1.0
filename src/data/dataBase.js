@@ -16,10 +16,10 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     turnos: [
       {
         id: 1,
-        fecha: "2021-10-20",
+        fecha: "2025-02-20",
         hora: "10:00",
-        especialidad: "GINECOLOGIA Y OBSTETRICIA",
-        doctor: "Chapatin",
+        especialidad:"CIRUGIA GENERAL",
+        doctor: "Juguetes",
         estado: "pendiente",
       },
     ],
@@ -41,9 +41,9 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     turnos: [
       {
         id: 2,
-        fecha: "2021-10-20",
+        fecha: "2025-02-20",
         hora: "11:00",
-        especialidad: "GINECOLOGIA Y OBSTETRICIA",
+        especialidad:"GINECOLOGIA Y OBSTETRICIA",
         doctor: "Chapatin",
         estado: "pendiente",
       },
@@ -62,7 +62,7 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     password: "Asdasd123!!",
     id: 1734570993013,
     role: "DOCTOR",
-    aprobbed: false,
+    aprobbed: true,
     reservas: [],
   },
   {
@@ -78,19 +78,20 @@ let data = JSON.parse(localStorage.getItem("users")) || [
     password: "Asdasd1&",
     id: 1734570993014,
     role: "DOCTOR",
-    aprobbed: true,
+    aprobbed: false,
   },
   {
-    name: "Admin Admino",
+    name: "Admin",
     tel: 3813995090,
     dateBirth: "1997-05-04",
     city: "San Miguel de Tucuman",
     dni: 40436799,
     genre: "male",
-    email: "adminAdmino@gmail.com",
-    password: "Asdasd1&",
+    email: "admin@gmail.com",
+    password: "Asdasd1!",
     id: 17345709930199,
     role: "ADMIN",
+    aprobbed: true,
   },
 ];
 

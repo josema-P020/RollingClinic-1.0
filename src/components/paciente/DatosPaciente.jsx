@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Paciente.css";
 import ListaMedicos from "./ListadoTurnos.jsx";
-import data from "../../data/dataBase.js";
+import data from "@/data/dataBase.js";
 import { Link } from "react-router-dom";
 
 function DatosPaciente() {
@@ -70,24 +70,13 @@ function DatosPaciente() {
 
   return (
     <>
-      <div className="diseño container-fluid">
-        <nav aria-label="breadcrumb" className="bg-white p-2">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <Link to="/login" className="nave">
-                Home
-              </Link>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Paciente
-            </li>
-          </ol>
-        </nav>
+      <div className="container-fluid">
         <section>
           <div>
             <div className="row">
               <div className="col-lg-3 col-md-4 col-sm-12 text-center py-2">
-                <img src="" alt="avatar paciente" className="avatarPte" />
+                <h4 className="py-2">Mis datos</h4>
+
                 <p className="pt-2">{loggedInUser.name}</p>
                 <div className="container">
                   <ul className="list-group list-group-flush text-start">
@@ -213,15 +202,6 @@ function DatosPaciente() {
             </div>
           </div>
         </section>
-        <div className="d-flex justify-content-end me-3 mb-2">
-          <Link
-            to="/login"
-            className="my-3 btn btn-secondary"
-            onClick={handleLogout}
-          >
-            <i className="bi bi-box-arrow-right"> Cerrar Sesión</i>
-          </Link>
-        </div>
       </div>
     </>
   );

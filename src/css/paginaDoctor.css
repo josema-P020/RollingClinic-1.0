@@ -1,9 +1,21 @@
-
-  .btn-2 {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: 1px solid #b5f0ce;
-    border-radius: 5px;
-    background-color: #84ecd2;
-    cursor: pointer;
-  }
+.btn-2 {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 1px solid #b5f0ce;
+  border-radius: 5px;
+  background-color: #84ecd2;
+  cursor: pointer;
+}
+.ps:hover {
+  color: black;
+  animation-duration: 0.3s;
+}
+.ps {
+  color: white;
+}
+.imgConta {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://t4.ftcdn.net/jpg/08/86/09/59/360_F_886095906_m0pfxyzW3WWcrSZfRHsKx7ZF4f8TnTBa.jpg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+}
