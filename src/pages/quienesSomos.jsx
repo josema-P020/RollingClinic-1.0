@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import data from '../data/integrantes';
-import '../css/quienesSomos.css';
+import '../css/QuienesSomos.css';
 
-function quienesSomos() {
+function QuienesSomos() {
   const [integrantes, setIntegrantes] = useState([]);
 
   useEffect(() => {
@@ -35,4 +35,4 @@ function quienesSomos() {
   )
 }
 
-export default quienesSomos
+export default QuienesSomos
