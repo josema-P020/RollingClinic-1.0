@@ -18,7 +18,8 @@ function Calendario() {
     const usuariosGuardados = localStorage.getItem("loggedInUser");
     return usuariosGuardados ? JSON.parse(usuariosGuardados) : null;
   });
-
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
   const nombresMes = [
     "Enero",
     "Febrero",
@@ -218,7 +219,7 @@ function Calendario() {
   return (
     <>
       <Breadcrumb />
-      <div className="contenedor-padre">
+      <div className="contenedor-padre bg-paciente">
         <div className="container-rectangular">
           <div className="container-calendario">
             <div className="wrapper poppins-font">
@@ -243,7 +244,6 @@ function Calendario() {
                   </span>
                 </div>
               </div>
-
               <div className="calendario">
                 <ul className="semanas">
                   <li>Dom</li>
@@ -255,21 +255,25 @@ function Calendario() {
                   <li>Sab</li>
                 </ul>
                 <ul className="dias">
-                  {dias &&
-                    dias.map((dia, index) => (
+                  {dias.map((dia, index) => {
+                    const esInvalido =
+                      dia.clase === "inactivo" ||
+                      (anio === hoy.getFullYear() &&
+                        mes === hoy.getMonth() &&
+                        dia.dia < hoy.getDate());
+
+                    return (
                       <li
                         key={index}
-                        className={`${dia.clase} ${
-                          diaSeleccionado === dia.dia &&
-                          dia.clase !== "inactivo"
-                            ? "seleccionado"
-                            : ""
+                        className={`${esInvalido ? "invalido" : ""} ${
+                          diaSeleccionado === dia.dia ? "seleccionado" : ""
                         }`}
-                        onClick={() => manejarSeleccionDia(dia)}
+                        onClick={() => !esInvalido && manejarSeleccionDia(dia)}
                       >
                         {dia.dia}
                       </li>
-                    ))}
+                    );
+                  })}
                 </ul>
               </div>
             </div>
@@ -370,7 +374,6 @@ function Calendario() {
           </div>
         </div>
       </div>
-      <BtnLogout></BtnLogout>
     </>
   );
 }

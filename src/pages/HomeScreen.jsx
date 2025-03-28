@@ -2,15 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/HomeScreen.css";
-
+import BtnLogout from "../components/btn-logout/BtnLogout";
 function CustomCarousel() {
   return (
     <>
-      <div className="pb-5 bg-drop imgContainer">
+      <div className="py-5 bg-drop imgContainer">
         <section className="container">
           <div className="row">
             <div className="col-12 col-md-8 col-lg-6 py-4 d-flex flex-column justify-content-center align-items-center">
-              <h1 className="text-center text-black">Bienvenido a Rolling Clinic</h1>
+              <h1 className="text-center text-black">
+                Bienvenido a Rolling Clinic
+              </h1>
               <p className="lead py-2 text-center text-black">
                 En Rolling Clinic, nos enorgullece ofrecerte un enfoque integral
                 y personalizado para tu salud y bienestar. Nuestro equipo de
@@ -29,20 +31,12 @@ function CustomCarousel() {
                 <div>
                   <Link to="/calendario" className="text-decoration-none">
                     <button className="animated-button">
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="arr-2"
-                       
-                      >
+                      <svg viewBox="0 0 24 24" className="arr-2">
                         <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
                       </svg>
                       <span className="text">Sacar un turno</span>
                       <span className="circle"></span>
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="arr-1"
-                      
-                      >
+                      <svg viewBox="0 0 24 24" className="arr-1">
                         <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
                       </svg>
                     </button>
@@ -70,6 +64,7 @@ function CustomCarousel() {
                     </button>
                   </Link>
                 </div>
+                <BtnLogout />
               </div>
             </div>
           </div>

@@ -8,13 +8,16 @@
   width: 150vw;
   box-sizing: border-box;
   overflow-x: hidden;
-  
 }
 .imgContainer {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://t4.ftcdn.net/jpg/08/86/09/59/360_F_886095906_m0pfxyzW3WWcrSZfRHsKx7ZF4f8TnTBa.jpg');
-  background-size: cover; 
-  background-position: center; 
-  background-repeat: no-repeat; 
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://t4.ftcdn.net/jpg/08/86/09/59/360_F_886095906_m0pfxyzW3WWcrSZfRHsKx7ZF4f8TnTBa.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,7 +33,7 @@
   border: 4px solid;
   border-color: transparent;
   font-size: 16px;
-  background-color:olivedrab;
+  background-color: olivedrab;
   border-radius: 100px;
   font-weight: 600;
   color: greenyellow;
@@ -109,9 +112,17 @@
   opacity: 1;
 }
 
-
 .bg-drop {
   background-color: #212121;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.bg-paciente {
+  display: flex;
+  flex-direction: column;
+  min-height: 99vh;
 }
 @media (max-width: 1024px) {
   .padre-carousel {

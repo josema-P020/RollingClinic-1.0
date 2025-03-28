@@ -28,7 +28,7 @@ function DatosAdmin() {
           <div>
             <div className="row">
               <div className="col-lg-3 col-md-4 col-sm-12 text-center pt-4 pb-2">
-                <p className="py-2">
+                <p className="py-2 text-white">
                   {admin.role}: {admin.name}
                 </p>
 

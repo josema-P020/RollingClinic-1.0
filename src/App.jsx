@@ -5,12 +5,16 @@ import RoutesApp from "./routes/RoutesApp";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
 import RegisterPatient from "./pages/Register/RegisterPatient";
 import RegisterDoctor from "./pages/Register/RegisterDoctor";
-
+import Swal from "sweetalert2";
 function App() {
   const [login, setLogin] = useState(false);
 
   const cambiarLogin = () => {
     setLogin(!login);
+    Swal.fire({
+      title: "Inicio de sesión exitoso",
+      icon: "success",
+    });
   };
 
   return (

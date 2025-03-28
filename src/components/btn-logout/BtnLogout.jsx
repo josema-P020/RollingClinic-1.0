@@ -4,7 +4,7 @@ import { handleLogout } from "@/utils/logout";
 
 function BtnLogout() {
   return (
-    <div className="d-flex justify-content-end me-3 mb-2">
+    <div className="d-flex justify-content-end mb-2">
       <Link
         to="/login"
         className="my-3 btn btn-secondary"

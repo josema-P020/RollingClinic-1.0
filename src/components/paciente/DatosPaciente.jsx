@@ -3,6 +3,7 @@ import "./Paciente.css";
 import ListaMedicos from "./ListadoTurnos.jsx";
 import data from "@/data/dataBase.js";
 import { Link } from "react-router-dom";
+import BtnLogout from "@/components/btn-logout/BtnLogout.jsx";
 
 function DatosPaciente() {
   const [info, setInfo] = useState(() => {
@@ -70,7 +71,7 @@ function DatosPaciente() {
 
   return (
     <>
-      <div className="container-fluid">
+      <div className="container-fluid bg-paciente">
         <section>
           <div>
             <div className="row">

@@ -55,7 +55,7 @@ function ListadoMedicos() {
   return (
     <div className="mt-4">
       <div className="text-center flex-grow-1">
-        <h2 className="fw-bold pb-3">Todos los usuarios</h2>
+        <h2 className="fw-bold pb-3 text-white">Todos los usuarios</h2>
         <div className="table-responsive">
           <table className="table table-hover">
             <thead>
@@ -90,37 +90,39 @@ function ListadoMedicos() {
           </table>
         </div>
       </div>
-      <div className="d-flex justify-content-center">
-        <nav aria-label="paginacion">
-          <ul className="pagination ">
-            <li className="page-item">
-              <a className="page-link disabled" href="#">
-                Anterior
-              </a>
-            </li>
-            <li className="page-item active ">
-              <a className="page-link" href="#">
-                1
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link disabled" href="#">
-                2
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link disabled" href="#">
-                3
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link disabled" href="#">
-                Siguiente
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      {medicos.length >= 5 && (
+        <div className="d-flex justify-content-center">
+          <nav aria-label="paginacion">
+            <ul className="pagination ">
+              <li className="page-item">
+                <a className="page-link disabled" href="#">
+                  Anterior
+                </a>
+              </li>
+              <li className="page-item active ">
+                <a className="page-link" href="#">
+                  1
+                </a>
+              </li>
+              <li className="page-item">
+                <a className="page-link disabled" href="#">
+                  2
+                </a>
+              </li>
+              <li className="page-item">
+                <a className="page-link disabled" href="#">
+                  3
+                </a>
+              </li>
+              <li className="page-item">
+                <a className="page-link disabled" href="#">
+                  Siguiente
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      )}
     </div>
   );
 }
