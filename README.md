@@ -62,10 +62,10 @@ Este proyecto consiste en una página web para una clínica que permite la gesti
 5. Despliegue en producción.
 
 ## Autores
-Ramiro Nahuel Romano GitHub https://github.com/nahuel-11
-Javier Mauricio Gómez GitHub https://github.com/JavierMauricioGomez
-José Alvarez Domínguez GitHub https://github.com/joalvarez05
-José Maria Perez GitHub https://github.com/josema-P020
+Ramiro Nahuel Romano GitHub https://github.com/nahuel-11 <br />
+Javier Mauricio Gómez GitHub https://github.com/JavierMauricioGomez <br />
+José Alvarez Domínguez GitHub https://github.com/joalvarez05 <br />
+José Maria Perez GitHub https://github.com/josema-P020 <br />
 
 ## Contribuciones
 ¡Contribuciones son bienvenidas! Por favor, abre un _issue_ o envía un _pull request_ con tus sugerencias o mejoras.
