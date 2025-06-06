@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../paciente/Paciente.css";
+import "../admin/Admin.css"
 import data from "@/data/dataBase.js";
 import ListadoMedicos from "./ListadoMedicos.jsx";
 function DatosAdmin() {
