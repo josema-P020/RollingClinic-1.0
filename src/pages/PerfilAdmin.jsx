@@ -6,7 +6,7 @@ function PerfilAdmin() {
   return (
     <>
       <DatosAdmin />
-      <BtnLogout></BtnLogout>
+
     </>
   );
 }

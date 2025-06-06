@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react";
 import data from "../data/dataBase";
 import "../css/paginaDoctor.css";
 
+
 function PacienteDoctor() {
   const [dataBase, setPacientes] = useState([]);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
@@ -9,23 +10,23 @@ function PacienteDoctor() {
   const [consultaDetalles, setConsultaDetalles] = useState({});
   const [resumenConsulta, setResumenConsulta] = useState("");
 
-useEffect(() => {
-  const storedUsers = localStorage.getItem("users");
-  const storedUser = localStorage.getItem("loggedInUser");
+  useEffect(() => {
+    const storedUsers = localStorage.getItem("users");
+    const storedUser = localStorage.getItem("loggedInUser");
 
-  if (storedUsers) {
-    setPacientes(JSON.parse(storedUsers));
-  } else {
-    setPacientes(data);
-  }
-
-  if (storedUser) {
-    const doctor = JSON.parse(storedUser);
-    if (doctor.role === "DOCTOR") {
-      setSelectedDoctor(doctor);
+    if (storedUsers) {
+      setPacientes(JSON.parse(storedUsers));
+    } else {
+      setPacientes(data);
     }
-  }
-}, []);
+
+    if (storedUser) {
+      const doctor = JSON.parse(storedUser);
+      if (doctor.role === "DOCTOR") {
+        setSelectedDoctor(doctor);
+      }
+    }
+  }, []);
 
   const handleSelectDoctor = (doctor) => {
     setSelectedDoctor(doctor);
@@ -74,7 +75,6 @@ useEffect(() => {
     <>
       <div className="bg-doc imgConta">
         <div className="container-fluid row d-flex justify-content-around ">
-
           <div className="col-4 border border-dark m-3 rounded-2 bg-secondary bg-opacity-75 text-light">
             <h3 className="text-center">Lista de Turnos</h3>
             <ul className="list-unstyled">

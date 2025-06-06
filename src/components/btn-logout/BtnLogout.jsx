@@ -8,7 +8,7 @@ function BtnLogout() {
     <div className="d-flex justify-content-end mb-2">
       <Link
         to="/login"
-        className="cerrarSesion my-3 btn btn-secondary"
+        className="cerrarSesion my-3 btn btn-danger"
         onClick={handleLogout}
       >
         <i className="bi bi-box-arrow-right"> Cerrar Sesión</i>
