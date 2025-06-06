@@ -1,5 +1,6 @@
 .navbar {
-  height: 60px;
+  display: flex;
+  height: auto;
   width: 100%;
   display: flex;
   align-items: center;
@@ -86,6 +87,13 @@
 
 .dropdown:hover .dropdown-menu {
   display: flex;
+}
+
+.contenidoDr{
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
 }
 
 @media (max-width: 768px) {

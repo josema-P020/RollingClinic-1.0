@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react";
 import data from "../data/dataBase";
 import "../css/paginaDoctor.css";
 
+
 function PacienteDoctor() {
   const [dataBase, setPacientes] = useState([]);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
@@ -10,12 +11,20 @@ function PacienteDoctor() {
   const [resumenConsulta, setResumenConsulta] = useState("");
 
   useEffect(() => {
-    const storedPacientes = localStorage.getItem("users");
+    const storedUsers = localStorage.getItem("users");
+    const storedUser = localStorage.getItem("loggedInUser");
 
-    if (storedPacientes) {
-      setPacientes(JSON.parse(storedPacientes));
+    if (storedUsers) {
+      setPacientes(JSON.parse(storedUsers));
     } else {
       setPacientes(data);
+    }
+
+    if (storedUser) {
+      const doctor = JSON.parse(storedUser);
+      if (doctor.role === "DOCTOR") {
+        setSelectedDoctor(doctor);
+      }
     }
   }, []);
 
@@ -66,35 +75,12 @@ function PacienteDoctor() {
     <>
       <div className="bg-doc imgConta">
         <div className="container-fluid row d-flex justify-content-around ">
-          <div className="m-3">
-            <button
-              className="btn-2 btn btn-secondary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              {selectedDoctor ? selectedDoctor.name : "Seleccione un doctor"}
-            </button>
-            <ul className="color-btn dropdown-menu">
-              {doctors.map((doctor) => (
-                <li key={doctor.id}>
-                  <button
-                    className="dropdown-item"
-                    type="button"
-                    onClick={() => handleSelectDoctor(doctor)}
-                  >
-                    {doctor.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
           <div className="col-4 border border-dark m-3 rounded-2 bg-secondary bg-opacity-75 text-light">
             <h3 className="text-center">Lista de Turnos</h3>
             <ul className="list-unstyled">
               {filteredPacientes.map((paciente) =>
                 paciente.turnos
-                  ?.filter((turno) => turno.doctor === selectedDoctor?.name)
+                  ?.filter((turno) => turno.doctor)
                   .map((turno) => (
                     <li
                       key={turno.id}
@@ -120,7 +106,7 @@ function PacienteDoctor() {
                   <span
                     className={
                       selectedTurno.estado === "atendido"
-                        ? "text-success"
+                        ? "estado-atendido"
                         : "text-danger"
                     }
                   >

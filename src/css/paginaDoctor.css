@@ -1,3 +1,5 @@
+
+
 .btn-2 {
   padding: 10px 20px;
   font-size: 16px;
@@ -25,4 +27,8 @@
 }
 .bg-doc {
   height: 100vh;
+}
+
+.estado-atendido {
+  color: #00ff44; /* Verde Bootstrap más fuerte */
 }

@@ -64,7 +64,6 @@ function CustomCarousel() {
                     </button>
                   </Link>
                 </div>
-                <BtnLogout />
               </div>
             </div>
           </div>
