@@ -11,7 +11,7 @@ function BtnLogout() {
         className="cerrarSesion my-3 btn btn-danger"
         onClick={handleLogout}
       >
-        <i className="bi bi-box-arrow-right"> Cerrar Sesión</i>
+        <i className="bi bi-box-arrow-right">Cerrar Sesión</i>
       </Link>
     </div>
   );
